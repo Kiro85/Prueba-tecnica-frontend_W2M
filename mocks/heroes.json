@@ -1,0 +1,6 @@
+{
+  "heroes": [
+    { "id": 1, "nombre": "Deku" },
+    { "id": 2, "nombre": "Bakugo" }
+  ]
+}
