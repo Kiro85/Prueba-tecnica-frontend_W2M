@@ -1,3 +1,5 @@
+@use '../../../../../sass/var' as var;
+
 .c-card-hero {
   width: 318px;
   height: auto;
@@ -28,14 +30,14 @@
     font-weight: 400;
     font-size: 1.25rem;
     line-height: 120%;
-    color: #343434;
+    color: var.$c-text;
   }
 
   &__superpower {
     font-weight: 700;
     font-size: 1rem;
     line-height: 140%;
-    color: #343434;
+    color: var.$c-text;
   }
 
   &__description {
@@ -78,22 +80,22 @@
     // Modificators
 
     &--edit {
-      background-color: #8a42fb;
+      background-color: var.$c-primary;
 
       i {
-        color: #ffffff;
+        color: var.$c-on-primary;
       }
 
       p {
-        color: #ffffff;
+        color: var.$c-on-primary;
       }
     }
 
     &--delete {
-      background-color: #F3F3F3;
+      background-color: var.$c-secondary;
 
       p {
-        color: #343434;
+        color: var.$c-on-secondary;
       }
     }
   }
