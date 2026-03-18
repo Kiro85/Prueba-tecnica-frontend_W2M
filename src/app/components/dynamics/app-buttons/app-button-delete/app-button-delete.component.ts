@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './app-button-delete.component.html',
   styleUrl: './app-button-delete.component.scss',
 })
-export class AppButtonDelete {
+export class AppButtonDeleteComponent {
 
 }

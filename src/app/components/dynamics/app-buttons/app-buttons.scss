@@ -38,4 +38,16 @@
       color: var.$c-on-secondary;
     }
   }
+
+  &--search {
+    width: 72px;
+    height: 72px;
+    padding: 0;
+    background-color: var.$c-primary;
+    border-radius: 100px;
+
+    i {
+      color: var.$c-on-primary;
+    }
+  }
 }
