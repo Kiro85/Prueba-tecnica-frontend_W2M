@@ -1,12 +1,16 @@
-.p-header {
+.p-home {
   width: 100%;
 }
 
-.p-main {
+.p-home__header {
+  width: 100%;
+}
+
+.p-home__main {
   max-width: 1344px;
   margin: 0 auto;
 }
 
-.p-list-cards {
+.p-home__list-cards {
   width: 100%;
 }
