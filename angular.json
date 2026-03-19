@@ -64,6 +64,7 @@
               "buildTarget": "prueba-tecnica-frontend_w2m:build:production"
             },
             "development": {
+              "proxyConfig": "proxy.conf.json",
               "buildTarget": "prueba-tecnica-frontend_w2m:build:development"
             }
           },
