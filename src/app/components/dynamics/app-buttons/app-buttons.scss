@@ -10,6 +10,12 @@
   align-items: center;
   border-radius: 32px;
   border: none;
+  cursor: pointer;
+  transition: scale ease-in-out 0.3s;
+
+  &:hover {
+    scale: 1.1;
+  }
 
   p {
     font-weight: 400;

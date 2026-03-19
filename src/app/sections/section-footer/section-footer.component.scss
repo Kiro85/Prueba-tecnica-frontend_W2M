@@ -6,7 +6,7 @@
   height: auto;
   margin: 10px auto;
   padding: 50px 0;
-  border-top: 1px solid #0000001A;
+  border-top: 1px solid #0000001a;
 
   &__content {
     width: 100%;
@@ -15,14 +15,15 @@
     align-items: center;
   }
 
-  &__copyright, &__social-media {
+  &__copyright,
+  &__social-media {
     width: 100%;
     max-width: 215px;
   }
 
   &__copyright-text {
     text-align: center;
-    font-family: "Comfortaa";
+    font-family: 'Comfortaa';
     font-weight: 700;
     font-size: 0.75rem;
     line-height: 100%;
@@ -41,6 +42,11 @@
   &__social-media-icon {
     width: 24px;
     height: 24px;
+    transition: scale ease-in-out .3s;
+
+    &:hover {
+      scale: 1.1;
+    }
   }
 }
 
