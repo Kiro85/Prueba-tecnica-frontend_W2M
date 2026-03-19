@@ -18,6 +18,20 @@
   }
 
   // Modificators
+  &--create {
+    width: auto;
+    height: 56px;
+    padding: 0 16px;
+    background-color: var.$c-primary;
+
+    i {
+      color: var.$c-on-primary;
+    }
+
+    p {
+      color: var.$c-on-primary;
+    }
+  }
 
   &--edit {
     background-color: var.$c-primary;
