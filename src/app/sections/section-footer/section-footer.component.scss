@@ -21,6 +21,7 @@
   }
 
   &__copyright-text {
+    text-align: center;
     font-family: "Comfortaa";
     font-weight: 700;
     font-size: 0.75rem;
@@ -32,6 +33,7 @@
   &__social-media-icons {
     width: 100%;
     display: flex;
+    justify-content: center;
     gap: 8px;
     list-style: none;
   }
@@ -39,5 +41,14 @@
   &__social-media-icon {
     width: 24px;
     height: 24px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .s-footer {
+    &__content {
+      flex-direction: column;
+      gap: 24px;
+    }
   }
 }
