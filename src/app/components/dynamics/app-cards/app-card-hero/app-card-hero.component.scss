@@ -1,0 +1,62 @@
+@use '../../../../../sass/var' as var;
+
+.c-card-hero {
+  width: 318px;
+  height: auto;
+  box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.1);
+
+  &__img {
+    width: 100%;
+    height: 238px;
+    overflow: hidden;
+  }
+
+  &__img-item {
+    width: 100%;
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &__info {
+    width: 286px;
+    padding: 16px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__name {
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 120%;
+    color: var.$c-text;
+  }
+
+  &__superpower {
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 140%;
+    color: var.$c-text;
+  }
+
+  &__description {
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 120%;
+  }
+
+  &__city {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 120%;
+  }
+
+  &__buttons {
+    width: 268px;
+    height: 40px;
+    gap: 16px;
+    display: flex;
+  }
+}

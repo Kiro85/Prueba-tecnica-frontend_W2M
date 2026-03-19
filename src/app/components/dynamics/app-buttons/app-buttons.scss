@@ -1,0 +1,81 @@
+@use '../../../../sass/var' as var;
+
+.c-button {
+  width: 135px;
+  height: 40px;
+  padding: 0 8px;
+  gap: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 32px;
+  border: none;
+  cursor: pointer;
+  transition: scale ease-in-out 0.3s;
+
+  &:hover {
+    scale: 1.1;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 120%;
+  }
+
+  // Modificators
+  &--create {
+    width: auto;
+    height: 56px;
+    padding: 0 16px;
+    background-color: var.$c-primary;
+
+    mat-icon {
+      color: var.$c-on-primary;
+    }
+
+    p {
+      color: var.$c-on-primary;
+    }
+  }
+
+  &--edit {
+    background-color: var.$c-primary;
+
+    mat-icon {
+      color: var.$c-on-primary;
+    }
+
+    p {
+      color: var.$c-on-primary;
+    }
+  }
+
+  &--delete {
+    background-color: var.$c-secondary;
+
+    p {
+      color: var.$c-on-secondary;
+    }
+  }
+
+  &--more {
+    background-color: var.$c-primary;
+
+    p {
+      color: var.$c-on-primary;
+    }
+  }
+
+  &--search {
+    width: 72px;
+    height: 72px;
+    padding: 0;
+    background-color: var.$c-primary;
+    border-radius: 100px;
+
+    mat-icon {
+      color: var.$c-on-primary;
+    }
+  }
+}
