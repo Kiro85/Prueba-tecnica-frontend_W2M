@@ -2,123 +2,67 @@
   "heroes": [
     {
       "id": 1,
-      "name": "Deku",
-      "superpower": "One For All",
-      "city": "Tokyo, JP",
-      "description": "A determined young hero who inherited One For All and fights to save people with unwavering resolve.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
+      "name": "Wonder Woman",
+      "superpower": "Fuerza sobrehumana, Supervelocidad",
+      "city": "Sevilla, Esp.",
+      "description": "Wonder Woman es considerada una de las superheroínas más fuertes del planeta. ",
+      "image": "heroes/wonder-woman.png"
     },
     {
       "id": 2,
-      "name": "Great Explosion Murder God Dynamight",
-      "superpower": "Explosion",
-      "city": "Tokyo, JP",
-      "description": "A fiercely competitive hero known for his explosive quirk and overwhelming combat power.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
+      "name": "Hulk",
+      "superpower": "Super fuerte y enojón",
+      "city": "Barcelona, Esp.",
+      "description": "Hulk es un ser colosal con una musculatura impresionante que parece desafiar los límites de lo humano.",
+      "image": "heroes/hulk.png"
     },
     {
       "id": 3,
-      "name": "Shoto",
-      "superpower": "Half-Cold Half-Hot",
-      "city": "Tokyo, JP",
-      "description": "A calm and analytical hero who wields both ice and fire, striving to surpass his past.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
+      "name": "Capitana Marvel",
+      "superpower": "Curación acelerada e inmortal",
+      "city": "New York, USA.",
+      "description": "La Capitana Marvel obtuvo sus poderes cósmicos del Teseracto, que albergaba la gema del espacio.",
+      "image": "heroes/capitana-marvel.png"
     },
     {
       "id": 4,
-      "name": "All Might",
-      "superpower": "One For All",
-      "city": "Tokyo, JP",
-      "description": "The Symbol of Peace, known for his incredible strength and unwavering dedication to protecting others.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
+      "name": "Spiderman",
+      "superpower": "Superpoderes arácnidos",
+      "city": "Mallorca, Esp.",
+      "description": "Fuerza, velocidad, agilidad, durabilidad, reflejos, coordinación, equilibrio y resistencia sobrehumanas.",
+      "image": "heroes/spiderman.png"
     },
     {
       "id": 5,
-      "name": "Uravity",
-      "superpower": "Zero Gravity",
-      "city": "Tokyo, JP",
-      "description": "A cheerful and hardworking hero who can make objects weightless with a touch.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
+      "name": "Gamora",
+      "superpower": "Experta en artes marciales. ",
+      "city": "Culiacán, Méx",
+      "description": "Gamora es una combatiente cuerpo a cuerpo y una maestra en el uso de armas. Es una tiradora experta.",
+      "image": "heroes/gamora.png"
     },
     {
       "id": 6,
-      "name": "Ingenium",
-      "superpower": "Engine",
-      "city": "Tokyo, JP",
-      "description": "A disciplined and honorable hero who moves at incredible speed using engines in his legs.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
+      "name": "Batman",
+      "superpower": "Una gran fortuna",
+      "city": "Ciudad de México, Méx. ",
+      "description": "Batman utiliza su intelecto y aplicaciones científicas para desarrollar gadgets y vehículos.",
+      "image": "heroes/batman.png"
     },
     {
       "id": 7,
-      "name": "Froppy",
-      "superpower": "Frog",
-      "city": "Tokyo, JP",
-      "description": "A calm and reliable hero with abilities similar to a frog—agility, jumping power, and versatility.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
+      "name": "Viuda Negra",
+      "superpower": "exespía soviética, artista marcial y francotiradora. ",
+      "city": "Sevilla, Esp.",
+      "description": "Natasha nació en Rusia durante la Guerra Fría y fue entrenada por la KGB",
+      "image": "heroes/viuda-negra.png"
     },
     {
       "id": 8,
-      "name": "Creati",
-      "superpower": "Creation",
-      "city": "Tokyo, JP",
-      "description": "A highly intelligent hero capable of creating any non-living material from her body.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
-    },
-    {
-      "id": 9,
-      "name": "Red Riot",
-      "superpower": "Hardening",
-      "city": "Tokyo, JP",
-      "description": "A passionate and brave hero who can harden his body to withstand powerful attacks.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
-    },
-    {
-      "id": 10,
-      "name": "Chargebolt",
-      "superpower": "Electrification",
-      "city": "Tokyo, JP",
-      "description": "A laid-back hero who can generate powerful electricity, though sometimes at the cost of his focus.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
-    },
-    {
-      "id": 11,
-      "name": "Tsukuyomi",
-      "superpower": "Dark Shadow",
-      "city": "Tokyo, JP",
-      "description": "A reserved hero who controls a sentient shadow creature that grows stronger in darkness.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
-    },
-    {
-      "id": 12,
-      "name": "Hawks",
-      "superpower": "Fierce Wings",
-      "city": "Kyoto, JP",
-      "description": "A highly skilled pro hero who uses his feather wings for flight, rescue, and precision attacks.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
-    },
-    {
-      "id": 13,
-      "name": "Endeavor",
-      "superpower": "Hellflame",
-      "city": "Tokyo, JP",
-      "description": "A powerful flame-wielding hero constantly striving to surpass his limits and redeem his past.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
-    },
-    {
-      "id": 14,
-      "name": "Lemillion",
-      "superpower": "Permeation",
-      "city": "Tokyo, JP",
-      "description": "A cheerful and resilient hero who can phase through matter, making him extremely hard to hit.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
-    },
-    {
-      "id": 15,
-      "name": "Suneater",
-      "superpower": "Manifest",
-      "city": "Tokyo, JP",
-      "description": "A shy but incredibly powerful hero whose body manifests the properties of the food he eats.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077"
+      "name": "Ironman",
+      "superpower": "Armadura",
+      "city": "Buenos Aires, Arg.",
+      "description": "La armadura de Iron Man está hecha de nanotecnología y se almacena en un reactor que Tony Stark lleva en el pecho.",
+      "image": "heroes/ironman.png"
     }
   ]
 }
