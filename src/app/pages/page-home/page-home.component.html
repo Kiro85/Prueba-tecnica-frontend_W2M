@@ -4,12 +4,24 @@
   </section>
 
   <section class="p-home__main">
-    <div class="p-home__search-bar">
-      <app-search-bar></app-search-bar>
-      <!-- <app-button-edit></app-button-edit> -->
-    </div>
-    <div class="p-home__list-cards">
-      <section-cards></section-cards>
+    <div class="p-home__content">
+      <div class="p-home__nav">
+        <div class="p-home__search-bar">
+            <app-search-bar></app-search-bar>
+        </div>
+        <div class="p-home__create-button">
+          <app-button-edit></app-button-edit>
+        </div>
+      </div>
+
+      <div class="p-home__list">
+        <div class="p-home__list-title">
+          <!-- TEXTO -->
+        </div>
+        <div class="p-home__list-cards">
+          <section-cards></section-cards>
+        </div>
+      </div>
     </div>
   </section>
 </main>
