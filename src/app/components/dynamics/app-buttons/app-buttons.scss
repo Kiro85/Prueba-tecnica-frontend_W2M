@@ -24,7 +24,7 @@
     padding: 0 16px;
     background-color: var.$c-primary;
 
-    i {
+    mat-icon {
       color: var.$c-on-primary;
     }
 
@@ -36,7 +36,7 @@
   &--edit {
     background-color: var.$c-primary;
 
-    i {
+    mat-icon {
       color: var.$c-on-primary;
     }
 
@@ -68,7 +68,7 @@
     background-color: var.$c-primary;
     border-radius: 100px;
 
-    i {
+    mat-icon {
       color: var.$c-on-primary;
     }
   }
