@@ -7,14 +7,14 @@ import { throwError } from 'rxjs';
 })
 export class ErrorHandleService {
   public handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Error';
+    let errorMessage = 'Error'
 
     if (error.error instanceof ErrorEvent) {
       // Client error
       errorMessage = `Error: ${error.error.message}`
     } else {
       // Server error
-      errorMessage = `Error code: ${error.status}, message: ${error.message}`;
+      errorMessage = `Error code: ${error.status}, message: ${error.message}`
     }
 
     return throwError(() => ({

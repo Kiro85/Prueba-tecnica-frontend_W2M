@@ -1,16 +1,16 @@
 <article class="c-card-hero">
   <!-- Image -->
   <figure class="c-card-hero__img">
-    <img class="c-card-hero__img-item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFuVbEpwZdCeLk45IoWmoUH2Ts1gTqVXMhoI6US15he_q3BTD6P8wX6k2lkdqj7kTyYpuKmEcdFi5r1XWT8PK3-w7qwevt&s&ec=121585077" alt="Hero image">
+    <img class="c-card-hero__img-item" src="{{heroe?.image}}" alt="Image of {{heroe?.name}}">
   </figure>
 
   <!-- Info -->
   <div class="c-card-hero__content">
     <div class="c-card-hero__info">
-      <h2 class="c-card-hero__name">Deku</h2>
-      <p class="c-card-hero__superpower">One For All</p>
-      <p class="c-card-hero__description">A determined young hero who inherited One For All and fights to save people with unwavering resolve.</p>
-      <p class="c-card-hero__city">Tokyo, JP</p>
+      <h2 class="c-card-hero__name">{{heroe?.name}}</h2>
+      <p class="c-card-hero__superpower">{{heroe?.superpower}}l</p>
+      <p class="c-card-hero__description">{{heroe?.description}}</p>
+      <p class="c-card-hero__city">{{heroe?.city}}</p>
       <div class="c-card-hero__buttons">
         <app-button-edit></app-button-edit>
         <app-button-delete></app-button-delete>

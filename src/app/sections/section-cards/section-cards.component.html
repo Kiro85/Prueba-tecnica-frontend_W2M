@@ -1,9 +1,5 @@
 <ul class="s-list-hero">
-  <app-card-hero></app-card-hero>
-  <app-card-hero></app-card-hero>
-  <app-card-hero></app-card-hero>
-  <app-card-hero></app-card-hero>
-  <app-card-hero></app-card-hero>
-  <app-card-hero></app-card-hero>
-  <app-card-hero></app-card-hero>
+  @for (heroe of heroes(); track $index) {
+    <app-card-hero [heroe]="heroe"></app-card-hero>
+  }
 </ul>
