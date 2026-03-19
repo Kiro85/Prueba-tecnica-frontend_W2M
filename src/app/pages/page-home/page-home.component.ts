@@ -5,11 +5,13 @@ import { AppSearchBarComponent } from '../../components/dynamics/app-search-bar/
 import { AppButtonEditComponent } from '../../components/dynamics/app-buttons/app-button-edit/app-button-edit.component';
 import { AppButtonCreateComponent } from '../../components/dynamics/app-buttons/app-button-create/app-button-create.component';
 import { AppButtonMoreComponent } from '../../components/dynamics/app-buttons/app-button-more/app-button-more.component';
+import { SectionFooterComponent } from '../../sections/section-footer/section-footer.component';
 
 @Component({
   selector: 'page-home',
   imports: [
     SectionCardsComponent,
+    SectionFooterComponent,
     AppBannerComponent,
     AppSearchBarComponent,
     AppButtonCreateComponent,

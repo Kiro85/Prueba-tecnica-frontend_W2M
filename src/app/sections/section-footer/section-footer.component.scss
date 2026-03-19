@@ -1,0 +1,43 @@
+@use '../../../sass/var' as var;
+
+.s-footer {
+  width: 100%;
+  max-width: 1344px;
+  height: auto;
+  margin: 10px auto;
+  padding: 50px 0;
+  border-top: 1px solid #0000001A;
+
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__copyright, &__social-media {
+    width: 100%;
+    max-width: 215px;
+  }
+
+  &__copyright-text {
+    font-family: "Comfortaa";
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: var.$c-text-footer;
+  }
+
+  &__social-media-icons {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    list-style: none;
+  }
+
+  &__social-media-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
