@@ -12,11 +12,11 @@ import { Subject } from 'rxjs';
   styleUrl: './section-cards.component.scss',
 })
 export class SectionCardsComponent implements OnInit, OnDestroy {
-  private loading = signal<boolean>(false);
-  private error = signal<HttpErrorResponse | null>(null);
-  protected heroes = signal<Heroe[]>([]);
-  private unsubscribe$: Subject<void> = new Subject<void>();
-  private readonly heroeService = inject(HeroeService);
+  private loading = signal<boolean>(false)
+  private error = signal<HttpErrorResponse | null>(null)
+  protected heroes = signal<Heroe[]>([])
+  private unsubscribe$: Subject<void> = new Subject<void>()
+  private readonly heroeService = inject(HeroeService)
 
   ngOnInit(): void {
     this.getHeroes()

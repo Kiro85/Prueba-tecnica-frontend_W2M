@@ -6,3 +6,11 @@ export interface Heroe {
   description: string;
   image: string;
 }
+
+export interface HeroeRequest {
+  name: string;
+  superpower: string;
+  city: string;
+  description: string;
+  image: string;
+}
