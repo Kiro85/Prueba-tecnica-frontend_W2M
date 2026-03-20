@@ -13,6 +13,9 @@ export class AppButtonCreateComponent {
   private readonly dialog: MatDialog = new MatDialog();
 
   OpenCreateHeroeForm(): void {
-    const dialogRef = this.dialog.open(AppFormHeroeCreateComponent)
+    const dialogRef = this.dialog.open(AppFormHeroeCreateComponent, {
+      maxWidth: '936px',
+      maxHeight: '624px',
+    })
   }
 }

@@ -1,33 +1,39 @@
 <form class="c-create-hero-form" action="">
   <section class="c-create-hero-form__title-section">
-    <h1 class="c-create-hero-form__title-text"></h1>
+    <h1 class="c-create-hero-form__title-text">Crear nuevo héroe</h1>
   </section>
 
   <section class="c-create-hero-form__fields-section">
     <div class="c-create-hero-form__row-2">
-      <div>
+      <div class="c-create-hero-form__row-content">
         <span class="c-create-hero-form__label">Nombre</span>
-        <mat-form-field>
-          <mat-label>Nombre</mat-label>
-          <input matInput />
+        <mat-form-field class="c-create-hero-form__input" appearance="fill">
+          <input matInput placeholder="Nombre" />
         </mat-form-field>
       </div>
 
-      <div>
-        <span class="c-create-hero-form__label">>Superpoder</span>
-        <mat-form-field appearance="fill">
-          <mat-label>Superpoder</mat-label>
-          <input matInput />
+      <div class="c-create-hero-form__row-content">
+        <span class="c-create-hero-form__label">Superpoder</span>
+        <mat-form-field class="c-create-hero-form__input" appearance="fill">
+          <input matInput placeholder="Superpoder" />
         </mat-form-field>
       </div>
     </div>
 
     <div class="c-create-hero-form__row-1">
-      <div>
-        <span class="c-create-hero-form__label"></span>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Descripción</mat-label>
-          <textarea matInput placeholder="Descripción" rows="3"></textarea>
+      <div class="c-create-hero-form__row-content">
+        <span class="c-create-hero-form__label">Ciudad</span>
+        <mat-form-field class="c-create-hero-form__input" appearance="fill">
+          <input matInput placeholder="Ciudad" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="c-create-hero-form__row-1">
+      <div class="c-create-hero-form__row-content">
+        <span class="c-create-hero-form__label">Descripción</span>
+        <mat-form-field class="c-create-hero-form__input" appearance="fill">
+          <textarea matInput rows="3" placeholder="Descripción"></textarea>
         </mat-form-field>
       </div>
     </div>
@@ -36,8 +42,7 @@
       <span class="c-create-hero-form__label">Elige una imagen</span>
 
       <div class="c-create-hero-form__files">
-        <button>Seleccionar archivo</button>
-        <span class="c-create-hero-form__files-text">Sin archivos seleccionados</span>
+        <input type="file" class="c-create-hero-form__files-button">
       </div>
     </div>
   </section>
@@ -45,11 +50,11 @@
   <section class="c-create-hero-form__submit-section">
     <div class="c-create-hero-form__submit-content">
       <div class="c-create-hero-form__checkbox">
-        <mat-checkbox> Acepto los Términos y condiciones </mat-checkbox>
+        <mat-checkbox> Acepto los <u>Términos y condiciones</u> </mat-checkbox>
       </div>
 
       <div class="c-create-hero-form__submit-button">
-        <button></button>
+        <app-button-create-form></app-button-create-form>
       </div>
     </div>
   </section>
