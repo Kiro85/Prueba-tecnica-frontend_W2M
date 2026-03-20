@@ -12,36 +12,36 @@ import { Subject } from 'rxjs';
   styleUrl: './section-cards.component.scss',
 })
 export class SectionCardsComponent implements OnInit, OnDestroy {
-  private loading = signal<boolean>(false)
-  private error = signal<HttpErrorResponse | null>(null)
-  protected heroes = signal<Heroe[]>([])
-  private unsubscribe$: Subject<void> = new Subject<void>()
-  private readonly heroeService = inject(HeroeService)
+  private loading = signal<boolean>(false);
+  private error = signal<HttpErrorResponse | null>(null);
+  protected heroes = signal<Heroe[]>([]);
+  private unsubscribe$: Subject<void> = new Subject<void>();
+  private readonly heroeService = inject(HeroeService);
 
   ngOnInit(): void {
-    this.getHeroes()
+    this.getHeroes();
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe$.next()
-    this.unsubscribe$.complete()
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   private getHeroes(): void {
-    this.loading.set(false)
-    this.error.set(null)
+    this.loading.set(false);
+    this.error.set(null);
 
     this.heroeService.getHeroes().subscribe({
       next: (data) => {
-        this.heroes.set(data)
-        this.loading.set(false)
+        this.heroes.set(data);
+        this.loading.set(false);
       },
 
       error: (err) => {
-        this.error.set(err)
-        this.loading.set(false)
-        console.error("Error - section-cards.component.ts - GetHeroes() / " + err.message);
-      }
-    })
+        this.error.set(err);
+        this.loading.set(false);
+        console.error('Error - section-cards.component.ts - GetHeroes() / ' + err.message);
+      },
+    });
   }
 }

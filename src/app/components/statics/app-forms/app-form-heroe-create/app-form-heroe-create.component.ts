@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { HeroeService } from '../../../../services/heroe.service';
 import { Heroe, HeroeRequest } from '../../../../models/heroe';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-form-heroe-create',
@@ -26,17 +27,20 @@ import { Router } from '@angular/router';
   styleUrl: './app-form-heroe-create.component.scss',
 })
 export class AppFormHeroeCreateComponent implements OnInit, OnDestroy {
-  protected createHeroeForm!: FormGroup
-  private loading = signal<boolean>(false)
-  private error = signal<HttpErrorResponse | null>(null)
-  private readonly heroeService = inject(HeroeService)
-  private readonly router = inject(Router)
+  protected createHeroeForm!: FormGroup;
+  private loading = signal<boolean>(false);
+  private error = signal<HttpErrorResponse | null>(null);
+  private unsubscribe$: Subject<void> = new Subject<void>();
+  private readonly heroeService = inject(HeroeService);
 
   ngOnInit(): void {
-    this.initForm()
+    this.initForm();
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 
   private initForm(): void {
     this.createHeroeForm = new FormGroup({
@@ -66,21 +70,21 @@ export class AppFormHeroeCreateComponent implements OnInit, OnDestroy {
   }
 
   protected onSubmit(): void {
-    this.loading.set(false)
-    this.error.set(null)
+    this.loading.set(false);
+    this.error.set(null);
 
     this.heroeService.createHeroe(this.createHeroeModel()).subscribe({
       next: () => {
-        window.location.reload()
-        this.loading.set(false)
+        window.location.reload();
+        this.loading.set(false);
       },
 
       error: (err) => {
-        this.error.set(err)
-        this.loading.set(false)
-        console.error("Error - app-form-heroe-create.component.ts - onSubmit() / " + err.message)
-      }
-    })
+        this.error.set(err);
+        this.loading.set(false);
+        console.error('Error - app-form-heroe-create.component.ts - onSubmit() / ' + err.message);
+      },
+    });
   }
 
   private createHeroeModel(): HeroeRequest {
@@ -90,8 +94,8 @@ export class AppFormHeroeCreateComponent implements OnInit, OnDestroy {
       city: this.createHeroeForm.value.city,
       description: this.createHeroeForm.value.description,
       image: this.createHeroeForm.value.image,
-    }
+    };
 
-    return request
+    return request;
   }
 }
