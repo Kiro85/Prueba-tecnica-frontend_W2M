@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-button-create-form',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './app-button-create-form.component.scss',
 })
 export class AppButtonCreateFormComponent {
-
+  @Input() disabled: boolean = false;
 }

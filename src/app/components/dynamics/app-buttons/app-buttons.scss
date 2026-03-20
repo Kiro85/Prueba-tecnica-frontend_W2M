@@ -86,5 +86,12 @@
     p {
       color: var.$c-on-secondary;
     }
+
+    &[disabled],
+    &:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
   }
 }

@@ -1,4 +1,4 @@
-<form class="c-create-hero-form" action="">
+<form class="c-create-hero-form" [formGroup]="createHeroeForm" (ngSubmit)="onSubmit()">
   <section class="c-create-hero-form__title-section">
     <h1 class="c-create-hero-form__title-text">Crear nuevo héroe</h1>
   </section>
@@ -8,15 +8,43 @@
       <div class="c-create-hero-form__row-content">
         <span class="c-create-hero-form__label">Nombre</span>
         <mat-form-field class="c-create-hero-form__input" appearance="fill">
-          <input matInput placeholder="Nombre" />
+          <input matInput formControlName="name" placeholder="Nombre" />
         </mat-form-field>
+        @if (createHeroeForm.get('name')?.invalid && createHeroeForm.get('name')?.touched) {
+          <span class="c-create-hero-form__input-error">
+            @if (createHeroeForm.get('name')?.errors?.['required']) {
+              El nombre es obligatorio.
+            }
+            @if (createHeroeForm.get('name')?.errors?.['minlength']) {
+              El nombre debe tener mínimo 3 carácteres.
+            }
+            @if (createHeroeForm.get('name')?.errors?.['maxlength']) {
+              El nombre puede tener máximo 32 carácteres
+            }
+          </span>
+        }
       </div>
 
       <div class="c-create-hero-form__row-content">
         <span class="c-create-hero-form__label">Superpoder</span>
         <mat-form-field class="c-create-hero-form__input" appearance="fill">
-          <input matInput placeholder="Superpoder" />
+          <input matInput formControlName="superpower" placeholder="Superpoder" />
         </mat-form-field>
+        @if (
+          createHeroeForm.get('superpower')?.invalid && createHeroeForm.get('superpower')?.touched
+        ) {
+          <span class="c-create-hero-form__input-error">
+            @if (createHeroeForm.get('superpower')?.errors?.['required']) {
+              El superpoder es obligatorio.
+            }
+            @if (createHeroeForm.get('superpower')?.errors?.['minlength']) {
+              El superpoder debe tener mínimo 3 carácteres.
+            }
+            @if (createHeroeForm.get('superpower')?.errors?.['maxlength']) {
+              El superpoder puede tener máximo 32 carácteres
+            }
+          </span>
+        }
       </div>
     </div>
 
@@ -24,8 +52,21 @@
       <div class="c-create-hero-form__row-content">
         <span class="c-create-hero-form__label">Ciudad</span>
         <mat-form-field class="c-create-hero-form__input" appearance="fill">
-          <input matInput placeholder="Ciudad" />
+          <input matInput formControlName="city" placeholder="Ciudad" />
         </mat-form-field>
+        @if (createHeroeForm.get('city')?.invalid && createHeroeForm.get('city')?.touched) {
+          <span class="c-create-hero-form__input-error">
+            @if (createHeroeForm.get('city')?.errors?.['required']) {
+              La ciudad es obligatoria.
+            }
+            @if (createHeroeForm.get('city')?.errors?.['minlength']) {
+              La ciudad debe tener mínimo 3 carácteres.
+            }
+            @if (createHeroeForm.get('city')?.errors?.['maxlength']) {
+              La ciudad puede tener máximo 32 carácteres
+            }
+          </span>
+        }
       </div>
     </div>
 
@@ -33,8 +74,28 @@
       <div class="c-create-hero-form__row-content">
         <span class="c-create-hero-form__label">Descripción</span>
         <mat-form-field class="c-create-hero-form__input" appearance="fill">
-          <textarea matInput rows="3" placeholder="Descripción"></textarea>
+          <textarea
+            matInput
+            rows="3"
+            formControlName="description"
+            placeholder="Descripción"
+          ></textarea>
         </mat-form-field>
+        @if (
+          createHeroeForm.get('description')?.invalid && createHeroeForm.get('description')?.touched
+        ) {
+          <span class="c-create-hero-form__input-error">
+            @if (createHeroeForm.get('description')?.errors?.['required']) {
+              La descripción es obligatoria.
+            }
+            @if (createHeroeForm.get('description')?.errors?.['minlength']) {
+              La descripción debe tener mínimo 12 carácteres.
+            }
+            @if (createHeroeForm.get('description')?.errors?.['maxlength']) {
+              La descripción puede tener máximo 128 carácteres
+            }
+          </span>
+        }
       </div>
     </div>
 
@@ -42,19 +103,27 @@
       <span class="c-create-hero-form__label">Elige una imagen</span>
 
       <div class="c-create-hero-form__files">
-        <input type="file" class="c-create-hero-form__files-button">
+        <input type="file" formControlName="image" class="c-create-hero-form__files-button" />
       </div>
+
+      @if (createHeroeForm.get('image')?.invalid && createHeroeForm.get('image')?.touched) {
+        <span class="c-create-hero-form__input-error">
+          @if (createHeroeForm.get('image')?.errors?.['required']) {
+            La imagen es obligatoria.
+          }
+        </span>
+      }
     </div>
   </section>
 
   <section class="c-create-hero-form__submit-section">
     <div class="c-create-hero-form__submit-content">
       <div class="c-create-hero-form__checkbox">
-        <mat-checkbox> Acepto los <u>Términos y condiciones</u> </mat-checkbox>
+        <mat-checkbox formControlName="termsAndConditions"> Acepto los <u>Términos y condiciones</u> </mat-checkbox>
       </div>
 
       <div class="c-create-hero-form__submit-button">
-        <app-button-create-form></app-button-create-form>
+        <app-button-create-form [disabled]="createHeroeForm.invalid"></app-button-create-form>
       </div>
     </div>
   </section>

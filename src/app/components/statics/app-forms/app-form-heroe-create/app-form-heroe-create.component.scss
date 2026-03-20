@@ -61,11 +61,9 @@
 
   &__input {
     width: 100%;
-    height: 100%;
-    min-height: 56px;
     @include mat.form-field-overrides(
       (
-        container-height: 100%,
+        container-height: 56px,
         outlined-outline-width: 0,
         filled-container-color: var.$c-input-color,
         container-vertical-padding: 12px,
@@ -74,6 +72,16 @@
   }
 
   //----------
+
+  &__input-error {
+    padding-bottom: 10px;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 9px;
+    letter-spacing: 2%;
+    margin-bottom: 16px;
+    color: var.$c-text-error;
+  }
 
   &__files {
     width: 100%;
