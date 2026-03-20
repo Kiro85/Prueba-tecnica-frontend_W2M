@@ -14,8 +14,8 @@ export class AppButtonCreateComponent {
 
   OpenCreateHeroeForm(): void {
     const dialogRef = this.dialog.open(AppFormHeroeCreateComponent, {
-      maxWidth: '936px',
-      maxHeight: '624px',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
     })
   }
 }

@@ -3,6 +3,7 @@
 
 .c-create-hero-form {
   width: 936px;
+  height: 624px;
   padding: 20px;
   gap: 32px;
   display: flex;
@@ -112,5 +113,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+}
+
+@media (max-width: 960px) {
+  .c-create-hero-form {
+    width: 312px;
+    height: 100%;
+    gap: 24px;
+
+    &__fields-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    &__row-2 {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    &__files-button::file-selector-button {
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    &__submit-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 }
