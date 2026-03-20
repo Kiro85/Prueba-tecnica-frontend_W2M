@@ -52,10 +52,10 @@
   }
 
   &--delete {
-    background-color: var.$c-secondary;
+    background-color: var.$c-button;
 
     p {
-      color: var.$c-on-secondary;
+      color: var.$c-on-button;
     }
   }
 
@@ -76,6 +76,15 @@
 
     mat-icon {
       color: var.$c-on-primary;
+    }
+  }
+
+  &--create-form {
+    padding: 0 16px;
+    background-color: var.$c-secondary;
+
+    p {
+      color: var.$c-on-secondary;
     }
   }
 }
