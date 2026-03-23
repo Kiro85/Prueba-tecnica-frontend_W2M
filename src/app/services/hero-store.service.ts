@@ -116,4 +116,10 @@ export class HeroStoreService implements OnDestroy {
       }),
     );
   }
+
+  public searchHeroesByName(q: string): Hero[] | undefined {
+    return this.heroes()?.filter((hero) =>
+      hero.name.toLocaleLowerCase().includes(q.toLocaleLowerCase()),
+    );
+  }
 }

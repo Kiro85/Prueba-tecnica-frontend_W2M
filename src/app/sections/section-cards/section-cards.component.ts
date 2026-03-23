@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { AppCardHeroComponent } from '../../components/dynamics/app-cards/app-card-hero/app-card-hero.component';
 import { HeroStoreService } from '../../services/hero-store.service';
 import { CommonModule } from '@angular/common';
@@ -16,6 +16,7 @@ export class SectionCardsComponent implements OnInit {
   protected morePages = this.heroStoreService.nextPage;
   protected loading = this.heroStoreService.loading;
   protected error = this.heroStoreService.error;
+  @Input() query?: string;
 
   ngOnInit(): void {
     this.nextPage();
