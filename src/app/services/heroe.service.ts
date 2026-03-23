@@ -29,4 +29,10 @@ export class HeroeService {
       .delete<Heroe>(`${this.apiUrl}/${id}`)
       .pipe(catchError(this.errorHandleService.handleError));
   }
+
+  public updateHeroe(heroe: Heroe): Observable<Heroe> {
+    return this.http
+      .put<Heroe>(`${this.apiUrl}/${heroe.id}`, heroe)
+      .pipe(catchError(this.errorHandleService.handleError))
+  }
 }

@@ -1,0 +1,83 @@
+import { Component, inject, OnInit } from '@angular/core';
+import { MatFormField, MatFormFieldModule } from "@angular/material/form-field";
+import { MatCheckbox, MatCheckboxModule } from "@angular/material/checkbox";
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HeroeStoreService } from '../../../../services/heroe-store.service';
+import { Heroe, HeroeRequest } from '../../../../models/heroe';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app-button-primary-form/app-button-primary-form.component';
+
+@Component({
+  selector: 'app-form-heroe-edit',
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,
+    AppButtonPrimaryFormComponent,
+    ReactiveFormsModule,
+  ],
+  templateUrl: './app-form-heroe-edit.component.html',
+  styleUrl: './app-form-heroe-edit.component.scss',
+})
+export class AppFormHeroeEditComponent implements OnInit {
+  private readonly dialogRef = inject(MatDialogRef<AppFormHeroeEditComponent>);
+  private readonly dialogData = inject(MAT_DIALOG_DATA);
+  protected editHeroeForm!: FormGroup;
+  private readonly heroeStoreService = inject(HeroeStoreService);
+
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  private initForm(): void {
+    this.editHeroeForm = new FormGroup({
+      name: new FormControl(this.dialogData.name, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(32),
+      ]),
+      superpower: new FormControl(this.dialogData.superpower, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(32),
+      ]),
+      city: new FormControl(this.dialogData.city, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(32),
+      ]),
+      description: new FormControl(this.dialogData.description, [
+        Validators.required,
+        Validators.minLength(12),
+        Validators.maxLength(128),
+      ]),
+      image: new FormControl(this.dialogData.image, [Validators.required]),
+      termsAndConditions: new FormControl(false, [Validators.requiredTrue]),
+    });
+  }
+
+  protected onSubmit(): void {
+    this.heroeStoreService.updateHeroe(this.createHeroeModel()).subscribe({
+      next: () => this.dialogRef.close(true),
+      error: () => this.dialogRef.close(false),
+    });
+  }
+
+  private createHeroeModel(): Heroe {
+    const request: Heroe = {
+      id: this.dialogData.id,
+      name: this.editHeroeForm.value.name,
+      superpower: this.editHeroeForm.value.superpower,
+      city: this.editHeroeForm.value.city,
+      description: this.editHeroeForm.value.description,
+      image: this.editHeroeForm.value.image,
+    };
+
+    return request;
+  }
+}

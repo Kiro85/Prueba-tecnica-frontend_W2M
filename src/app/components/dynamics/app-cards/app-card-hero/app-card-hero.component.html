@@ -8,11 +8,11 @@
   <div class="c-card-hero__content">
     <div class="c-card-hero__info">
       <h2 class="c-card-hero__name">{{heroe?.name}}</h2>
-      <p class="c-card-hero__superpower">{{heroe?.superpower}}l</p>
+      <p class="c-card-hero__superpower">{{heroe?.superpower}}</p>
       <p class="c-card-hero__description">{{heroe?.description}}</p>
       <p class="c-card-hero__city">{{heroe?.city}}</p>
       <div class="c-card-hero__buttons">
-        <app-button-edit></app-button-edit>
+        <app-button-edit (click)="OpenFormHeroeEdit()"></app-button-edit>
         <app-button-secondary [message]="'Eliminar'" (click)="OpenConfirmDeleteModal()"></app-button-secondary>
       </div>
     </div>

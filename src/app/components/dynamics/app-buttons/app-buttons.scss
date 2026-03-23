@@ -80,12 +80,12 @@
     }
   }
 
-  &--create-form {
+  &--primary-form {
     padding: 0 16px;
-    background-color: var.$c-secondary;
+    background-color: var.$c-primary;
 
     p {
-      color: var.$c-on-secondary;
+      color: var.$c-on-primary;
     }
 
     &[disabled],

@@ -4,6 +4,7 @@ import { Heroe } from '../../../../models/heroe';
 import { AppButtonSecondaryComponent } from '../../app-buttons/app-button-secondary/app-button-secondary.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AppModalConfirmDeleteComponent } from '../../../statics/app-modals/app-modal-delete/app-modal-confirm-delete.component';
+import { AppFormHeroeEditComponent } from '../../../statics/app-forms/app-form-heroe-edit/app-form-heroe-edit.component';
 
 @Component({
   selector: 'app-card-hero',
@@ -27,6 +28,22 @@ export class AppCardHeroComponent {
         alert('Heroe eliminado correctamente!');
       } else {
         alert('Error al eliminar el héroe');
+      }
+    });
+  }
+
+  protected OpenFormHeroeEdit(): void {
+    const dialogRef = this.dialog.open(AppFormHeroeEditComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      data: this.heroe,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        alert('Heroe editado correctamente!');
+      } else {
+        alert('Error al editar el héroe');
       }
     });
   }

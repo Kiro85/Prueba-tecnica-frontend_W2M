@@ -4,11 +4,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { AppButtonCreateFormComponent } from '../../../dynamics/app-buttons/app-button-create-form/app-button-create-form.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HeroeRequest } from '../../../../models/heroe';
 import { HeroeStoreService } from '../../../../services/heroe-store.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app-button-primary-form/app-button-primary-form.component';
 
 @Component({
   selector: 'app-form-heroe-create',
@@ -18,7 +18,7 @@ import { MatDialogRef } from '@angular/material/dialog';
     MatCheckboxModule,
     MatButtonModule,
     MatIconModule,
-    AppButtonCreateFormComponent,
+    AppButtonPrimaryFormComponent,
     ReactiveFormsModule,
   ],
   templateUrl: './app-form-heroe-create.component.html',

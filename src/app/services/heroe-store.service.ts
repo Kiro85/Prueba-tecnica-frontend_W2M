@@ -73,4 +73,23 @@ export class HeroeStoreService implements OnDestroy {
       }),
     );
   }
+
+  public updateHeroe(heroe: Heroe): Observable<Heroe> {
+    this.loading.set(true);
+    this.error.set(null);
+
+    return this.heroeService.updateHeroe(heroe).pipe(
+      tap((data) => {
+        this.heroes.update((current) => current ? current.map(h => h.id === data.id ? data : h) : []);
+        this.loading.set(false);
+      }),
+
+      catchError((err) => {
+        this.error.set(err);
+        this.loading.set(false);
+        console.error('Error - heroe-store.service.ts - updateHeroe() / ' + err.message);
+        return throwError(() => err);
+      }),
+    );
+  }
 }
