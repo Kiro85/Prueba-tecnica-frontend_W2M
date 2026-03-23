@@ -13,7 +13,7 @@
       <p class="c-card-hero__city">{{heroe?.city}}</p>
       <div class="c-card-hero__buttons">
         <app-button-edit></app-button-edit>
-        <app-button-delete></app-button-delete>
+        <app-button-secondary [message]="'Eliminar'" (click)="OpenConfirmDeleteModal()"></app-button-secondary>
       </div>
     </div>
   </div>

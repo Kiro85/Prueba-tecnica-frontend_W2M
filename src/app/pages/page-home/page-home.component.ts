@@ -3,8 +3,8 @@ import { SectionCardsComponent } from "../../sections/section-cards/section-card
 import { AppBannerComponent } from '../../components/statics/app-banner/app-banner.component';
 import { AppSearchBarComponent } from '../../components/dynamics/app-search-bar/app-search-bar.component';
 import { AppButtonCreateComponent } from '../../components/dynamics/app-buttons/app-button-create/app-button-create.component';
-import { AppButtonMoreComponent } from '../../components/dynamics/app-buttons/app-button-more/app-button-more.component';
 import { SectionFooterComponent } from '../../sections/section-footer/section-footer.component';
+import { AppButtonPrimaryComponent } from '../../components/dynamics/app-buttons/app-button-primary/app-button-primary.component';
 
 @Component({
   selector: 'page-home',
@@ -14,7 +14,7 @@ import { SectionFooterComponent } from '../../sections/section-footer/section-fo
     AppBannerComponent,
     AppSearchBarComponent,
     AppButtonCreateComponent,
-    AppButtonMoreComponent,
+    AppButtonPrimaryComponent,
   ],
   templateUrl: './page-home.component.html',
   styleUrl: './page-home.component.scss',
