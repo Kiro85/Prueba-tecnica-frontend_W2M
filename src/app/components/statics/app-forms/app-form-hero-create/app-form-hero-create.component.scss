@@ -1,0 +1,154 @@
+@use '../../../../../sass/var' as var;
+@use '@angular/material' as mat;
+
+.c-create-hero-form {
+  width: 936px;
+  height: 624px;
+  padding: 20px;
+  gap: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: hidden;
+
+  &__title-section {
+    width: 100%;
+    height: 48px;
+  }
+
+  &__title-text {
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 120%;
+    text-align: center;
+    color: var.$c-text-form;
+  }
+
+  &__fields-section {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__row-2 {
+    width: 100%;
+    height: auto;
+    gap: 26px;
+    display: flex;
+  }
+
+  &__row-1 {
+    width: 100%;
+    height: auto;
+  }
+
+  &__row-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    padding-bottom: 10px;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 9px;
+    letter-spacing: 2%;
+  }
+
+  //----------
+  // TODO: Adjust the styles to those of Figma
+
+  &__input {
+    width: 100%;
+    @include mat.form-field-overrides(
+      (
+        container-height: 56px,
+        outlined-outline-width: 0,
+        filled-container-color: var.$c-text-input,
+        container-vertical-padding: 12px,
+      )
+    );
+  }
+
+  //----------
+
+  &__input-error {
+    padding-bottom: 10px;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 9px;
+    letter-spacing: 2%;
+    margin-bottom: 16px;
+    color: var.$c-text-error;
+  }
+
+  &__files {
+    width: 100%;
+    height: 100%;
+    margin: 20px 0;
+  }
+
+  //----------
+  // TODO: separate the button into a component
+
+  &__files-button::file-selector-button {
+    width: 135px;
+    height: 40px;
+    border: none;
+    border-radius: 32px;
+    padding: 0 16px;
+    margin-right: 16px;
+    background-color: var.$c-secondary;
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+
+    &:hover {
+      background-color: #baabcf;
+    }
+  }
+
+  //----------
+
+  &__submit-section {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__submit-content {
+    width: 100;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (max-width: 960px) {
+  .c-create-hero-form {
+    width: 312px;
+    height: 100%;
+    gap: 24px;
+
+    &__fields-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    &__row-2 {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    &__files-button::file-selector-button {
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    &__submit-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}

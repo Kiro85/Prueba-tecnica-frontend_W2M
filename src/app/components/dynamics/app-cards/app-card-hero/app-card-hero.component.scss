@@ -8,11 +8,13 @@
   &__img {
     width: 100%;
     height: 238px;
-    overflow: hidden;
   }
 
   &__img-item {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
   }
 
   &__content {

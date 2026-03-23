@@ -1,6 +1,7 @@
 @use '../../../../sass/var' as var;
 
 .c-button {
+  display: inline-block;
   width: 135px;
   height: 40px;
   padding: 0 8px;
@@ -24,6 +25,22 @@
   }
 
   // Modificators
+  &--primary {
+    background-color: var.$c-primary;
+
+    p {
+      color: var.$c-on-primary;
+    }
+  }
+
+  &--secondary {
+    background-color: var.$c-button;
+
+    p {
+      color: var.$c-on-button;
+    }
+  }
+
   &--create {
     width: auto;
     height: 56px;
@@ -51,22 +68,6 @@
     }
   }
 
-  &--delete {
-    background-color: var.$c-secondary;
-
-    p {
-      color: var.$c-on-secondary;
-    }
-  }
-
-  &--more {
-    background-color: var.$c-primary;
-
-    p {
-      color: var.$c-on-primary;
-    }
-  }
-
   &--search {
     width: 72px;
     height: 72px;
@@ -76,6 +77,22 @@
 
     mat-icon {
       color: var.$c-on-primary;
+    }
+  }
+
+  &--primary-form {
+    padding: 0 16px;
+    background-color: var.$c-primary;
+
+    p {
+      color: var.$c-on-primary;
+    }
+
+    &[disabled],
+    &:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+      opacity: 0.6;
     }
   }
 }

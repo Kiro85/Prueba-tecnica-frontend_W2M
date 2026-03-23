@@ -1,9 +1,5 @@
 <ul class="s-list-hero">
-  <app-card-hero></app-card-hero>
-  <app-card-hero></app-card-hero>
-  <app-card-hero></app-card-hero>
-  <app-card-hero></app-card-hero>
-  <app-card-hero></app-card-hero>
-  <app-card-hero></app-card-hero>
-  <app-card-hero></app-card-hero>
+  @for (hero of heroes(); track hero.id) {
+    <app-card-hero [hero]="hero"></app-card-hero>
+  }
 </ul>

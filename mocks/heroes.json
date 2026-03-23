@@ -1,7 +1,7 @@
 {
   "heroes": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Wonder Woman",
       "superpower": "Fuerza sobrehumana, Supervelocidad",
       "city": "Sevilla, Esp.",
@@ -9,7 +9,7 @@
       "image": "heroes/wonder-woman.png"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Hulk",
       "superpower": "Super fuerte y enojón",
       "city": "Barcelona, Esp.",
@@ -17,7 +17,7 @@
       "image": "heroes/hulk.png"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Capitana Marvel",
       "superpower": "Curación acelerada e inmortal",
       "city": "New York, USA.",
@@ -25,15 +25,15 @@
       "image": "heroes/capitana-marvel.png"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Spiderman",
       "superpower": "Superpoderes arácnidos",
       "city": "Mallorca, Esp.",
       "description": "Fuerza, velocidad, agilidad, durabilidad, reflejos, coordinación, equilibrio y resistencia sobrehumanas.",
-      "image": "heroes/spiderman.png"
+      "image": "heroes/spiderman.jpg"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Gamora",
       "superpower": "Experta en artes marciales. ",
       "city": "Culiacán, Méx",
@@ -41,7 +41,7 @@
       "image": "heroes/gamora.png"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Batman",
       "superpower": "Una gran fortuna",
       "city": "Ciudad de México, Méx. ",
@@ -49,7 +49,7 @@
       "image": "heroes/batman.png"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Viuda Negra",
       "superpower": "exespía soviética, artista marcial y francotiradora. ",
       "city": "Sevilla, Esp.",
@@ -57,12 +57,37 @@
       "image": "heroes/viuda-negra.png"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Ironman",
       "superpower": "Armadura",
       "city": "Buenos Aires, Arg.",
       "description": "La armadura de Iron Man está hecha de nanotecnología y se almacena en un reactor que Tony Stark lleva en el pecho.",
       "image": "heroes/ironman.png"
+    },
+    {
+      "id": "51f9",
+      "name": "deku",
+      "superpower": "ofa",
+      "city": "jpn",
+      "description": "alñsdfjalsñdjflñskf",
+      "image": "C:\\fakepath\\deku.webp.webp"
+    },
+    {
+      "id": "86f7",
+      "name": "asdf",
+      "superpower": "asdf",
+      "city": "asdfasdf",
+      "description": "asdfasdfasdfasdf",
+      "image": "C:\\fakepath\\deku.webp.webp"
+    },
+    {
+      "id": "5cfd",
+      "name": "asdf",
+      "superpower": "asdf",
+      "city": "asdfasdf",
+      "description": "asdfasdfdfsa",
+      "image": "C:\\fakepath\\deku.webp.webp"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
