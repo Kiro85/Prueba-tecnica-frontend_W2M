@@ -17,8 +17,8 @@
       </div>
     </div>
     <div class="c-modal-delete__buttons-container">
-      <app-button-secondary [message]="'Cancelar'"></app-button-secondary>
-      <app-button-primary [message]="'Sí, eliminar'"></app-button-primary>
+      <app-button-secondary [message]="'Cancelar'" (click)="CloseConfirmDeleteModal()"></app-button-secondary>
+      <app-button-primary [message]="'Sí, eliminar'" (click)="DeleteHeroe()"></app-button-primary>
     </div>
   </div>
 </section>

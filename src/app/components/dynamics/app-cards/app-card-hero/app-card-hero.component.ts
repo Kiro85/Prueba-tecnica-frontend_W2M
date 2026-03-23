@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AppButtonEditComponent } from '../../app-buttons/app-button-edit/app-button-edit.component';
 import { Heroe } from '../../../../models/heroe';
-import { AppButtonSecondaryComponent } from "../../app-buttons/app-button-secondary/app-button-secondary.component";
+import { AppButtonSecondaryComponent } from '../../app-buttons/app-button-secondary/app-button-secondary.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AppModalConfirmDeleteComponent } from '../../../statics/app-modals/app-modal-delete/app-modal-confirm-delete.component';
 
@@ -17,8 +17,17 @@ export class AppCardHeroComponent {
 
   protected OpenConfirmDeleteModal(): void {
     const dialogRef = this.dialog.open(AppModalConfirmDeleteComponent, {
-          maxWidth: '100vw',
-          maxHeight: '100vh',
-        })
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      data: this.heroe,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        alert('Heroe eliminado correctamente!');
+      } else {
+        alert('Error al eliminar el héroe');
+      }
+    });
   }
 }
