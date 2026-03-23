@@ -19,7 +19,7 @@ export class HeroeStoreService implements OnDestroy {
   }
 
   public getHeroes(): void {
-    this.loading.set(false);
+    this.loading.set(true);
     this.error.set(null);
 
     this.heroeService.getHeroes().subscribe({
@@ -30,7 +30,7 @@ export class HeroeStoreService implements OnDestroy {
 
       error: (err) => {
         this.error.set(err);
-        this.loading.set(err);
+        this.loading.set(false);
         console.error('Error - heroe-store.service.ts - GetHeroes() / ' + err.message);
       },
     });
@@ -47,9 +47,28 @@ export class HeroeStoreService implements OnDestroy {
       }),
 
       catchError((err) => {
-        this.error.set(err.message);
+        this.error.set(err);
         this.loading.set(false);
         console.error('Error - heroe-store.service.ts - CreateHeroe() / ' + err.message);
+        return throwError(() => err);
+      }),
+    );
+  }
+
+  public deleteHeroe(heroe: Heroe): Observable<Heroe> {
+    this.loading.set(true);
+    this.error.set(null);
+
+    return this.heroeService.deleteHeroe(heroe.id).pipe(
+      tap((data) => {
+        this.heroes.update((current) => (current ? current.filter((h) => h.id !== data.id) : []));
+        this.loading.set(false);
+      }),
+
+      catchError((err) => {
+        this.error.set(err);
+        this.loading.set(false);
+        console.error('Error - heroe-store.service.ts - deleteHeroe() / ' + err.message);
         return throwError(() => err);
       }),
     );

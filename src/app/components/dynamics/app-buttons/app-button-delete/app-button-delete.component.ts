@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './app-button-delete.component.scss',
 })
 export class AppButtonDeleteComponent {
-
+  
 }

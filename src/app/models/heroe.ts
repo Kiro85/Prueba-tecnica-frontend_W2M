@@ -1,5 +1,5 @@
 export interface Heroe {
-  id: number;
+  id: string;
   name: string;
   superpower: string;
   city: string;
