@@ -1,5 +1,5 @@
 <ul class="s-list-hero">
-  @for (heroe of heroes(); track $index) {
+  @for (heroe of heroes(); track heroe.id) {
     <app-card-hero [heroe]="heroe"></app-card-hero>
   }
 </ul>

@@ -17,5 +17,13 @@ export class AppButtonCreateComponent {
       maxWidth: '100vw',
       maxHeight: '100vh',
     })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        alert('Heroe creado correctamente!')
+      } else {
+        alert("Error al crear el héroe")
+      }
+    })
   }
 }

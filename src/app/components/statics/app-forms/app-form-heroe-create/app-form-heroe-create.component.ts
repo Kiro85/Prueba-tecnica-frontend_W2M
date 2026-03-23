@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -6,11 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { AppButtonCreateFormComponent } from '../../../dynamics/app-buttons/app-button-create-form/app-button-create-form.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
-import { HeroeService } from '../../../../services/heroe.service';
-import { Heroe, HeroeRequest } from '../../../../models/heroe';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { HeroeRequest } from '../../../../models/heroe';
+import { HeroeStoreService } from '../../../../services/heroe-store.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-form-heroe-create',
@@ -26,20 +24,13 @@ import { Subject } from 'rxjs';
   templateUrl: './app-form-heroe-create.component.html',
   styleUrl: './app-form-heroe-create.component.scss',
 })
-export class AppFormHeroeCreateComponent implements OnInit, OnDestroy {
+export class AppFormHeroeCreateComponent implements OnInit {
+  private readonly dialogRef = inject(MatDialogRef<AppFormHeroeCreateComponent>);
   protected createHeroeForm!: FormGroup;
-  private loading = signal<boolean>(false);
-  private error = signal<HttpErrorResponse | null>(null);
-  private unsubscribe$: Subject<void> = new Subject<void>();
-  private readonly heroeService = inject(HeroeService);
+  private readonly heroeStoreService = inject(HeroeStoreService);
 
   ngOnInit(): void {
     this.initForm();
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 
   private initForm(): void {
@@ -70,20 +61,9 @@ export class AppFormHeroeCreateComponent implements OnInit, OnDestroy {
   }
 
   protected onSubmit(): void {
-    this.loading.set(false);
-    this.error.set(null);
-
-    this.heroeService.createHeroe(this.createHeroeModel()).subscribe({
-      next: () => {
-        window.location.reload();
-        this.loading.set(false);
-      },
-
-      error: (err) => {
-        this.error.set(err);
-        this.loading.set(false);
-        console.error('Error - app-form-heroe-create.component.ts - onSubmit() / ' + err.message);
-      },
+    this.heroeStoreService.createHeroe(this.createHeroeModel()).subscribe({
+      next: () => this.dialogRef.close(true),
+      error: () => this.dialogRef.close(false),
     });
   }
 

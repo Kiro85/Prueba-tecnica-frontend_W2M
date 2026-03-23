@@ -18,8 +18,8 @@ export class HeroeService {
     )
   }
 
-  public createHeroe(request: HeroeRequest) {
-    return this.http.post(this.apiUrl, request).pipe(
+  public createHeroe(request: HeroeRequest): Observable<Heroe> {
+    return this.http.post<Heroe>(this.apiUrl, request).pipe(
       catchError(this.errorHandleService.handleError)
     )
   }
