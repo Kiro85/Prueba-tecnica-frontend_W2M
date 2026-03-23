@@ -1,17 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MatFormField, MatFormFieldModule } from "@angular/material/form-field";
-import { MatCheckbox, MatCheckboxModule } from "@angular/material/checkbox";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HeroeStoreService } from '../../../../services/heroe-store.service';
-import { Heroe, HeroeRequest } from '../../../../models/heroe';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app-button-primary-form/app-button-primary-form.component';
+import { HeroStoreService } from '../../../../services/hero-store.service';
+import { Hero } from '../../../../models/hero';
 
 @Component({
-  selector: 'app-form-heroe-edit',
+  selector: 'app-form-hero-edit',
   imports: [
     MatFormFieldModule,
     MatInputModule,
@@ -21,21 +21,21 @@ import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app
     AppButtonPrimaryFormComponent,
     ReactiveFormsModule,
   ],
-  templateUrl: './app-form-heroe-edit.component.html',
-  styleUrl: './app-form-heroe-edit.component.scss',
+  templateUrl: './app-form-hero-edit.component.html',
+  styleUrl: './app-form-hero-edit.component.scss',
 })
-export class AppFormHeroeEditComponent implements OnInit {
-  private readonly dialogRef = inject(MatDialogRef<AppFormHeroeEditComponent>);
+export class AppFormHeroEditComponent implements OnInit {
+  private readonly dialogRef = inject(MatDialogRef<AppFormHeroEditComponent>);
   private readonly dialogData = inject(MAT_DIALOG_DATA);
-  protected editHeroeForm!: FormGroup;
-  private readonly heroeStoreService = inject(HeroeStoreService);
+  protected editHeroForm!: FormGroup;
+  private readonly heroStoreService = inject(HeroStoreService);
 
   ngOnInit(): void {
     this.initForm();
   }
 
   private initForm(): void {
-    this.editHeroeForm = new FormGroup({
+    this.editHeroForm = new FormGroup({
       name: new FormControl(this.dialogData.name, [
         Validators.required,
         Validators.minLength(3),
@@ -62,20 +62,20 @@ export class AppFormHeroeEditComponent implements OnInit {
   }
 
   protected onSubmit(): void {
-    this.heroeStoreService.updateHeroe(this.createHeroeModel()).subscribe({
+    this.heroStoreService.updateHeroe(this.createHeroeModel()).subscribe({
       next: () => this.dialogRef.close(true),
       error: () => this.dialogRef.close(false),
     });
   }
 
-  private createHeroeModel(): Heroe {
-    const request: Heroe = {
+  private createHeroeModel(): Hero {
+    const request: Hero = {
       id: this.dialogData.id,
-      name: this.editHeroeForm.value.name,
-      superpower: this.editHeroeForm.value.superpower,
-      city: this.editHeroeForm.value.city,
-      description: this.editHeroeForm.value.description,
-      image: this.editHeroeForm.value.image,
+      name: this.editHeroForm.value.name,
+      superpower: this.editHeroForm.value.superpower,
+      city: this.editHeroForm.value.city,
+      description: this.editHeroForm.value.description,
+      image: this.editHeroForm.value.image,
     };
 
     return request;

@@ -1,4 +1,4 @@
-<form class="c-edit-hero-form" [formGroup]="editHeroeForm" (ngSubmit)="onSubmit()">
+<form class="c-edit-hero-form" [formGroup]="editHeroForm" (ngSubmit)="onSubmit()">
   <section class="c-edit-hero-form__title-section">
     <h1 class="c-edit-hero-form__title-text">Editar héroe</h1>
   </section>
@@ -10,15 +10,15 @@
         <mat-form-field class="c-edit-hero-form__input" appearance="fill">
           <input matInput formControlName="name" placeholder="Nombre" />
         </mat-form-field>
-        @if (editHeroeForm.get('name')?.invalid && editHeroeForm.get('name')?.touched) {
+        @if (editHeroForm.get('name')?.invalid && editHeroForm.get('name')?.touched) {
           <span class="c-edit-hero-form__input-error">
-            @if (editHeroeForm.get('name')?.errors?.['required']) {
+            @if (editHeroForm.get('name')?.errors?.['required']) {
               El nombre es obligatorio.
             }
-            @if (editHeroeForm.get('name')?.errors?.['minlength']) {
+            @if (editHeroForm.get('name')?.errors?.['minlength']) {
               El nombre debe tener mínimo 3 carácteres.
             }
-            @if (editHeroeForm.get('name')?.errors?.['maxlength']) {
+            @if (editHeroForm.get('name')?.errors?.['maxlength']) {
               El nombre puede tener máximo 32 carácteres
             }
           </span>
@@ -31,16 +31,16 @@
           <input matInput formControlName="superpower" placeholder="Superpoder" />
         </mat-form-field>
         @if (
-          editHeroeForm.get('superpower')?.invalid && editHeroeForm.get('superpower')?.touched
+          editHeroForm.get('superpower')?.invalid && editHeroForm.get('superpower')?.touched
         ) {
           <span class="c-edit-hero-form__input-error">
-            @if (editHeroeForm.get('superpower')?.errors?.['required']) {
+            @if (editHeroForm.get('superpower')?.errors?.['required']) {
               El superpoder es obligatorio.
             }
-            @if (editHeroeForm.get('superpower')?.errors?.['minlength']) {
+            @if (editHeroForm.get('superpower')?.errors?.['minlength']) {
               El superpoder debe tener mínimo 3 carácteres.
             }
-            @if (editHeroeForm.get('superpower')?.errors?.['maxlength']) {
+            @if (editHeroForm.get('superpower')?.errors?.['maxlength']) {
               El superpoder puede tener máximo 32 carácteres
             }
           </span>
@@ -54,15 +54,15 @@
         <mat-form-field class="c-edit-hero-form__input" appearance="fill">
           <input matInput formControlName="city" placeholder="Ciudad" />
         </mat-form-field>
-        @if (editHeroeForm.get('city')?.invalid && editHeroeForm.get('city')?.touched) {
+        @if (editHeroForm.get('city')?.invalid && editHeroForm.get('city')?.touched) {
           <span class="c-edit-hero-form__input-error">
-            @if (editHeroeForm.get('city')?.errors?.['required']) {
+            @if (editHeroForm.get('city')?.errors?.['required']) {
               La ciudad es obligatoria.
             }
-            @if (editHeroeForm.get('city')?.errors?.['minlength']) {
+            @if (editHeroForm.get('city')?.errors?.['minlength']) {
               La ciudad debe tener mínimo 3 carácteres.
             }
-            @if (editHeroeForm.get('city')?.errors?.['maxlength']) {
+            @if (editHeroForm.get('city')?.errors?.['maxlength']) {
               La ciudad puede tener máximo 32 carácteres
             }
           </span>
@@ -82,16 +82,16 @@
           ></textarea>
         </mat-form-field>
         @if (
-          editHeroeForm.get('description')?.invalid && editHeroeForm.get('description')?.touched
+          editHeroForm.get('description')?.invalid && editHeroForm.get('description')?.touched
         ) {
           <span class="c-edit-hero-form__input-error">
-            @if (editHeroeForm.get('description')?.errors?.['required']) {
+            @if (editHeroForm.get('description')?.errors?.['required']) {
               La descripción es obligatoria.
             }
-            @if (editHeroeForm.get('description')?.errors?.['minlength']) {
+            @if (editHeroForm.get('description')?.errors?.['minlength']) {
               La descripción debe tener mínimo 12 carácteres.
             }
-            @if (editHeroeForm.get('description')?.errors?.['maxlength']) {
+            @if (editHeroForm.get('description')?.errors?.['maxlength']) {
               La descripción puede tener máximo 128 carácteres
             }
           </span>
@@ -106,9 +106,9 @@
         <input type="file" formControlName="image" class="c-edit-hero-form__files-button" />
       </div>
 
-      @if (editHeroeForm.get('image')?.invalid && editHeroeForm.get('image')?.touched) {
+      @if (editHeroForm.get('image')?.invalid && editHeroForm.get('image')?.touched) {
         <span class="c-edit-hero-form__input-error">
-          @if (editHeroeForm.get('image')?.errors?.['required']) {
+          @if (editHeroForm.get('image')?.errors?.['required']) {
             La imagen es obligatoria.
           }
         </span>
@@ -123,7 +123,7 @@
       </div>
 
       <div class="c-edit-hero-form__submit-button">
-        <app-button-primary-form [message]="'Guardar cambios'" [disabled]="editHeroeForm.invalid"></app-button-primary-form>
+        <app-button-primary-form [message]="'Guardar cambios'" [disabled]="editHeroForm.invalid"></app-button-primary-form>
       </div>
     </div>
   </section>

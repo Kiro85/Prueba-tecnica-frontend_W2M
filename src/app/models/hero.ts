@@ -1,4 +1,4 @@
-export interface Heroe {
+export interface Hero {
   id: string;
   name: string;
   superpower: string;
@@ -7,7 +7,7 @@ export interface Heroe {
   image: string;
 }
 
-export interface HeroeRequest {
+export interface HeroRequest {
   name: string;
   superpower: string;
   city: string;

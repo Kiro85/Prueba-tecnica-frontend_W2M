@@ -1,38 +1,38 @@
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
-import { Heroe, HeroeRequest } from '../models/heroe';
+import { Hero, HeroRequest } from '../models/hero';
 import { HttpClient } from '@angular/common/http';
 import { ErrorHandleService } from './error-handle.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HeroeService {
+export class HeroService {
   private readonly apiUrl = 'http://localhost:3000/heroes';
   private readonly http = inject(HttpClient);
   private readonly errorHandleService = inject(ErrorHandleService);
 
-  public getHeroes(): Observable<Heroe[]> {
+  public getHeroes(): Observable<Hero[]> {
     return this.http
-      .get<Heroe[]>(this.apiUrl)
+      .get<Hero[]>(this.apiUrl)
       .pipe(catchError(this.errorHandleService.handleError));
   }
 
-  public createHeroe(request: HeroeRequest): Observable<Heroe> {
+  public createHeroe(request: HeroRequest): Observable<Hero> {
     return this.http
-      .post<Heroe>(this.apiUrl, request)
+      .post<Hero>(this.apiUrl, request)
       .pipe(catchError(this.errorHandleService.handleError));
   }
 
-  public deleteHeroe(id: string): Observable<Heroe> {
+  public deleteHeroe(id: string): Observable<Hero> {
     return this.http
-      .delete<Heroe>(`${this.apiUrl}/${id}`)
+      .delete<Hero>(`${this.apiUrl}/${id}`)
       .pipe(catchError(this.errorHandleService.handleError));
   }
 
-  public updateHeroe(heroe: Heroe): Observable<Heroe> {
+  public updateHeroe(hero: Hero): Observable<Hero> {
     return this.http
-      .put<Heroe>(`${this.apiUrl}/${heroe.id}`, heroe)
+      .put<Hero>(`${this.apiUrl}/${hero.id}`, hero)
       .pipe(catchError(this.errorHandleService.handleError))
   }
 }

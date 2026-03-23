@@ -1,17 +1,17 @@
 import { inject, Injectable, OnDestroy, signal } from '@angular/core';
-import { Heroe, HeroeRequest } from '../models/heroe';
-import { HeroeService } from './heroe.service';
+import { Hero, HeroRequest } from '../models/hero';
+import { HeroService } from './hero.service';
 import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HeroeStoreService implements OnDestroy {
-  public heroes = signal<Heroe[] | null>(null);
+export class HeroStoreService implements OnDestroy {
+  public heroes = signal<Hero[] | null>(null);
   public loading = signal<boolean>(false);
   public error = signal<string | null>(null);
   private unsubscribe$: Subject<void> = new Subject<void>();
-  private readonly heroeService = inject(HeroeService);
+  private readonly heroeService = inject(HeroService);
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
@@ -31,12 +31,12 @@ export class HeroeStoreService implements OnDestroy {
       error: (err) => {
         this.error.set(err);
         this.loading.set(false);
-        console.error('Error - heroe-store.service.ts - GetHeroes() / ' + err.message);
+        console.error('Error - hero-store.service.ts - GetHeroes() / ' + err.message);
       },
     });
   }
 
-  public createHeroe(request: HeroeRequest): Observable<Heroe> {
+  public createHeroe(request: HeroRequest): Observable<Hero> {
     this.loading.set(true);
     this.error.set(null);
 
@@ -49,17 +49,17 @@ export class HeroeStoreService implements OnDestroy {
       catchError((err) => {
         this.error.set(err);
         this.loading.set(false);
-        console.error('Error - heroe-store.service.ts - CreateHeroe() / ' + err.message);
+        console.error('Error - hero-store.service.ts - CreateHeroe() / ' + err.message);
         return throwError(() => err);
       }),
     );
   }
 
-  public deleteHeroe(heroe: Heroe): Observable<Heroe> {
+  public deleteHeroe(hero: Hero): Observable<Hero> {
     this.loading.set(true);
     this.error.set(null);
 
-    return this.heroeService.deleteHeroe(heroe.id).pipe(
+    return this.heroeService.deleteHeroe(hero.id).pipe(
       tap((data) => {
         this.heroes.update((current) => (current ? current.filter((h) => h.id !== data.id) : []));
         this.loading.set(false);
@@ -68,17 +68,17 @@ export class HeroeStoreService implements OnDestroy {
       catchError((err) => {
         this.error.set(err);
         this.loading.set(false);
-        console.error('Error - heroe-store.service.ts - deleteHeroe() / ' + err.message);
+        console.error('Error - hero-store.service.ts - deleteHeroe() / ' + err.message);
         return throwError(() => err);
       }),
     );
   }
 
-  public updateHeroe(heroe: Heroe): Observable<Heroe> {
+  public updateHeroe(hero: Hero): Observable<Hero> {
     this.loading.set(true);
     this.error.set(null);
 
-    return this.heroeService.updateHeroe(heroe).pipe(
+    return this.heroeService.updateHeroe(hero).pipe(
       tap((data) => {
         this.heroes.update((current) => current ? current.map(h => h.id === data.id ? data : h) : []);
         this.loading.set(false);
@@ -87,7 +87,7 @@ export class HeroeStoreService implements OnDestroy {
       catchError((err) => {
         this.error.set(err);
         this.loading.set(false);
-        console.error('Error - heroe-store.service.ts - updateHeroe() / ' + err.message);
+        console.error('Error - hero-store.service.ts - updateHeroe() / ' + err.message);
         return throwError(() => err);
       }),
     );

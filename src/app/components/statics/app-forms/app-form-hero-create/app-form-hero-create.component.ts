@@ -5,13 +5,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HeroeRequest } from '../../../../models/heroe';
-import { HeroeStoreService } from '../../../../services/heroe-store.service';
+import { HeroRequest } from '../../../../models/hero';
+import { HeroStoreService } from '../../../../services/hero-store.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app-button-primary-form/app-button-primary-form.component';
 
 @Component({
-  selector: 'app-form-heroe-create',
+  selector: 'app-form-hero-create',
   imports: [
     MatFormFieldModule,
     MatInputModule,
@@ -21,20 +21,20 @@ import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app
     AppButtonPrimaryFormComponent,
     ReactiveFormsModule,
   ],
-  templateUrl: './app-form-heroe-create.component.html',
-  styleUrl: './app-form-heroe-create.component.scss',
+  templateUrl: './app-form-hero-create.component.html',
+  styleUrl: './app-form-hero-create.component.scss',
 })
-export class AppFormHeroeCreateComponent implements OnInit {
-  private readonly dialogRef = inject(MatDialogRef<AppFormHeroeCreateComponent>);
-  protected createHeroeForm!: FormGroup;
-  private readonly heroeStoreService = inject(HeroeStoreService);
+export class AppFormHeroCreateComponent implements OnInit {
+  private readonly dialogRef = inject(MatDialogRef<AppFormHeroCreateComponent>);
+  protected createHeroForm!: FormGroup;
+  private readonly heroStoreService = inject(HeroStoreService);
 
   ngOnInit(): void {
     this.initForm();
   }
 
   private initForm(): void {
-    this.createHeroeForm = new FormGroup({
+    this.createHeroForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
@@ -61,19 +61,19 @@ export class AppFormHeroeCreateComponent implements OnInit {
   }
 
   protected onSubmit(): void {
-    this.heroeStoreService.createHeroe(this.createHeroeModel()).subscribe({
+    this.heroStoreService.createHeroe(this.createHeroeModel()).subscribe({
       next: () => this.dialogRef.close(true),
       error: () => this.dialogRef.close(false),
     });
   }
 
-  private createHeroeModel(): HeroeRequest {
-    const request: HeroeRequest = {
-      name: this.createHeroeForm.value.name,
-      superpower: this.createHeroeForm.value.superpower,
-      city: this.createHeroeForm.value.city,
-      description: this.createHeroeForm.value.description,
-      image: this.createHeroeForm.value.image,
+  private createHeroeModel(): HeroRequest {
+    const request: HeroRequest = {
+      name: this.createHeroForm.value.name,
+      superpower: this.createHeroForm.value.superpower,
+      city: this.createHeroForm.value.city,
+      description: this.createHeroForm.value.description,
+      image: this.createHeroForm.value.image,
     };
 
     return request;

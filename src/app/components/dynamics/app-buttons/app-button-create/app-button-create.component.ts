@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
-import { AppFormHeroeCreateComponent } from '../../../statics/app-forms/app-form-heroe-create/app-form-heroe-create.component';
+import { AppFormHeroCreateComponent } from '../../../statics/app-forms/app-form-hero-create/app-form-hero-create.component';
 
 @Component({
   selector: 'app-button-create',
@@ -13,7 +13,7 @@ export class AppButtonCreateComponent {
   private readonly dialog: MatDialog = new MatDialog();
 
   OpenCreateHeroeForm(): void {
-    const dialogRef = this.dialog.open(AppFormHeroeCreateComponent, {
+    const dialogRef = this.dialog.open(AppFormHeroCreateComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
     })

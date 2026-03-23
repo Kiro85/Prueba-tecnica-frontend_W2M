@@ -1,16 +1,16 @@
 <article class="c-card-hero">
   <!-- Image -->
   <figure class="c-card-hero__img">
-    <img class="c-card-hero__img-item" src="{{heroe?.image}}" alt="Image of {{heroe?.name}}">
+    <img class="c-card-hero__img-item" src="{{hero?.image}}" alt="Image of {{hero?.name}}">
   </figure>
 
   <!-- Info -->
   <div class="c-card-hero__content">
     <div class="c-card-hero__info">
-      <h2 class="c-card-hero__name">{{heroe?.name}}</h2>
-      <p class="c-card-hero__superpower">{{heroe?.superpower}}</p>
-      <p class="c-card-hero__description">{{heroe?.description}}</p>
-      <p class="c-card-hero__city">{{heroe?.city}}</p>
+      <h2 class="c-card-hero__name">{{hero?.name}}</h2>
+      <p class="c-card-hero__superpower">{{hero?.superpower}}</p>
+      <p class="c-card-hero__description">{{hero?.description}}</p>
+      <p class="c-card-hero__city">{{hero?.city}}</p>
       <div class="c-card-hero__buttons">
         <app-button-edit (click)="OpenFormHeroeEdit()"></app-button-edit>
         <app-button-secondary [message]="'Eliminar'" (click)="OpenConfirmDeleteModal()"></app-button-secondary>
