@@ -82,9 +82,16 @@ export class AppFormHeroEditComponent implements OnInit, OnDestroy {
   }
 
   private async createHeroeModel(): Promise<Hero> {
-    const file: File = this.editHeroForm.value.image;
+    const imageControl = this.editHeroForm.value.image;
 
-    const base64 = await this.imageService.convertFileToBase64(file);
+    let base64: string;
+
+    if (typeof imageControl === 'string') {
+      base64 = imageControl;
+    }
+    else {
+      base64 = await this.imageService.convertFileToBase64(imageControl);
+    }
 
     const request: Hero = {
       id: this.dialogData.id,
