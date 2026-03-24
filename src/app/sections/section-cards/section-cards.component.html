@@ -1,16 +1,21 @@
-<div class="s-list-hero">
-  <ul class="s-list-hero__cards">
-    @if (heroesFiltered()) {
-      @for (hero of heroesFiltered(); track hero.id) {
-        <app-card-hero [hero]="hero"></app-card-hero>
+@if (loading()) {
+  <app-spinner></app-spinner>
+} @else {
+  <div class="s-list-hero">
+    <ul class="s-list-hero__cards">
+      @if (heroesFiltered()) {
+        @for (hero of heroesFiltered(); track hero.id) {
+          <app-card-hero [hero]="hero"></app-card-hero>
+        }
+      } @else if (heroes()) {
+        @for (hero of heroes(); track hero.id) {
+          <app-card-hero [hero]="hero"></app-card-hero>
+        }
       }
-    } @else if (heroes()) {
-      @for (hero of heroes(); track hero.id) {
-        <app-card-hero [hero]="hero"></app-card-hero>
-      }
-    }
-  </ul>
-  <div class="s-list-hero__button">
-    <app-button-primary [disabled]="!morePages()" [message]="'Ver más'" (click)="nextPage()"></app-button-primary>
+    </ul>
+    <div class="s-list-hero__button">
+      <app-button-primary [disabled]="!morePages()" [message]="'Ver más'" (click)="nextPage()"></app-button-primary>
+    </div>
   </div>
-</div>
+}
+
