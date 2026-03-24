@@ -54,8 +54,8 @@ export class AppFormHeroEditComponent implements OnInit, OnDestroy {
       ]),
       superpower: new FormControl(this.dialogData.superpower, [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(32),
+        Validators.minLength(8),
+        Validators.maxLength(64),
       ]),
       city: new FormControl(this.dialogData.city, [
         Validators.required,

@@ -32,7 +32,7 @@ export class AppFormHeroCreateComponent implements OnInit, OnDestroy {
   private readonly imageService = inject(ImageService);
 
   protected createHeroForm!: FormGroup;
-  
+
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   ngOnInit(): void {
@@ -53,8 +53,8 @@ export class AppFormHeroCreateComponent implements OnInit, OnDestroy {
       ]),
       superpower: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(32),
+        Validators.minLength(8),
+        Validators.maxLength(64),
       ]),
       city: new FormControl('', [
         Validators.required,
