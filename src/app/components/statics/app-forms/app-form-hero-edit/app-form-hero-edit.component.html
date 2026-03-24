@@ -103,7 +103,7 @@
       <span class="c-edit-hero-form__label">Elige una imagen</span>
 
       <div class="c-edit-hero-form__files">
-        <input type="file" formControlName="image" class="c-edit-hero-form__files-button" />
+        <input type="file" formControlName="image" class="c-edit-hero-form__files-button" (change)="onFileSelected($event)" />
       </div>
 
       @if (editHeroForm.get('image')?.invalid && editHeroForm.get('image')?.touched) {

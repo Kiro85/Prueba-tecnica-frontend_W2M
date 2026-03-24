@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app-button-primary-form/app-button-primary-form.component';
 import { HeroStoreService } from '../../../../services/hero-store.service';
 import { Hero } from '../../../../models/hero';
+import { ImageService } from '../../../../services/image.service';
 
 @Component({
   selector: 'app-form-hero-edit',
@@ -25,10 +26,11 @@ import { Hero } from '../../../../models/hero';
   styleUrl: './app-form-hero-edit.component.scss',
 })
 export class AppFormHeroEditComponent implements OnInit {
+  private readonly heroStoreService = inject(HeroStoreService);
+  private readonly imageService = inject(ImageService);
   private readonly dialogRef = inject(MatDialogRef<AppFormHeroEditComponent>);
   private readonly dialogData = inject(MAT_DIALOG_DATA);
   protected editHeroForm!: FormGroup;
-  private readonly heroStoreService = inject(HeroStoreService);
 
   ngOnInit(): void {
     this.initForm();
@@ -61,23 +63,35 @@ export class AppFormHeroEditComponent implements OnInit {
     });
   }
 
-  protected onSubmit(): void {
-    this.heroStoreService.updateHeroe(this.createHeroeModel()).subscribe({
+  protected async onSubmit(): Promise<void> {
+    this.heroStoreService.updateHeroe(await this.createHeroeModel()).subscribe({
       next: () => this.dialogRef.close(true),
       error: () => this.dialogRef.close(false),
     });
   }
 
-  private createHeroeModel(): Hero {
+  private async createHeroeModel(): Promise<Hero> {
+    const file: File = this.editHeroForm.value.image;
+
+    const base64 = await this.imageService.convertFileToBase64(file);
+
     const request: Hero = {
       id: this.dialogData.id,
       name: this.editHeroForm.value.name,
       superpower: this.editHeroForm.value.superpower,
       city: this.editHeroForm.value.city,
       description: this.editHeroForm.value.description,
-      image: this.editHeroForm.value.image,
+      image: base64,
     };
 
     return request;
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) return;
+
+    const file = input.files[0];
+    this.editHeroForm.get('image')!.setValue(file);
   }
 }
