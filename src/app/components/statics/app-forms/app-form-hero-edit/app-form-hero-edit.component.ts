@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -10,6 +10,7 @@ import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app
 import { HeroStoreService } from '../../../../services/hero-store.service';
 import { Hero } from '../../../../models/hero';
 import { ImageService } from '../../../../services/image.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-form-hero-edit',
@@ -25,15 +26,23 @@ import { ImageService } from '../../../../services/image.service';
   templateUrl: './app-form-hero-edit.component.html',
   styleUrl: './app-form-hero-edit.component.scss',
 })
-export class AppFormHeroEditComponent implements OnInit {
-  private readonly heroStoreService = inject(HeroStoreService);
-  private readonly imageService = inject(ImageService);
+export class AppFormHeroEditComponent implements OnInit, OnDestroy {
   private readonly dialogRef = inject(MatDialogRef<AppFormHeroEditComponent>);
   private readonly dialogData = inject(MAT_DIALOG_DATA);
+  private readonly heroStoreService = inject(HeroStoreService);
+  private readonly imageService = inject(ImageService);
+
   protected editHeroForm!: FormGroup;
+
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
   ngOnInit(): void {
     this.initForm();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   private initForm(): void {

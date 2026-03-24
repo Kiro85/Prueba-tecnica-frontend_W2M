@@ -7,6 +7,4 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './app-button-edit.component.html',
   styleUrl: './app-button-edit.component.scss',
 })
-export class AppButtonEditComponent {
-
-}
+export class AppButtonEditComponent {}

@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AppCardHeroComponent } from '../../components/dynamics/app-cards/app-card-hero/app-card-hero.component';
 import { HeroStoreService } from '../../services/hero-store.service';
 import { CommonModule } from '@angular/common';
@@ -12,11 +12,13 @@ import { AppButtonPrimaryComponent } from '../../components/dynamics/app-buttons
 })
 export class SectionCardsComponent implements OnInit {
   private readonly heroStoreService = inject(HeroStoreService);
+
+  protected heroesFiltered = this.heroStoreService.heroesFiltered;
   protected heroes = this.heroStoreService.heroes;
   protected morePages = this.heroStoreService.nextPage;
+
   protected loading = this.heroStoreService.loading;
   protected error = this.heroStoreService.error;
-  protected heroesFiltered = this.heroStoreService.heroesFiltered;
 
   ngOnInit(): void {
     this.nextPage();

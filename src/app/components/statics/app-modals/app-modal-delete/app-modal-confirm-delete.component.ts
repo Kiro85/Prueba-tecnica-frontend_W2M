@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { AppButtonSecondaryComponent } from '../../../dynamics/app-buttons/app-button-secondary/app-button-secondary.component';
 import { AppButtonPrimaryComponent } from '../../../dynamics/app-buttons/app-button-primary/app-button-primary.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HeroStoreService } from '../../../../services/hero-store.service';
-import { Hero } from '../../../../models/hero';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-modal-confirm-delete.component',
@@ -12,10 +12,17 @@ import { Hero } from '../../../../models/hero';
   templateUrl: './app-modal-confirm-delete.component.html',
   styleUrl: './app-modal-confirm-delete.component.scss',
 })
-export class AppModalConfirmDeleteComponent {
+export class AppModalConfirmDeleteComponent implements OnDestroy {
   private readonly dialogRef = inject(MatDialogRef<AppModalConfirmDeleteComponent>);
   private readonly dialogData = inject(MAT_DIALOG_DATA);
   private readonly heroStoreService = inject(HeroStoreService);
+
+  private unsubscribe$: Subject<void> = new Subject<void>();
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 
   protected DeleteHeroe(): void {
     this.heroStoreService.deleteHeroe(this.dialogData).subscribe({

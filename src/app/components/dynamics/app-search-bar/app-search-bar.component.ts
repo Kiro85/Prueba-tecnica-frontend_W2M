@@ -1,7 +1,7 @@
-import { Component, EventEmitter, inject, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { AppButtonSearchComponent } from '../app-buttons/app-button-search/app-button-search.component';
 import { FormControl, ReactiveFormsModule, ɵInternalFormsSharedModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map, Subject, takeUntil } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Subject } from 'rxjs';
 import { HeroStoreService } from '../../../services/hero-store.service';
 
 @Component({
@@ -12,7 +12,9 @@ import { HeroStoreService } from '../../../services/hero-store.service';
 })
 export class AppSearchBarComponent implements OnInit, OnDestroy {
   private readonly heroStoreService = inject(HeroStoreService);
+
   protected query = new FormControl('');
+
   private destroy$ = new Subject<void>();
 
   ngOnInit(): void {
@@ -24,17 +26,13 @@ export class AppSearchBarComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-
   private initSearchBar(): void {
     this.query.valueChanges
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
-        map(value => value?.trim() || null),
+        map((value) => value?.trim() || null),
       )
-      .subscribe(query =>
-        this.heroStoreService.getHeroesByName(query)
-      );
+      .subscribe((query) => this.heroStoreService.getHeroesByName(query));
   }
-
 }

@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AppButtonEditComponent } from '../../app-buttons/app-button-edit/app-button-edit.component';
 import { Hero } from '../../../../models/hero';
 import { AppButtonSecondaryComponent } from '../../app-buttons/app-button-secondary/app-button-secondary.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AppModalConfirmDeleteComponent } from '../../../statics/app-modals/app-modal-delete/app-modal-confirm-delete.component';
 import { AppFormHeroEditComponent } from '../../../statics/app-forms/app-form-hero-edit/app-form-hero-edit.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-card-hero',
@@ -12,9 +13,17 @@ import { AppFormHeroEditComponent } from '../../../statics/app-forms/app-form-he
   templateUrl: './app-card-hero.component.html',
   styleUrl: './app-card-hero.component.scss',
 })
-export class AppCardHeroComponent {
+export class AppCardHeroComponent implements OnDestroy {
   @Input() hero?: Hero;
+
   private readonly dialog: MatDialog = new MatDialog();
+
+  private unsubscribe$: Subject<void> = new Subject<void>();
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 
   protected OpenConfirmDeleteModal(): void {
     const dialogRef = this.dialog.open(AppModalConfirmDeleteComponent, {
