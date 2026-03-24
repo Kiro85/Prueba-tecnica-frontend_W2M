@@ -1,0 +1,25 @@
+@use '../../../../sass/var' as var;
+
+.c-error-message {
+  width: 95%;
+  margin: 24px auto;
+  padding: 12px 16px;
+  gap: 4px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var.$c-error;
+  border-radius: 8px;
+  background: var.$c-error;
+  color: var.$c-on-error;
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  &__text {
+    font-size: 0.8125rem;
+    line-height: 1.3;
+  }
+}

@@ -4,10 +4,17 @@ import { HeroStoreService } from '../../services/hero-store.service';
 import { CommonModule } from '@angular/common';
 import { AppButtonPrimaryComponent } from '../../components/dynamics/app-buttons/app-button-primary/app-button-primary.component';
 import { AppSpinnerComponent } from '../../components/statics/app-spinner/app-spinner.component';
+import { AppErrorMessageComponent } from '../../components/dynamics/app-error-message/app-error-message.component';
 
 @Component({
   selector: 'section-cards',
-  imports: [CommonModule, AppCardHeroComponent, AppButtonPrimaryComponent, AppSpinnerComponent],
+  imports: [
+    CommonModule,
+    AppCardHeroComponent,
+    AppButtonPrimaryComponent,
+    AppSpinnerComponent,
+    AppErrorMessageComponent,
+  ],
   templateUrl: './section-cards.component.html',
   styleUrl: './section-cards.component.scss',
 })
