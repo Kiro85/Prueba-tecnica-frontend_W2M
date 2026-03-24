@@ -3,6 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { AppFormHeroCreateComponent } from '../../../statics/app-forms/app-form-hero-create/app-form-hero-create.component';
 import { Subject } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppModalSuccessMessageComponent } from '../../../statics/app-modals/app-modal-success-message/app-modal-success-message.component';
+import { AppModalErrorMessageComponent } from '../../../statics/app-modals/app-modal-error-message/app-modal-error-message.component';
 
 @Component({
   selector: 'app-button-create',
@@ -12,6 +15,7 @@ import { Subject } from 'rxjs';
 })
 export class AppButtonCreateComponent implements OnDestroy {
   private readonly dialog: MatDialog = new MatDialog();
+  private readonly snackBar: MatSnackBar = new MatSnackBar();
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
@@ -28,9 +32,15 @@ export class AppButtonCreateComponent implements OnDestroy {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        alert('Heroe creado correctamente!');
+        this.snackBar.openFromComponent(AppModalSuccessMessageComponent, {
+          duration: 5000,
+          verticalPosition: 'top',
+        });
       } else {
-        alert('Error al crear el héroe');
+        this.snackBar.openFromComponent(AppModalErrorMessageComponent, {
+          duration: 5000,
+          verticalPosition: 'top',
+        });
       }
     });
   }

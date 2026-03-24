@@ -3,9 +3,12 @@ import { AppButtonEditComponent } from '../../app-buttons/app-button-edit/app-bu
 import { Hero } from '../../../../models/hero';
 import { AppButtonSecondaryComponent } from '../../app-buttons/app-button-secondary/app-button-secondary.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AppModalConfirmDeleteComponent } from '../../../statics/app-modals/app-modal-delete/app-modal-confirm-delete.component';
+import { AppModalConfirmDeleteComponent } from '../../../statics/app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
 import { AppFormHeroEditComponent } from '../../../statics/app-forms/app-form-hero-edit/app-form-hero-edit.component';
 import { Subject } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppModalSuccessMessageComponent } from '../../../statics/app-modals/app-modal-success-message/app-modal-success-message.component';
+import { AppModalErrorMessageComponent } from '../../../statics/app-modals/app-modal-error-message/app-modal-error-message.component';
 
 @Component({
   selector: 'app-card-hero',
@@ -17,6 +20,7 @@ export class AppCardHeroComponent implements OnDestroy {
   @Input() hero?: Hero;
 
   private readonly dialog: MatDialog = new MatDialog();
+  private readonly snackBar: MatSnackBar = new MatSnackBar();
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
@@ -34,9 +38,15 @@ export class AppCardHeroComponent implements OnDestroy {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        alert('Heroe eliminado correctamente!');
+        this.snackBar.openFromComponent(AppModalSuccessMessageComponent, {
+          duration: 5000,
+          verticalPosition: 'top',
+        });
       } else {
-        alert('Error al eliminar el héroe');
+        this.snackBar.openFromComponent(AppModalErrorMessageComponent, {
+          duration: 5000,
+          verticalPosition: 'top',
+        });
       }
     });
   }
@@ -50,9 +60,15 @@ export class AppCardHeroComponent implements OnDestroy {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        alert('Heroe editado correctamente!');
+        this.snackBar.openFromComponent(AppModalSuccessMessageComponent, {
+          duration: 5000,
+          verticalPosition: 'top',
+        });
       } else {
-        alert('Error al editar el héroe');
+        this.snackBar.openFromComponent(AppModalErrorMessageComponent, {
+          duration: 5000,
+          verticalPosition: 'top',
+        });
       }
     });
   }
