@@ -76,8 +76,8 @@ export class AppFormHeroEditComponent implements OnInit, OnDestroy {
 
   protected async onSubmit(): Promise<void> {
     this.heroStoreService.updateHeroe(await this.createHeroeModel()).subscribe({
-      next: () => this.dialogRef.close(true),
-      error: () => this.dialogRef.close(false),
+      next: () => this.dialogRef.close(1),
+      error: () => this.dialogRef.close(2),
     });
   }
 
@@ -105,11 +105,15 @@ export class AppFormHeroEditComponent implements OnInit, OnDestroy {
     return request;
   }
 
-  onFileSelected(event: Event) {
+  protected onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (!input || !input.files || input.files.length === 0) return;
 
     const file = input.files[0];
     this.editHeroForm.get('image')!.setValue(file);
+  }
+
+  protected closeModal(): void {
+    this.dialogRef.close();
   }
 }

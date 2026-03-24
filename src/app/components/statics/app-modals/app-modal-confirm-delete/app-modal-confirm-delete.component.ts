@@ -26,8 +26,8 @@ export class AppModalConfirmDeleteComponent implements OnDestroy {
 
   protected DeleteHeroe(): void {
     this.heroStoreService.deleteHeroe(this.dialogData).subscribe({
-      next: () => this.dialogRef.close(true),
-      error: () => this.dialogRef.close(false),
+      next: () => this.dialogRef.close(1),
+      error: () => this.dialogRef.close(2),
     });
   }
 

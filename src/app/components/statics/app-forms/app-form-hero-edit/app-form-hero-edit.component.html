@@ -1,4 +1,8 @@
 <form class="c-edit-hero-form" [formGroup]="editHeroForm" (ngSubmit)="onSubmit()">
+  <section class="c-edit-hero-form__close-section" (click)="closeModal()">
+    <mat-icon>close</mat-icon>
+  </section>
+
   <section class="c-edit-hero-form__title-section">
     <h1 class="c-edit-hero-form__title-text">Editar héroe</h1>
   </section>

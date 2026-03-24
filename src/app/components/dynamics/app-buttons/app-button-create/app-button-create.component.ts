@@ -31,7 +31,7 @@ export class AppButtonCreateComponent implements OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+      if (result === 1) {
         this.snackBar.openFromComponent(AppModalSuccessMessageComponent, {
           duration: 5000,
           verticalPosition: 'top',
@@ -39,7 +39,7 @@ export class AppButtonCreateComponent implements OnDestroy {
             message: 'Héroe creado con éxito',
           },
         });
-      } else {
+      } else if (result === 2) {
         this.snackBar.openFromComponent(AppModalErrorMessageComponent, {
           duration: 5000,
           verticalPosition: 'top',

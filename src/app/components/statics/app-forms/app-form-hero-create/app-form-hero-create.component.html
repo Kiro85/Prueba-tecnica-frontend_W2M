@@ -1,4 +1,8 @@
 <form class="c-create-hero-form" [formGroup]="createHeroForm" (ngSubmit)="onSubmit()">
+  <section class="c-create-hero-form__close-section" (click)="closeModal()">
+    <mat-icon>close</mat-icon>
+  </section>
+
   <section class="c-create-hero-form__title-section">
     <h1 class="c-create-hero-form__title-text">Crear nuevo héroe</h1>
   </section>
@@ -103,7 +107,11 @@
       <span class="c-create-hero-form__label">Elige una imagen*</span>
 
       <div class="c-create-hero-form__files">
-        <input type="file" class="c-create-hero-form__files-button" (change)="onFileSelected($event)" />
+        <input
+          type="file"
+          class="c-create-hero-form__files-button"
+          (change)="onFileSelected($event)"
+        />
       </div>
 
       @if (createHeroForm.get('image')?.invalid && createHeroForm.get('image')?.touched) {
@@ -119,11 +127,16 @@
   <section class="c-create-hero-form__submit-section">
     <div class="c-create-hero-form__submit-content">
       <div class="c-create-hero-form__checkbox">
-        <mat-checkbox formControlName="termsAndConditions"> Acepto los <u>Términos y condiciones</u>* </mat-checkbox>
+        <mat-checkbox formControlName="termsAndConditions">
+          Acepto los <u>Términos y condiciones</u>*
+        </mat-checkbox>
       </div>
 
       <div class="c-create-hero-form__submit-button">
-        <app-button-primary-form [message]="'Crear héroe'" [disabled]="createHeroForm.invalid"></app-button-primary-form>
+        <app-button-primary-form
+          [message]="'Crear héroe'"
+          [disabled]="createHeroForm.invalid"
+        ></app-button-primary-form>
       </div>
     </div>
   </section>

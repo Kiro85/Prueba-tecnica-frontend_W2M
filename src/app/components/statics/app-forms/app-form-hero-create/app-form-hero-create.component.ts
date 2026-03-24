@@ -31,7 +31,7 @@ export class AppFormHeroCreateComponent implements OnInit, OnDestroy {
   private readonly dialogRef = inject(MatDialogRef<AppFormHeroCreateComponent>);
   private readonly heroStoreService = inject(HeroStoreService);
   private readonly imageService = inject(ImageService);
-  private readonly formatterService = inject(FormatterService)
+  private readonly formatterService = inject(FormatterService);
 
   protected createHeroForm!: FormGroup;
 
@@ -75,8 +75,8 @@ export class AppFormHeroCreateComponent implements OnInit, OnDestroy {
 
   protected async onSubmit(): Promise<void> {
     this.heroStoreService.createHeroe(await this.createHeroeModel()).subscribe({
-      next: () => this.dialogRef.close(true),
-      error: () => this.dialogRef.close(false),
+      next: () => this.dialogRef.close(1),
+      error: () => this.dialogRef.close(2),
     });
   }
 
@@ -96,11 +96,15 @@ export class AppFormHeroCreateComponent implements OnInit, OnDestroy {
     return request;
   }
 
-  onFileSelected(event: Event) {
+  protected onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) return;
 
     const file = input.files[0];
     this.createHeroForm.get('image')!.setValue(file);
+  }
+
+  protected closeModal(): void {
+    this.dialogRef.close();
   }
 }
