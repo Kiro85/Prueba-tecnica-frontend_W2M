@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class AppButtonPrimaryComponent {
   @Input() message!: string;
+  @Input() disabled: boolean = false;
 }

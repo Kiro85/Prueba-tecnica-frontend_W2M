@@ -87,12 +87,12 @@
     p {
       color: var.$c-on-primary;
     }
+  }
 
-    &[disabled],
-    &:disabled {
-      background-color: #cccccc;
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
+  &[disabled],
+  &:disabled {
+    background-color: var.$c-disabled;
+    cursor: not-allowed;
+    opacity: 0.6;
   }
 }

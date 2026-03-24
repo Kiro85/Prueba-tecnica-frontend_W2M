@@ -8,10 +8,14 @@ import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
 })
 export class HeroStoreService implements OnDestroy {
   public heroes = signal<Hero[] | null>(null);
+  public page = signal<number>(0);
+  public nextPage = signal<boolean>(true);
+  public heroesFiltered = signal<Hero[] | null>(null);
+
   public loading = signal<boolean>(false);
   public error = signal<string | null>(null);
   private unsubscribe$: Subject<void> = new Subject<void>();
-  private readonly heroeService = inject(HeroService);
+  private readonly heroService = inject(HeroService);
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
@@ -22,9 +26,9 @@ export class HeroStoreService implements OnDestroy {
     this.loading.set(true);
     this.error.set(null);
 
-    this.heroeService.getHeroes().subscribe({
-      next: (data) => {
-        this.heroes.set(data);
+    this.heroService.getHeroes().subscribe({
+      next: (res) => {
+        this.heroes.set(res);
         this.loading.set(false);
       },
 
@@ -36,13 +40,56 @@ export class HeroStoreService implements OnDestroy {
     });
   }
 
+  public getHeroesPaginated(page: number, limit: number): void {
+    this.loading.set(true);
+    this.error.set(null);
+
+    this.heroService.getHeroesPaginated(page, limit).subscribe({
+      next: (res) => {
+        this.heroes.update((current) => [...(current ?? []), ...(res.data ?? [])]);
+        this.page.set(page);
+        this.nextPage.set(res.next !== null ? true : false);
+        this.loading.set(false);
+      },
+
+      error: (err) => {
+        this.error.set(err);
+        this.loading.set(false);
+        console.error('Error - hero-store.service.ts - GetHoresPaginated() / ' + err.message);
+      },
+    });
+  }
+
+  public getHeroesByName(name: string | null): void {
+    this.loading.set(true);
+    this.error.set(null);
+
+    if (name === null) {
+      this.heroesFiltered.set(null);
+      this.loading.set(false);
+    } else {
+      this.heroService.getHeroesByName(name).subscribe({
+        next: (res) => {
+          this.heroesFiltered.set(res);
+          this.loading.set(false);
+        },
+
+        error: (err) => {
+          this.error.set(err);
+          this.loading.set(false);
+          console.error('Error - hero-store.service.ts - getHeroesByName() / ' + err.message);
+        },
+      });
+    }
+  }
+
   public createHeroe(request: HeroRequest): Observable<Hero> {
     this.loading.set(true);
     this.error.set(null);
 
-    return this.heroeService.createHeroe(request).pipe(
-      tap((data) => {
-        this.heroes.update((current) => [...(current ?? []), data]);
+    return this.heroService.createHeroe(request).pipe(
+      tap((res) => {
+        this.heroes.update((current) => [...(current ?? []), res]);
         this.loading.set(false);
       }),
 
@@ -59,9 +106,9 @@ export class HeroStoreService implements OnDestroy {
     this.loading.set(true);
     this.error.set(null);
 
-    return this.heroeService.deleteHeroe(hero.id).pipe(
-      tap((data) => {
-        this.heroes.update((current) => (current ? current.filter((h) => h.id !== data.id) : []));
+    return this.heroService.deleteHeroe(hero.id).pipe(
+      tap((res) => {
+        this.heroes.update((current) => (current ? current.filter((h) => h.id !== res.id) : []));
         this.loading.set(false);
       }),
 
@@ -78,9 +125,11 @@ export class HeroStoreService implements OnDestroy {
     this.loading.set(true);
     this.error.set(null);
 
-    return this.heroeService.updateHeroe(hero).pipe(
-      tap((data) => {
-        this.heroes.update((current) => current ? current.map(h => h.id === data.id ? data : h) : []);
+    return this.heroService.updateHeroe(hero).pipe(
+      tap((res) => {
+        this.heroes.update((current) =>
+          current ? current.map((h) => (h.id === res.id ? res : h)) : [],
+        );
         this.loading.set(false);
       }),
 
@@ -90,6 +139,12 @@ export class HeroStoreService implements OnDestroy {
         console.error('Error - hero-store.service.ts - updateHeroe() / ' + err.message);
         return throwError(() => err);
       }),
+    );
+  }
+
+  public searchHeroesByName(q: string): Hero[] | undefined {
+    return this.heroes()?.filter((hero) =>
+      hero.name.toLocaleLowerCase().includes(q.toLocaleLowerCase()),
     );
   }
 }
