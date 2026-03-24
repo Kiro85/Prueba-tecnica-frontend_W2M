@@ -16,7 +16,7 @@ export class SectionCardsComponent implements OnInit {
   protected morePages = this.heroStoreService.nextPage;
   protected loading = this.heroStoreService.loading;
   protected error = this.heroStoreService.error;
-  @Input() query?: string;
+  protected heroesFiltered = this.heroStoreService.heroesFiltered;
 
   ngOnInit(): void {
     this.nextPage();

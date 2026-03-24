@@ -10,6 +10,8 @@ export class HeroStoreService implements OnDestroy {
   public heroes = signal<Hero[] | null>(null);
   public page = signal<number>(0);
   public nextPage = signal<boolean>(true);
+  public heroesFiltered = signal<Hero[] | null>(null);
+
   public loading = signal<boolean>(false);
   public error = signal<string | null>(null);
   private unsubscribe$: Subject<void> = new Subject<void>();
@@ -25,8 +27,8 @@ export class HeroStoreService implements OnDestroy {
     this.error.set(null);
 
     this.heroService.getHeroes().subscribe({
-      next: (data) => {
-        this.heroes.set(data);
+      next: (res) => {
+        this.heroes.set(res);
         this.loading.set(false);
       },
 
@@ -58,13 +60,36 @@ export class HeroStoreService implements OnDestroy {
     });
   }
 
+  public getHeroesByName(name: string | null): void {
+    this.loading.set(true);
+    this.error.set(null);
+
+    if (name === null) {
+      this.heroesFiltered.set(null);
+      this.loading.set(false);
+    } else {
+      this.heroService.getHeroesByName(name).subscribe({
+        next: (res) => {
+          this.heroesFiltered.set(res);
+          this.loading.set(false);
+        },
+
+        error: (err) => {
+          this.error.set(err);
+          this.loading.set(false);
+          console.error('Error - hero-store.service.ts - getHeroesByName() / ' + err.message);
+        },
+      });
+    }
+  }
+
   public createHeroe(request: HeroRequest): Observable<Hero> {
     this.loading.set(true);
     this.error.set(null);
 
     return this.heroService.createHeroe(request).pipe(
-      tap((data) => {
-        this.heroes.update((current) => [...(current ?? []), data]);
+      tap((res) => {
+        this.heroes.update((current) => [...(current ?? []), res]);
         this.loading.set(false);
       }),
 
@@ -82,8 +107,8 @@ export class HeroStoreService implements OnDestroy {
     this.error.set(null);
 
     return this.heroService.deleteHeroe(hero.id).pipe(
-      tap((data) => {
-        this.heroes.update((current) => (current ? current.filter((h) => h.id !== data.id) : []));
+      tap((res) => {
+        this.heroes.update((current) => (current ? current.filter((h) => h.id !== res.id) : []));
         this.loading.set(false);
       }),
 
@@ -101,9 +126,9 @@ export class HeroStoreService implements OnDestroy {
     this.error.set(null);
 
     return this.heroService.updateHeroe(hero).pipe(
-      tap((data) => {
+      tap((res) => {
         this.heroes.update((current) =>
-          current ? current.map((h) => (h.id === data.id ? data : h)) : [],
+          current ? current.map((h) => (h.id === res.id ? res : h)) : [],
         );
         this.loading.set(false);
       }),

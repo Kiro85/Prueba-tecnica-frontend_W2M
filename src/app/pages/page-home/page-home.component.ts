@@ -18,9 +18,4 @@ import { SectionFooterComponent } from '../../sections/section-footer/section-fo
   styleUrl: './page-home.component.scss',
 })
 export class PageHomeComponent {
-  protected query = signal<string>('');
-
-  protected OnQueryChange(value: string): void {
-    this.query.set(value);
-  }
 }

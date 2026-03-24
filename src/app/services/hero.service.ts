@@ -14,15 +14,19 @@ export class HeroService {
   private readonly errorHandleService = inject(ErrorHandleService);
 
   public getHeroes(): Observable<Hero[]> {
-    return this.http
-      .get<Hero[]>(this.apiUrl)
-      .pipe(catchError(this.errorHandleService.handleError));
+    return this.http.get<Hero[]>(this.apiUrl).pipe(catchError(this.errorHandleService.handleError));
   }
 
   public getHeroesPaginated(page: number, limit: number): Observable<Page> {
     return this.http
       .get<Page>(`${this.apiUrl}?_page=${page}&_per_page=${limit}`)
-      .pipe(catchError(this.errorHandleService.handleError))
+      .pipe(catchError(this.errorHandleService.handleError));
+  }
+
+  public getHeroesByName(name: string): Observable<Hero[]> {
+    return this.http
+      .get<Hero[]>(`${this.apiUrl}?name:contains=${name}`)
+      .pipe(catchError(this.errorHandleService.handleError));
   }
 
   public createHeroe(request: HeroRequest): Observable<Hero> {
@@ -40,6 +44,6 @@ export class HeroService {
   public updateHeroe(hero: Hero): Observable<Hero> {
     return this.http
       .put<Hero>(`${this.apiUrl}/${hero.id}`, hero)
-      .pipe(catchError(this.errorHandleService.handleError))
+      .pipe(catchError(this.errorHandleService.handleError));
   }
 }
