@@ -11,6 +11,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app-button-primary-form/app-button-primary-form.component';
 import { ImageService } from '../../../../services/image.service';
 import { Subject } from 'rxjs';
+import { FormatterService } from '../../../../services/formatter.service';
 
 @Component({
   selector: 'app-form-hero-create',
@@ -30,6 +31,7 @@ export class AppFormHeroCreateComponent implements OnInit, OnDestroy {
   private readonly dialogRef = inject(MatDialogRef<AppFormHeroCreateComponent>);
   private readonly heroStoreService = inject(HeroStoreService);
   private readonly imageService = inject(ImageService);
+  private readonly formatterService = inject(FormatterService)
 
   protected createHeroForm!: FormGroup;
 
@@ -84,10 +86,10 @@ export class AppFormHeroCreateComponent implements OnInit, OnDestroy {
     const base64 = await this.imageService.convertFileToBase64(file);
 
     const request: HeroRequest = {
-      name: this.createHeroForm.value.name,
-      superpower: this.createHeroForm.value.superpower,
-      city: this.createHeroForm.value.city,
-      description: this.createHeroForm.value.description,
+      name: this.formatterService.firstCharPerWordToUpperCase(this.createHeroForm.value.name),
+      superpower: this.formatterService.firstCharToUpperCase(this.createHeroForm.value.superpower),
+      city: this.formatterService.firstCharToUpperCase(this.createHeroForm.value.city),
+      description: this.formatterService.firstCharToUpperCase(this.createHeroForm.value.description),
       image: base64,
     };
 

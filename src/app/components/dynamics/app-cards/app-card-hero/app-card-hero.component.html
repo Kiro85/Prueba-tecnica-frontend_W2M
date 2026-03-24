@@ -7,10 +7,10 @@
   <!-- Info -->
   <div class="c-card-hero__content">
     <div class="c-card-hero__info">
-      <h2 class="c-card-hero__name">{{firstCharToUpperCase(hero?.name)}}</h2>
-      <p class="c-card-hero__superpower">{{hero?.superpower}}</p>
-      <p class="c-card-hero__description">{{hero?.description}}</p>
-      <p class="c-card-hero__city">{{hero?.city}}</p>
+      <h2 class="c-card-hero__name">{{formatterService.firstCharPerWordToUpperCase(hero?.name)}}</h2>
+      <p class="c-card-hero__superpower">{{formatterService.firstCharToUpperCase(hero?.superpower)}}</p>
+      <p class="c-card-hero__description">{{formatterService.firstCharToUpperCase(hero?.description)}}</p>
+      <p class="c-card-hero__city">{{formatterService.firstCharToUpperCase(hero?.city)}}</p>
       <div class="c-card-hero__buttons">
         <app-button-edit (click)="OpenFormHeroeEdit()"></app-button-edit>
         <app-button-secondary [message]="'Eliminar'" (click)="OpenConfirmDeleteModal()"></app-button-secondary>

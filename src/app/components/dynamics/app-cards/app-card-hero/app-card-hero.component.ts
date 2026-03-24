@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { AppButtonEditComponent } from '../../app-buttons/app-button-edit/app-button-edit.component';
 import { Hero } from '../../../../models/hero';
 import { AppButtonSecondaryComponent } from '../../app-buttons/app-button-secondary/app-button-secondary.component';
@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppModalSuccessMessageComponent } from '../../../statics/app-modals/app-modal-success-message/app-modal-success-message.component';
 import { AppModalErrorMessageComponent } from '../../../statics/app-modals/app-modal-error-message/app-modal-error-message.component';
+import { FormatterService } from '../../../../services/formatter.service';
 
 @Component({
   selector: 'app-card-hero',
@@ -19,8 +20,9 @@ import { AppModalErrorMessageComponent } from '../../../statics/app-modals/app-m
 export class AppCardHeroComponent implements OnDestroy {
   @Input() hero?: Hero;
 
-  private readonly dialog: MatDialog = new MatDialog();
-  private readonly snackBar: MatSnackBar = new MatSnackBar();
+  private readonly dialog = inject(MatDialog)
+  private readonly snackBar = inject(MatSnackBar)
+  protected readonly formatterService = inject(FormatterService)
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
@@ -83,10 +85,5 @@ export class AppCardHeroComponent implements OnDestroy {
         });
       }
     });
-  }
-
-  protected firstCharToUpperCase(word: string | undefined): string {
-    if (!word) return '';
-    return word.charAt(0).toUpperCase() + word.slice(1);
   }
 }

@@ -11,6 +11,7 @@ import { HeroStoreService } from '../../../../services/hero-store.service';
 import { Hero } from '../../../../models/hero';
 import { ImageService } from '../../../../services/image.service';
 import { Subject } from 'rxjs';
+import { FormatterService } from '../../../../services/formatter.service';
 
 @Component({
   selector: 'app-form-hero-edit',
@@ -31,6 +32,7 @@ export class AppFormHeroEditComponent implements OnInit, OnDestroy {
   private readonly dialogData = inject(MAT_DIALOG_DATA);
   private readonly heroStoreService = inject(HeroStoreService);
   private readonly imageService = inject(ImageService);
+  private readonly formatterService = inject(FormatterService);
 
   protected editHeroForm!: FormGroup;
 
@@ -47,7 +49,7 @@ export class AppFormHeroEditComponent implements OnInit, OnDestroy {
 
   private initForm(): void {
     this.editHeroForm = new FormGroup({
-      name: new FormControl(this.dialogData.name, [
+      name: new FormControl(this.dialogData.name.toUpperCase(), [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(32),
@@ -86,10 +88,10 @@ export class AppFormHeroEditComponent implements OnInit, OnDestroy {
 
     const request: Hero = {
       id: this.dialogData.id,
-      name: this.editHeroForm.value.name,
-      superpower: this.editHeroForm.value.superpower,
-      city: this.editHeroForm.value.city,
-      description: this.editHeroForm.value.description,
+      name: this.formatterService.firstCharPerWordToUpperCase(this.editHeroForm.value.name),
+      superpower: this.formatterService.firstCharToUpperCase(this.editHeroForm.value.superpower),
+      city: this.formatterService.firstCharToUpperCase(this.editHeroForm.value.city),
+      description: this.formatterService.firstCharToUpperCase(this.editHeroForm.value.description),
       image: base64,
     };
 
@@ -98,7 +100,7 @@ export class AppFormHeroEditComponent implements OnInit, OnDestroy {
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-    if (!input.files || input.files.length === 0) return;
+    if (!input || !input.files || input.files.length === 0) return;
 
     const file = input.files[0];
     this.editHeroForm.get('image')!.setValue(file);
