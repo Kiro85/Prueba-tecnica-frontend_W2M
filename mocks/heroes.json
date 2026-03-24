@@ -63,30 +63,6 @@
       "city": "Buenos Aires, Arg.",
       "description": "La armadura de Iron Man está hecha de nanotecnología y se almacena en un reactor que Tony Stark lleva en el pecho.",
       "image": "heroes/ironman.png"
-    },
-    {
-      "id": "51f9",
-      "name": "deku",
-      "superpower": "ofa",
-      "city": "jpn",
-      "description": "alñsdfjalsñdjflñskf",
-      "image": "C:\\fakepath\\deku.webp.webp"
-    },
-    {
-      "id": "86f7",
-      "name": "asdf",
-      "superpower": "asdf",
-      "city": "asdfasdf",
-      "description": "asdfasdfasdfasdf",
-      "image": "C:\\fakepath\\deku.webp.webp"
-    },
-    {
-      "id": "5cfd",
-      "name": "asdf",
-      "superpower": "asdf",
-      "city": "asdfasdf",
-      "description": "asdfasdfdfsa",
-      "image": "C:\\fakepath\\deku.webp.webp"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

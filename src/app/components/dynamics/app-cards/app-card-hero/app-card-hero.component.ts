@@ -41,11 +41,17 @@ export class AppCardHeroComponent implements OnDestroy {
         this.snackBar.openFromComponent(AppModalSuccessMessageComponent, {
           duration: 5000,
           verticalPosition: 'top',
+          data: {
+            message: 'Este héroe se ha eliminado',
+          },
         });
       } else {
         this.snackBar.openFromComponent(AppModalErrorMessageComponent, {
           duration: 5000,
           verticalPosition: 'top',
+          data: {
+            message: 'Ha ocurrido un error',
+          },
         });
       }
     });
@@ -63,11 +69,17 @@ export class AppCardHeroComponent implements OnDestroy {
         this.snackBar.openFromComponent(AppModalSuccessMessageComponent, {
           duration: 5000,
           verticalPosition: 'top',
+          data: {
+            message: 'Héroe modificado con éxito',
+          },
         });
       } else {
         this.snackBar.openFromComponent(AppModalErrorMessageComponent, {
           duration: 5000,
           verticalPosition: 'top',
+          data: {
+            message: 'Ha ocurrido un error',
+          },
         });
       }
     });

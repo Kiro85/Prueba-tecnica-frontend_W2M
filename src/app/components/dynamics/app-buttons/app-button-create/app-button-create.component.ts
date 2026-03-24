@@ -35,11 +35,17 @@ export class AppButtonCreateComponent implements OnDestroy {
         this.snackBar.openFromComponent(AppModalSuccessMessageComponent, {
           duration: 5000,
           verticalPosition: 'top',
+          data: {
+            message: 'Héroe creado con éxito',
+          },
         });
       } else {
         this.snackBar.openFromComponent(AppModalErrorMessageComponent, {
           duration: 5000,
           verticalPosition: 'top',
+          data: {
+            message: 'Ha ocurrido un error',
+          },
         });
       }
     });
