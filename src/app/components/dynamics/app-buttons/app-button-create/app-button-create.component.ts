@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { AppFormHeroCreateComponent } from '../../../statics/app-forms/app-form-hero-create/app-form-hero-create.component';
@@ -14,8 +14,8 @@ import { AppModalErrorMessageComponent } from '../../../statics/app-modals/app-m
   styleUrl: './app-button-create.component.scss',
 })
 export class AppButtonCreateComponent implements OnDestroy {
-  private readonly dialog: MatDialog = new MatDialog();
-  private readonly snackBar: MatSnackBar = new MatSnackBar();
+  private readonly dialog = inject(MatDialog);
+  private readonly snackBar = inject(MatSnackBar);
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
