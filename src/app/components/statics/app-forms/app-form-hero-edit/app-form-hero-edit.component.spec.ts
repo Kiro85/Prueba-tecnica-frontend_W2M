@@ -10,8 +10,8 @@ import { ImageService } from '../../../../services/image.service';
 import { FormatterService } from '../../../../services/formatter.service';
 
 describe('AppFormHeroEditComponent (Vitest)', () => {
-  let component: AppFormHeroEditComponent;
   let fixture: ComponentFixture<AppFormHeroEditComponent>;
+  let component: AppFormHeroEditComponent;
 
   const mockDialogRef = {
     close: vi.fn(),
@@ -22,7 +22,7 @@ describe('AppFormHeroEditComponent (Vitest)', () => {
   };
 
   const mockImageService = {
-    convertFileToBase64: vi.fn().mockResolvedValue('convertedBase64'),
+    convertFileToBase64: vi.fn(() => Promise.resolve('base64')),
   };
 
   const mockFormatterService = {
@@ -71,19 +71,6 @@ describe('AppFormHeroEditComponent (Vitest)', () => {
     expect(form.value.image).toBe('base64string');
   });
 
-  it('should be invalid when required fields are empty', () => {
-    component['editHeroForm'].patchValue({
-      name: '',
-      superpower: '',
-      city: '',
-      description: '',
-      image: null,
-      termsAndConditions: false,
-    });
-
-    expect(component['editHeroForm'].valid).toBe(false);
-  });
-
   it('should call updateHeroe and close dialog with 1 on success', async () => {
     await component['onSubmit']();
 
@@ -97,6 +84,19 @@ describe('AppFormHeroEditComponent (Vitest)', () => {
     await component['onSubmit']();
 
     expect(mockDialogRef.close).toHaveBeenCalledWith(2);
+  });
+  
+  it('should be invalid when required fields are empty', () => {
+    component['editHeroForm'].patchValue({
+      name: '',
+      superpower: '',
+      city: '',
+      description: '',
+      image: null,
+      termsAndConditions: false,
+    });
+
+    expect(component['editHeroForm'].valid).toBe(false);
   });
 
   it('should use base64 string if image is string', async () => {
@@ -113,7 +113,7 @@ describe('AppFormHeroEditComponent (Vitest)', () => {
     const result = await component['createHeroeModel']();
 
     expect(mockImageService.convertFileToBase64).toHaveBeenCalledWith(file);
-    expect(result.image).toBe('convertedBase64');
+    expect(result.image).toBe('base64');
   });
 
   it('should set file when onFileSelected is triggered', () => {
