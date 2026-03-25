@@ -15,7 +15,7 @@ describe('AppModalConfirmDeleteComponent', () => {
   };
 
   const mockHeroStoreService = {
-    deleteHeroe: vi.fn((() => of({}))),
+    deleteHeroe: vi.fn(() => of({})),
   };
 
   const mockDialogData = {
@@ -54,9 +54,7 @@ describe('AppModalConfirmDeleteComponent', () => {
   });
 
   it('should call deleteHeroes and close dialog with 2 on error', () => {
-    mockHeroStoreService.deleteHeroe.mockReturnValue(
-      throwError(() => new Error())
-    );
+    mockHeroStoreService.deleteHeroe.mockReturnValue(throwError(() => new Error()));
 
     component['DeleteHeroe']();
 

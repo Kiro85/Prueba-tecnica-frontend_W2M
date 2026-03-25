@@ -23,9 +23,7 @@ describe('SectionCardsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SectionCardsComponent],
-      providers: [
-        { provide: HeroStoreService, useValue: mockHeroStoreService },
-      ],
+      providers: [{ provide: HeroStoreService, useValue: mockHeroStoreService }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SectionCardsComponent);
@@ -46,12 +44,15 @@ describe('SectionCardsComponent', () => {
   it('should call getHeroesPaginated if morePages is true', () => {
     component['nextPage']();
 
-    expect(mockHeroStoreService.getHeroesPaginated).toHaveBeenCalledWith(mockHeroStoreService.page() + 1, 8);
+    expect(mockHeroStoreService.getHeroesPaginated).toHaveBeenCalledWith(
+      mockHeroStoreService.page() + 1,
+      8,
+    );
   });
 
   it('should NOT call getHeroesPaginated if morePages is false', () => {
     mockHeroStoreService.nextPage.set(false);
-    mockHeroStoreService.getHeroesPaginated.mockClear()
+    mockHeroStoreService.getHeroesPaginated.mockClear();
 
     component['nextPage']();
 

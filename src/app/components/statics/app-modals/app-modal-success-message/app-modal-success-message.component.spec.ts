@@ -8,9 +8,8 @@ describe('AppModalSuccessMessageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppModalSuccessMessageComponent]
-    })
-    .compileComponents();
+      imports: [AppModalSuccessMessageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AppModalSuccessMessageComponent);
     component = fixture.componentInstance;

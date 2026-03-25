@@ -8,9 +8,8 @@ describe('AppErrorMessageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppErrorMessageComponent]
-    })
-    .compileComponents();
+      imports: [AppErrorMessageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AppErrorMessageComponent);
     component = fixture.componentInstance;

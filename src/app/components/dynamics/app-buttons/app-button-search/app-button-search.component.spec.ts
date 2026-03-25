@@ -8,9 +8,8 @@ describe('AppButtonSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppButtonSearchComponent]
-    })
-    .compileComponents();
+      imports: [AppButtonSearchComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AppButtonSearchComponent);
     component = fixture.componentInstance;

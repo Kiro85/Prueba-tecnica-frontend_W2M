@@ -31,7 +31,7 @@ describe('AppSearchBarComponent', () => {
   it('should call getHeroesByName when input changes', async () => {
     component['query'].setValue('batman');
 
-    await new Promise(r => setTimeout(r, 300));
+    await new Promise((r) => setTimeout(r, 300));
 
     expect(mockHeroStoreService.getHeroesByName).toHaveBeenCalledWith('batman');
   });
@@ -39,7 +39,7 @@ describe('AppSearchBarComponent', () => {
   it('should trim query before calling service', async () => {
     component['query'].setValue('   superman   ');
 
-    await new Promise(r => setTimeout(r, 300));
+    await new Promise((r) => setTimeout(r, 300));
 
     expect(mockHeroStoreService.getHeroesByName).toHaveBeenCalledWith('superman');
   });
@@ -47,7 +47,7 @@ describe('AppSearchBarComponent', () => {
   it('should send null if query is empty', async () => {
     component['query'].setValue('   ');
 
-    await new Promise(r => setTimeout(r, 300));
+    await new Promise((r) => setTimeout(r, 300));
 
     expect(mockHeroStoreService.getHeroesByName).toHaveBeenCalledWith(null);
   });
