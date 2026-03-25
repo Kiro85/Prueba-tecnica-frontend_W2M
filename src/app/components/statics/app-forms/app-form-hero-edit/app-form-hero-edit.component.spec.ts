@@ -9,7 +9,7 @@ import { HeroStoreService } from '../../../../services/hero-store.service';
 import { ImageService } from '../../../../services/image.service';
 import { FormatterService } from '../../../../services/formatter.service';
 
-describe('AppFormHeroEditComponent (Vitest)', () => {
+describe('AppFormHeroEditComponent', () => {
   let fixture: ComponentFixture<AppFormHeroEditComponent>;
   let component: AppFormHeroEditComponent;
 
@@ -85,7 +85,7 @@ describe('AppFormHeroEditComponent (Vitest)', () => {
 
     expect(mockDialogRef.close).toHaveBeenCalledWith(2);
   });
-  
+
   it('should be invalid when required fields are empty', () => {
     component['editHeroForm'].patchValue({
       name: '',
