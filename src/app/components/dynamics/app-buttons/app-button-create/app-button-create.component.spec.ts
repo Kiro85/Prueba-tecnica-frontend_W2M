@@ -35,6 +35,7 @@ describe('AppButtonCreateComponent', () => {
 
     fixture = TestBed.createComponent(AppButtonCreateComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {

@@ -43,7 +43,6 @@ describe('AppFormHeroCreateComponent', () => {
 
     fixture = TestBed.createComponent(AppFormHeroCreateComponent);
     component = fixture.componentInstance;
-
     fixture.detectChanges();
   });
 
