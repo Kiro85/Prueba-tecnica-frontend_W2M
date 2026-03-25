@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,9 @@ import { HeroRequest } from '../../../../models/hero';
 import { HeroStoreService } from '../../../../services/hero-store.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app-button-primary-form/app-button-primary-form.component';
+import { ImageService } from '../../../../services/image.service';
+import { Subject } from 'rxjs';
+import { FormatterService } from '../../../../services/formatter.service';
 
 @Component({
   selector: 'app-form-hero-create',
@@ -24,13 +27,23 @@ import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app
   templateUrl: './app-form-hero-create.component.html',
   styleUrl: './app-form-hero-create.component.scss',
 })
-export class AppFormHeroCreateComponent implements OnInit {
+export class AppFormHeroCreateComponent implements OnInit, OnDestroy {
   private readonly dialogRef = inject(MatDialogRef<AppFormHeroCreateComponent>);
-  protected createHeroForm!: FormGroup;
   private readonly heroStoreService = inject(HeroStoreService);
+  private readonly imageService = inject(ImageService);
+  private readonly formatterService = inject(FormatterService);
+
+  protected createHeroForm!: FormGroup;
+
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
   ngOnInit(): void {
     this.initForm();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   private initForm(): void {
@@ -42,8 +55,8 @@ export class AppFormHeroCreateComponent implements OnInit {
       ]),
       superpower: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(32),
+        Validators.minLength(8),
+        Validators.maxLength(64),
       ]),
       city: new FormControl('', [
         Validators.required,
@@ -60,22 +73,38 @@ export class AppFormHeroCreateComponent implements OnInit {
     });
   }
 
-  protected onSubmit(): void {
-    this.heroStoreService.createHeroe(this.createHeroeModel()).subscribe({
-      next: () => this.dialogRef.close(true),
-      error: () => this.dialogRef.close(false),
+  protected async onSubmit(): Promise<void> {
+    this.heroStoreService.createHeroe(await this.createHeroeModel()).subscribe({
+      next: () => this.dialogRef.close(1),
+      error: () => this.dialogRef.close(2),
     });
   }
 
-  private createHeroeModel(): HeroRequest {
+  private async createHeroeModel(): Promise<HeroRequest> {
+    const file: File = this.createHeroForm.value.image;
+
+    const base64 = await this.imageService.convertFileToBase64(file);
+
     const request: HeroRequest = {
-      name: this.createHeroForm.value.name,
-      superpower: this.createHeroForm.value.superpower,
-      city: this.createHeroForm.value.city,
-      description: this.createHeroForm.value.description,
-      image: this.createHeroForm.value.image,
+      name: this.formatterService.firstCharPerWordToUpperCase(this.createHeroForm.value.name),
+      superpower: this.formatterService.firstCharToUpperCase(this.createHeroForm.value.superpower),
+      city: this.formatterService.firstCharToUpperCase(this.createHeroForm.value.city),
+      description: this.formatterService.firstCharToUpperCase(this.createHeroForm.value.description),
+      image: base64,
     };
 
     return request;
+  }
+
+  protected onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) return;
+
+    const file = input.files[0];
+    this.createHeroForm.get('image')!.setValue(file);
+  }
+
+  protected closeModal(): void {
+    this.dialogRef.close();
   }
 }

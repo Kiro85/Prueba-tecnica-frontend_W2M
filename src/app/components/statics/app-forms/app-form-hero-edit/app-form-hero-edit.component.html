@@ -1,4 +1,8 @@
 <form class="c-edit-hero-form" [formGroup]="editHeroForm" (ngSubmit)="onSubmit()">
+  <section class="c-edit-hero-form__close-section" (click)="closeModal()">
+    <mat-icon>close</mat-icon>
+  </section>
+
   <section class="c-edit-hero-form__title-section">
     <h1 class="c-edit-hero-form__title-text">Editar héroe</h1>
   </section>
@@ -38,10 +42,10 @@
               El superpoder es obligatorio.
             }
             @if (editHeroForm.get('superpower')?.errors?.['minlength']) {
-              El superpoder debe tener mínimo 3 carácteres.
+              El superpoder debe tener mínimo 8 carácteres.
             }
             @if (editHeroForm.get('superpower')?.errors?.['maxlength']) {
-              El superpoder puede tener máximo 32 carácteres
+              El superpoder puede tener máximo 64 carácteres
             }
           </span>
         }
@@ -103,7 +107,7 @@
       <span class="c-edit-hero-form__label">Elige una imagen</span>
 
       <div class="c-edit-hero-form__files">
-        <input type="file" formControlName="image" class="c-edit-hero-form__files-button" />
+        <input type="file" class="c-edit-hero-form__files-button" (change)="onFileSelected($event)" />
       </div>
 
       @if (editHeroForm.get('image')?.invalid && editHeroForm.get('image')?.touched) {

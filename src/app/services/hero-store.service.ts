@@ -7,15 +7,17 @@ import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class HeroStoreService implements OnDestroy {
+  private readonly heroService = inject(HeroService);
+
+  public heroesFiltered = signal<Hero[] | null>(null);
   public heroes = signal<Hero[] | null>(null);
   public page = signal<number>(0);
   public nextPage = signal<boolean>(true);
-  public heroesFiltered = signal<Hero[] | null>(null);
 
   public loading = signal<boolean>(false);
   public error = signal<string | null>(null);
+
   private unsubscribe$: Subject<void> = new Subject<void>();
-  private readonly heroService = inject(HeroService);
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();

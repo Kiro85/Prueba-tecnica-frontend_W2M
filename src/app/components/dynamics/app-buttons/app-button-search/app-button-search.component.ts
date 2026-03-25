@@ -7,6 +7,4 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './app-button-search.component.html',
   styleUrl: './app-button-search.component.scss',
 })
-export class AppButtonSearchComponent {
-
-}
+export class AppButtonSearchComponent {}

@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './app-banner.component.html',
   styleUrl: './app-banner.component.scss',
 })
-export class AppBannerComponent {
-
-}
+export class AppBannerComponent {}

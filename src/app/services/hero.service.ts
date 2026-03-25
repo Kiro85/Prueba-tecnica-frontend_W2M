@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
 import { Hero, HeroRequest } from '../models/hero';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ErrorHandleService } from './error-handle.service';
 import { Page } from '../models/page';
 
@@ -9,9 +9,10 @@ import { Page } from '../models/page';
   providedIn: 'root',
 })
 export class HeroService {
-  private readonly apiUrl = 'http://localhost:3000/heroes';
   private readonly http = inject(HttpClient);
   private readonly errorHandleService = inject(ErrorHandleService);
+
+  private readonly apiUrl = 'http://localhost:3000/heroes';
 
   public getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.apiUrl).pipe(catchError(this.errorHandleService.handleError));

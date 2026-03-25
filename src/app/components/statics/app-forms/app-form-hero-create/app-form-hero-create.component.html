@@ -1,4 +1,8 @@
 <form class="c-create-hero-form" [formGroup]="createHeroForm" (ngSubmit)="onSubmit()">
+  <section class="c-create-hero-form__close-section" (click)="closeModal()">
+    <mat-icon>close</mat-icon>
+  </section>
+
   <section class="c-create-hero-form__title-section">
     <h1 class="c-create-hero-form__title-text">Crear nuevo héroe</h1>
   </section>
@@ -6,7 +10,7 @@
   <section class="c-create-hero-form__fields-section">
     <div class="c-create-hero-form__row-2">
       <div class="c-create-hero-form__row-content">
-        <span class="c-create-hero-form__label">Nombre</span>
+        <span class="c-create-hero-form__label">Nombre*</span>
         <mat-form-field class="c-create-hero-form__input" appearance="fill">
           <input matInput formControlName="name" placeholder="Nombre" />
         </mat-form-field>
@@ -26,7 +30,7 @@
       </div>
 
       <div class="c-create-hero-form__row-content">
-        <span class="c-create-hero-form__label">Superpoder</span>
+        <span class="c-create-hero-form__label">Superpoder*</span>
         <mat-form-field class="c-create-hero-form__input" appearance="fill">
           <input matInput formControlName="superpower" placeholder="Superpoder" />
         </mat-form-field>
@@ -38,10 +42,10 @@
               El superpoder es obligatorio.
             }
             @if (createHeroForm.get('superpower')?.errors?.['minlength']) {
-              El superpoder debe tener mínimo 3 carácteres.
+              El superpoder debe tener mínimo 8 carácteres.
             }
             @if (createHeroForm.get('superpower')?.errors?.['maxlength']) {
-              El superpoder puede tener máximo 32 carácteres
+              El superpoder puede tener máximo 64 carácteres
             }
           </span>
         }
@@ -50,7 +54,7 @@
 
     <div class="c-create-hero-form__row-1">
       <div class="c-create-hero-form__row-content">
-        <span class="c-create-hero-form__label">Ciudad</span>
+        <span class="c-create-hero-form__label">Ciudad*</span>
         <mat-form-field class="c-create-hero-form__input" appearance="fill">
           <input matInput formControlName="city" placeholder="Ciudad" />
         </mat-form-field>
@@ -72,7 +76,7 @@
 
     <div class="c-create-hero-form__row-1">
       <div class="c-create-hero-form__row-content">
-        <span class="c-create-hero-form__label">Descripción</span>
+        <span class="c-create-hero-form__label">Descripción*</span>
         <mat-form-field class="c-create-hero-form__input" appearance="fill">
           <textarea
             matInput
@@ -100,10 +104,14 @@
     </div>
 
     <div class="c-create-hero-form__row-1">
-      <span class="c-create-hero-form__label">Elige una imagen</span>
+      <span class="c-create-hero-form__label">Elige una imagen*</span>
 
       <div class="c-create-hero-form__files">
-        <input type="file" formControlName="image" class="c-create-hero-form__files-button" />
+        <input
+          type="file"
+          class="c-create-hero-form__files-button"
+          (change)="onFileSelected($event)"
+        />
       </div>
 
       @if (createHeroForm.get('image')?.invalid && createHeroForm.get('image')?.touched) {
@@ -119,11 +127,16 @@
   <section class="c-create-hero-form__submit-section">
     <div class="c-create-hero-form__submit-content">
       <div class="c-create-hero-form__checkbox">
-        <mat-checkbox formControlName="termsAndConditions"> Acepto los <u>Términos y condiciones</u> </mat-checkbox>
+        <mat-checkbox formControlName="termsAndConditions">
+          Acepto los <u>Términos y condiciones</u>*
+        </mat-checkbox>
       </div>
 
       <div class="c-create-hero-form__submit-button">
-        <app-button-primary-form [message]="'Crear héroe'" [disabled]="createHeroForm.invalid"></app-button-primary-form>
+        <app-button-primary-form
+          [message]="'Crear héroe'"
+          [disabled]="createHeroForm.invalid"
+        ></app-button-primary-form>
       </div>
     </div>
   </section>
