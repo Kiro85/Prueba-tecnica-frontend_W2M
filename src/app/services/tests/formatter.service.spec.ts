@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { FormatterService } from './formatter.service';
+import { FormatterService } from '../formatter.service';
 import { TestBed } from '@angular/core/testing';
 
 describe('FormatterService', () => {

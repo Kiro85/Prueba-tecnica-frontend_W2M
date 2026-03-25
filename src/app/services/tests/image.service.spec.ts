@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { ImageService } from './image.service';
+import { ImageService } from '../image.service';
 import { TestBed } from '@angular/core/testing';
 
 describe('ImageService', () => {

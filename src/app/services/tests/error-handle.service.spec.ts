@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { describe, it, expect } from 'vitest';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { ErrorHandleService } from './error-handle.service';
+import { ErrorHandleService } from '../error-handle.service';
 import { firstValueFrom } from 'rxjs';
 
 describe('ErrorHandleService', () => {

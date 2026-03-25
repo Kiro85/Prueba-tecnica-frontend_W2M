@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
-import { HeroService } from './hero.service';
+import { HeroService } from '../hero.service';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
-import { ErrorHandleService } from './error-handle.service';
-import { Hero, HeroRequest } from '../models/hero';
+import { ErrorHandleService } from '../error-handle.service';
+import { Hero, HeroRequest } from '../../models/hero';
 
 describe('HeroService', () => {
   let httpMock: HttpTestingController;
