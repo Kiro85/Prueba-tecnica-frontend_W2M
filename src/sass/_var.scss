@@ -1,20 +1,52 @@
+//------------
+// Base colors
+//------------
+
 $c-primary: #8A42FB;
 $c-secondary: #E7D8FE;
+
 $c-button: #F3F3F3;
+$c-button-file: #baabcf;
+
 $c-warning: #CC5F00;
 $c-success: #29F4B0;
 $c-error: #FB6A6A;
+
 $c-disabled: #cccccc;
+
+
+//------------
+// On background colors
+//------------
 
 $c-on-primary: #FFFFFF;
 $c-on-secondary: #343434;
+
 $c-on-button: #343434;
+
 $c-on-success: #000000;
 $c-on-error: #000000;
 
+
+//------------
+// Text colors
+//------------
+
 $c-text: #343434;
+$c-text-footer: #202223;
+
 $c-text-form: #231E20;
 $c-text-input: #254E7E17;
+
 $c-text-error: #fa3a3a;
 $c-text-warning: #CC5F00;
-$c-text-footer: #202223;
+
+
+//------------
+// Hover colors
+//------------
+
+$c-primary-hover: #772bf3;
+$c-secondary-hover: #dfcaff;
+$c-button-hover: #dfdddd;
+$c-button-file-hover: #a591c0;

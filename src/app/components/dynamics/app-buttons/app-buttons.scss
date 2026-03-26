@@ -12,7 +12,7 @@
   border-radius: 32px;
   border: none;
   cursor: pointer;
-  transition: scale ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
 
   &:hover {
     scale: 1.1;
@@ -28,6 +28,10 @@
   &--primary {
     background-color: var.$c-primary;
 
+    &:hover {
+      background-color: var.$c-primary-hover;
+    }
+
     p {
       color: var.$c-on-primary;
     }
@@ -35,6 +39,10 @@
 
   &--secondary {
     background-color: var.$c-button;
+
+    &:hover {
+      background-color: var.$c-button-hover;
+    }
 
     p {
       color: var.$c-on-button;
@@ -47,6 +55,10 @@
     padding: 0 16px;
     background-color: var.$c-primary;
 
+    &:hover {
+      background-color: var.$c-primary-hover;
+    }
+
     mat-icon {
       color: var.$c-on-primary;
     }
@@ -58,6 +70,10 @@
 
   &--edit {
     background-color: var.$c-primary;
+
+    &:hover {
+      background-color: var.$c-primary-hover;
+    }
 
     mat-icon {
       color: var.$c-on-primary;
@@ -75,6 +91,10 @@
     background-color: var.$c-primary;
     border-radius: 100px;
 
+    &:hover {
+      background-color: var.$c-primary-hover;
+    }
+
     mat-icon {
       color: var.$c-on-primary;
     }
@@ -84,6 +104,10 @@
     width: 100%;
     padding: 0 16px;
     background-color: var.$c-primary;
+
+    &:hover {
+      background-color: var.$c-primary-hover;
+    }
 
     p {
       color: var.$c-on-primary;

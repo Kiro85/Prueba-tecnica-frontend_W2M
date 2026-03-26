@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppErrorMessageComponent } from './app-error-message.component';
+import { SectionFooterComponent } from './section-footer.component';
 
-describe('AppErrorMessageComponent', () => {
-  let component: AppErrorMessageComponent;
-  let fixture: ComponentFixture<AppErrorMessageComponent>;
+describe('SectionFooterComponent', () => {
+  let component: SectionFooterComponent;
+  let fixture: ComponentFixture<SectionFooterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppErrorMessageComponent],
+      imports: [SectionFooterComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AppErrorMessageComponent);
+    fixture = TestBed.createComponent(SectionFooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

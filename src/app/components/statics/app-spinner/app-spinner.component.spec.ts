@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppErrorMessageComponent } from './app-error-message.component';
+import { AppSpinnerComponent } from './app-spinner.component';
 
-describe('AppErrorMessageComponent', () => {
-  let component: AppErrorMessageComponent;
-  let fixture: ComponentFixture<AppErrorMessageComponent>;
+describe('AppSpinnerComponent', () => {
+  let component: AppSpinnerComponent;
+  let fixture: ComponentFixture<AppSpinnerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppErrorMessageComponent],
+      imports: [AppSpinnerComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AppErrorMessageComponent);
+    fixture = TestBed.createComponent(AppSpinnerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

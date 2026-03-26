@@ -7,6 +7,7 @@
     <h1 class="c-edit-hero-form__title-text">Editar héroe</h1>
   </section>
 
+  <!-- Name -->
   <section class="c-edit-hero-form__fields-section">
     <div class="c-edit-hero-form__row-2">
       <div class="c-edit-hero-form__row-content">
@@ -29,6 +30,7 @@
         }
       </div>
 
+      <!-- Superpower -->
       <div class="c-edit-hero-form__row-content">
         <span class="c-edit-hero-form__label">Superpoder</span>
         <mat-form-field class="c-edit-hero-form__input" appearance="fill">
@@ -52,6 +54,7 @@
       </div>
     </div>
 
+    <!-- City -->
     <div class="c-edit-hero-form__row-1">
       <div class="c-edit-hero-form__row-content">
         <span class="c-edit-hero-form__label">Ciudad</span>
@@ -74,6 +77,7 @@
       </div>
     </div>
 
+    <!-- Description -->
     <div class="c-edit-hero-form__row-1">
       <div class="c-edit-hero-form__row-content">
         <span class="c-edit-hero-form__label">Descripción</span>
@@ -103,6 +107,7 @@
       </div>
     </div>
 
+    <!-- Image -->
     <div class="c-edit-hero-form__row-1">
       <span class="c-edit-hero-form__label">Elige una imagen</span>
 
@@ -121,11 +126,13 @@
   </section>
 
   <section class="c-edit-hero-form__submit-section">
+    <!-- Terms and conditions -->
     <div class="c-edit-hero-form__submit-content">
       <div class="c-edit-hero-form__checkbox">
         <mat-checkbox formControlName="termsAndConditions"> Acepto los <u>Términos y condiciones</u> </mat-checkbox>
       </div>
 
+      <!-- Submit -->
       <div class="c-edit-hero-form__submit-button">
         <app-button-primary-form [message]="'Guardar cambios'" [disabled]="editHeroForm.invalid"></app-button-primary-form>
       </div>

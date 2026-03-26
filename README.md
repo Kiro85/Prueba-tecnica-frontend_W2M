@@ -1,8 +1,9 @@
 # 🦸 Super Hero CRUD 🦸
-## 👥 Autor
+## 👥 Author
 
 **🙎 Cristian Pérez Juárez**
 - **Email**: cristianpj0808@gmail.com
+- **Github**: https://github.com/Kiro85
 
 # 📑 Technical Test
 This project is an application built on a single-page application (SPA) that allows users to manage a superhero roster. The features available on this website include:

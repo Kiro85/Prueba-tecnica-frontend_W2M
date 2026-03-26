@@ -5,10 +5,14 @@
 } @else {
   <div class="s-list-hero">
     <ul class="s-list-hero__cards">
+      
+      <!-- Heroes by name -->
       @if (heroesFiltered()) {
         @for (hero of heroesFiltered(); track hero.id) {
           <app-card-hero [hero]="hero"></app-card-hero>
         }
+
+      <!-- All heroes -->
       } @else if (heroes()) {
         @for (hero of heroes(); track hero.id) {
           <app-card-hero [hero]="hero"></app-card-hero>

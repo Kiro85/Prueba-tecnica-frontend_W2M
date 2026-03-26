@@ -9,8 +9,8 @@ import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
 export class HeroStoreService implements OnDestroy {
   private readonly heroService = inject(HeroService);
 
-  public heroesFiltered = signal<Hero[] | null>(null);
-  public heroes = signal<Hero[] | null>(null);
+  public heroesFiltered = signal<Hero[] | null>(null); // List of heroes filtered by name
+  public heroes = signal<Hero[] | null>(null); // List of heroes
   public page = signal<number>(0);
   public nextPage = signal<boolean>(true);
 

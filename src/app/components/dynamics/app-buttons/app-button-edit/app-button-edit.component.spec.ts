@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppErrorMessageComponent } from './app-error-message.component';
+import { AppButtonEditComponent } from './app-button-edit.component';
 
-describe('AppErrorMessageComponent', () => {
-  let component: AppErrorMessageComponent;
-  let fixture: ComponentFixture<AppErrorMessageComponent>;
+describe('AppButtonEditComponent', () => {
+  let component: AppButtonEditComponent;
+  let fixture: ComponentFixture<AppButtonEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppErrorMessageComponent],
+      imports: [AppButtonEditComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AppErrorMessageComponent);
+    fixture = TestBed.createComponent(AppButtonEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
