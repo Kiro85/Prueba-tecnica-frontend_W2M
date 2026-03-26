@@ -35,7 +35,7 @@ Run json-server:
 json-server --watch mocks/heroes.json --port 3000
 ```
 
-> [!> [!CAUTION]]
+> [!CAUTION]
 > If you're using Windows, this command may not be compatible with **CMD**. I recommend using a compatible terminal such as **GitBash**
 
 Open `http://localhost:4200/` in your browser.
