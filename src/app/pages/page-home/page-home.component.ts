@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SectionCardsComponent } from '../../sections/section-cards/section-cards.component';
 import { AppBannerComponent } from '../../components/statics/app-banner/app-banner.component';
-import { AppSearchBarComponent } from '../../components/dynamics/app-search-bar/app-search-bar.component';
+import { AppSearchBarComponent } from '../../components/statics/app-search-bar/app-search-bar.component';
 import { AppButtonCreateComponent } from '../../components/dynamics/app-buttons/app-button-create/app-button-create.component';
 import { SectionFooterComponent } from '../../sections/section-footer/section-footer.component';
 

@@ -1,5 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { AppButtonSearchComponent } from '../app-buttons/app-button-search/app-button-search.component';
+import { AppButtonSearchComponent } from '../../dynamics/app-buttons/app-button-search/app-button-search.component';
 import { FormControl, ReactiveFormsModule, ɵInternalFormsSharedModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, Subject } from 'rxjs';
 import { HeroStoreService } from '../../../services/hero-store.service';

@@ -4,8 +4,8 @@ import { MatIcon } from '@angular/material/icon';
 import { AppFormHeroCreateComponent } from '../../../statics/app-forms/app-form-hero-create/app-form-hero-create.component';
 import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AppModalSuccessMessageComponent } from '../../../statics/app-modals/app-modal-success-message/app-modal-success-message.component';
-import { AppModalErrorMessageComponent } from '../../../statics/app-modals/app-modal-error-message/app-modal-error-message.component';
+import { AppModalSuccessMessageComponent } from '../../app-modals/app-modal-success-message/app-modal-success-message.component';
+import { AppModalErrorMessageComponent } from '../../app-modals/app-modal-error-message/app-modal-error-message.component';
 
 @Component({
   selector: 'app-button-create',
