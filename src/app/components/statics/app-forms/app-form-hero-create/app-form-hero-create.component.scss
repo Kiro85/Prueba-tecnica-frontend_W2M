@@ -17,7 +17,7 @@
     top: 20px;
     right: 20px;
     cursor: pointer;
-    transition: scale .2s ease-in-out;
+    transition: scale 0.2s ease-in-out;
 
     &:hover {
       scale: 1.3;
@@ -68,22 +68,21 @@
     letter-spacing: 2%;
   }
 
-  //----------
-  // TODO: Adjust the styles to those of Figma
-
   &__input {
     width: 100%;
+
     @include mat.form-field-overrides(
       (
         container-height: 56px,
-        outlined-outline-width: 0,
         filled-container-color: var.$c-text-input,
-        container-vertical-padding: 12px,
+        outlined-outline-width: 0,
       )
     );
-  }
 
-  //----------
+    ::ng-deep .mdc-line-ripple {
+      display: none;
+    }
+  }
 
   &__input-error {
     padding-bottom: 10px;
@@ -101,9 +100,6 @@
     margin: 20px 0;
   }
 
-  //----------
-  // TODO: separate the button into a component
-
   &__files-button::file-selector-button {
     width: 135px;
     height: 40px;
@@ -116,11 +112,9 @@
     transition: all ease-in-out 0.3s;
 
     &:hover {
-      background-color: #baabcf;
+      background-color: var.$c-secondary-hover;
     }
   }
-
-  //----------
 
   &__submit-section {
     width: 100%;
