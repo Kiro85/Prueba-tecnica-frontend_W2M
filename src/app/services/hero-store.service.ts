@@ -12,6 +12,7 @@ export class HeroStoreService implements OnDestroy {
   public heroesFiltered = signal<Hero[] | null>(null); // List of heroes filtered by name
   public heroes = signal<Hero[] | null>(null); // List of heroes
   public page = signal<number>(0);
+  public readonly heroesPerPage: number = 8;
   public nextPage = signal<boolean>(true);
 
   public loading = signal<boolean>(false);
@@ -90,8 +91,10 @@ export class HeroStoreService implements OnDestroy {
     this.error.set(null);
 
     return this.heroService.createHeroe(request).pipe(
-      tap((res) => {
-        this.heroes.update((current) => [...(current ?? []), res]);
+      tap(() => {
+        this.page.set(0);
+        this.heroes.set(null);
+        this.getHeroesPaginated(this.page() + 1, this.heroesPerPage);
         this.loading.set(false);
       }),
 

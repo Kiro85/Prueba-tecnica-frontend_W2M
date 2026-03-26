@@ -23,6 +23,7 @@ export class SectionCardsComponent implements OnInit {
 
   protected heroesFiltered = this.heroStoreService.heroesFiltered;
   protected heroes = this.heroStoreService.heroes;
+  private readonly heroesPerPage = this.heroStoreService.heroesPerPage;
   protected morePages = this.heroStoreService.nextPage;
 
   protected loading = this.heroStoreService.loading;
@@ -34,7 +35,7 @@ export class SectionCardsComponent implements OnInit {
 
   protected nextPage(): void {
     if (this.morePages()) {
-      this.heroStoreService.getHeroesPaginated(this.heroStoreService.page() + 1, 8);
+      this.heroStoreService.getHeroesPaginated(this.heroStoreService.page() + 1, this.heroesPerPage);
     }
   }
 }

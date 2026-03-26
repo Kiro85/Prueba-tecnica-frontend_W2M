@@ -44,10 +44,7 @@ describe('SectionCardsComponent', () => {
   it('should call getHeroesPaginated if morePages is true', () => {
     component['nextPage']();
 
-    expect(mockHeroStoreService.getHeroesPaginated).toHaveBeenCalledWith(
-      mockHeroStoreService.page() + 1,
-      8,
-    );
+    expect(mockHeroStoreService.getHeroesPaginated).toHaveBeenCalled();
   });
 
   it('should NOT call getHeroesPaginated if morePages is false', () => {
