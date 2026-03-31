@@ -1,14 +1,12 @@
 <form class="c-create-hero-form" [formGroup]="createHeroForm" (ngSubmit)="onSubmit()">
-  <section class="c-create-hero-form__close-section" (click)="closeModal()">
+  <div class="c-create-hero-form__close-section" (click)="closeModal()">
     <mat-icon>close</mat-icon>
-  </section>
+  </div>
 
-  <section class="c-create-hero-form__title-section">
-    <h1 class="c-create-hero-form__title-text">Crear nuevo héroe</h1>
-  </section>
+  <h1 class="c-create-hero-form__title-text">Crear nuevo héroe</h1>
 
   <!-- Name -->
-  <section class="c-create-hero-form__fields-section">
+  <div class="c-create-hero-form__fields-section">
     <div class="c-create-hero-form__row-2">
       <div class="c-create-hero-form__row-content">
         <span class="c-create-hero-form__label">Nombre*</span>
@@ -56,68 +54,62 @@
 
     <!-- City -->
     <div class="c-create-hero-form__row-1">
-      <div class="c-create-hero-form__row-content">
-        <span class="c-create-hero-form__label">Ciudad*</span>
-        <mat-form-field class="c-create-hero-form__input" appearance="fill">
-          <input matInput formControlName="city" placeholder="Ciudad" />
-        </mat-form-field>
-        @if (createHeroForm.get('city')?.invalid && createHeroForm.get('city')?.touched) {
-          <span class="c-create-hero-form__input-error">
-            @if (createHeroForm.get('city')?.errors?.['required']) {
-              La ciudad es obligatoria.
-            }
-            @if (createHeroForm.get('city')?.errors?.['minlength']) {
-              La ciudad debe tener mínimo 3 carácteres.
-            }
-            @if (createHeroForm.get('city')?.errors?.['maxlength']) {
-              La ciudad puede tener máximo 32 carácteres
-            }
-          </span>
-        }
-      </div>
+      <span class="c-create-hero-form__label">Ciudad*</span>
+      <mat-form-field class="c-create-hero-form__input" appearance="fill">
+        <input matInput formControlName="city" placeholder="Ciudad" />
+      </mat-form-field>
+      @if (createHeroForm.get('city')?.invalid && createHeroForm.get('city')?.touched) {
+        <span class="c-create-hero-form__input-error">
+          @if (createHeroForm.get('city')?.errors?.['required']) {
+            La ciudad es obligatoria.
+          }
+          @if (createHeroForm.get('city')?.errors?.['minlength']) {
+            La ciudad debe tener mínimo 3 carácteres.
+          }
+          @if (createHeroForm.get('city')?.errors?.['maxlength']) {
+            La ciudad puede tener máximo 32 carácteres
+          }
+        </span>
+      }
     </div>
 
     <!-- Description -->
     <div class="c-create-hero-form__row-1">
-      <div class="c-create-hero-form__row-content">
-        <span class="c-create-hero-form__label">Descripción*</span>
-        <mat-form-field class="c-create-hero-form__input" appearance="fill">
-          <textarea
-            matInput
-            rows="3"
-            formControlName="description"
-            placeholder="Descripción"
-          ></textarea>
-        </mat-form-field>
-        @if (
-          createHeroForm.get('description')?.invalid && createHeroForm.get('description')?.touched
-        ) {
-          <span class="c-create-hero-form__input-error">
-            @if (createHeroForm.get('description')?.errors?.['required']) {
-              La descripción es obligatoria.
-            }
-            @if (createHeroForm.get('description')?.errors?.['minlength']) {
-              La descripción debe tener mínimo 12 carácteres.
-            }
-            @if (createHeroForm.get('description')?.errors?.['maxlength']) {
-              La descripción puede tener máximo 128 carácteres
-            }
-          </span>
-        }
-      </div>
+      <span class="c-create-hero-form__label">Descripción*</span>
+      <mat-form-field class="c-create-hero-form__input" appearance="fill">
+        <textarea
+          matInput
+          rows="3"
+          formControlName="description"
+          placeholder="Descripción"
+        ></textarea>
+      </mat-form-field>
+      @if (
+        createHeroForm.get('description')?.invalid && createHeroForm.get('description')?.touched
+      ) {
+        <span class="c-create-hero-form__input-error">
+          @if (createHeroForm.get('description')?.errors?.['required']) {
+            La descripción es obligatoria.
+          }
+          @if (createHeroForm.get('description')?.errors?.['minlength']) {
+            La descripción debe tener mínimo 12 carácteres.
+          }
+          @if (createHeroForm.get('description')?.errors?.['maxlength']) {
+            La descripción puede tener máximo 128 carácteres
+          }
+        </span>
+      }
     </div>
 
     <!-- Image -->
     <div class="c-create-hero-form__row-1">
       <span class="c-create-hero-form__label">Elige una imagen*</span>
 
-      <div class="c-create-hero-form__files">
-        <input
-          type="file"
-          class="c-create-hero-form__files-button"
-          (change)="onFileSelected($event)"
-        />
-      </div>
+      <input
+        type="file"
+        class="c-create-hero-form__files-button"
+        (change)="onFileSelected($event)"
+      />
 
       @if (createHeroForm.get('image')?.invalid && createHeroForm.get('image')?.touched) {
         <span class="c-create-hero-form__input-error">
@@ -127,24 +119,18 @@
         </span>
       }
     </div>
-  </section>
+  </div>
 
-  <section class="c-create-hero-form__submit-section">
+  <div class="c-create-hero-form__submit-section">
     <!-- Terms and conditions -->
-    <div class="c-create-hero-form__submit-content">
-      <div class="c-create-hero-form__checkbox">
-        <mat-checkbox formControlName="termsAndConditions">
-          Acepto los <u>Términos y condiciones</u>*
-        </mat-checkbox>
-      </div>
+    <mat-checkbox formControlName="termsAndConditions">
+      Acepto los <u>Términos y condiciones</u>*
+    </mat-checkbox>
 
-      <!-- Submit -->
-      <div class="c-create-hero-form__submit-button">
-        <app-button-primary-form
-          [message]="'Crear héroe'"
-          [disabled]="createHeroForm.invalid"
-        ></app-button-primary-form>
-      </div>
-    </div>
-  </section>
+    <!-- Submit -->
+    <app-button-primary-form
+      [message]="'Crear héroe'"
+      [disabled]="createHeroForm.invalid"
+    ></app-button-primary-form>
+  </div>
 </form>
