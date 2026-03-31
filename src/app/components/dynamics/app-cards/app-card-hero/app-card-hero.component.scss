@@ -1,29 +1,25 @@
 @use '../../../../../styles/abstract/var' as var;
 
 .c-card-hero {
-  width: 318px;
+  width: 100%;
   box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.1);
-
-  &__img-container {
-    width: 100%;
-    height: 238px;
-  }
+  color: var.$c-text;
 
   &__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-  }
+    height: 238px;
 
-  &__content {
-    width: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
   }
 
   &__info {
-    width: 286px;
-    padding: 16px;
-    gap: 16px;
+    width: 90%;
+    padding: 1rem;
+    gap: 1rem;
     display: flex;
     flex-direction: column;
   }
@@ -32,32 +28,26 @@
     font-weight: 400;
     font-size: 1.25rem;
     line-height: 120%;
-    color: var.$c-text;
   }
 
   &__superpower {
     font-weight: 700;
-    font-size: 1rem;
     line-height: 140%;
-    color: var.$c-text;
   }
 
   &__description {
-    font-weight: 400;
     font-size: 0.875rem;
     line-height: 120%;
   }
 
   &__city {
-    font-weight: 400;
-    font-size: 1rem;
     line-height: 120%;
   }
 
   &__buttons {
-    width: 268px;
-    height: 40px;
-    gap: 16px;
+    width: 16.75rem;
+    height: 2.5rem;
+    gap: 1rem;
     display: flex;
   }
 }

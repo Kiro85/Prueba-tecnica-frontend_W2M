@@ -1,8 +1,8 @@
 <article class="c-card-hero">
-  <!-- Image -->
-  <img class="c-card-hero__img" src="{{hero?.image}}" alt="Image of {{hero?.name}}">
+   <figure class="c-card-hero__img">
+     <img src="{{hero?.image}}" alt="Image of {{hero?.name}}">
+   </figure>
 
-  <!-- Info -->
   <div class="c-card-hero__info">
       <h2 class="c-card-hero__name">{{formatterService.firstCharPerWordToUpperCase(hero?.name)}}</h2>
       <p class="c-card-hero__superpower">{{formatterService.firstCharToUpperCase(hero?.superpower)}}</p>
