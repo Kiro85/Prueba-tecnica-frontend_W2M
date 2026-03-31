@@ -1,12 +1,9 @@
 <article class="c-card-hero">
   <!-- Image -->
-  <figure class="c-card-hero__img-container">
-    <img class="c-card-hero__img" src="{{hero?.image}}" alt="Image of {{hero?.name}}">
-  </figure>
+  <img class="c-card-hero__img" src="{{hero?.image}}" alt="Image of {{hero?.name}}">
 
   <!-- Info -->
-  <div class="c-card-hero__content">
-    <div class="c-card-hero__info">
+  <div class="c-card-hero__info">
       <h2 class="c-card-hero__name">{{formatterService.firstCharPerWordToUpperCase(hero?.name)}}</h2>
       <p class="c-card-hero__superpower">{{formatterService.firstCharToUpperCase(hero?.superpower)}}</p>
       <p class="c-card-hero__description">{{formatterService.firstCharToUpperCase(hero?.description)}}</p>
@@ -15,6 +12,5 @@
         <app-button-edit (click)="OpenFormHeroeEdit()"></app-button-edit>
         <app-button-secondary [message]="'Eliminar'" (click)="OpenConfirmDeleteModal()"></app-button-secondary>
       </div>
-    </div>
   </div>
 </article>
