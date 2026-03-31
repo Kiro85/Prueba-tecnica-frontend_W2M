@@ -1,12 +1,12 @@
 @use '../../../../../styles/abstract/var' as var;
 
 .c-modal-success {
-  padding: 16px;
-  gap: 16px;
+  padding: 1rem;
+  gap: 1rem;
   display: flex;
   align-content: center;
   border: 0;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background-color: var.$c-success;
 
   mat-icon {
