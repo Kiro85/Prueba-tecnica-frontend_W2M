@@ -51,7 +51,7 @@
   }
 }
 
-@media (max-width: 1180px) {
+@media (max-width: var.$bp-tablet) {
   .p-home {
     &__nav {
       flex-direction: column;
