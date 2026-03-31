@@ -25,9 +25,9 @@
   }
 
   &__title {
-    max-width: 660px;
+    max-width: 41.25rem;
     margin: 0 auto;
-    gap: 16px;
+    gap: 1rem;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -54,7 +54,7 @@
   .p-home {
     &__nav {
       flex-direction: column;
-      gap: 24px;
+      gap: 1.5rem;
     }
 
     &__search-bar {
