@@ -1,11 +1,12 @@
 @if (loading()) {
   <app-spinner></app-spinner>
 } @else if (error()) {
-  <app-error-message message="Error al conectar con el servidor. Por favor, pruebe más tarde."></app-error-message>
+  <app-error-message
+    message="Error al conectar con el servidor. Por favor, pruebe más tarde."
+  ></app-error-message>
 } @else {
   <section class="s-list-hero">
     <ul class="s-list-hero__cards">
-
       <!-- Heroes by name -->
       @if (heroesFiltered()) {
         @for (hero of heroesFiltered(); track hero.id) {
@@ -14,7 +15,7 @@
           </li>
         }
 
-      <!-- All heroes -->
+        <!-- All heroes -->
       } @else if (heroes()) {
         @for (hero of heroes(); track hero.id) {
           <li class="s-list-hero__card">
@@ -22,14 +23,11 @@
           </li>
         }
       }
-      
     </ul>
-    <div class="s-list-hero__button">
-      <app-button-primary
-        [disabled]="!morePages()"
-        [message]="'Ver más'"
-        (click)="nextPage()"
-      ></app-button-primary>
-    </div>
+    <app-button-primary
+      [disabled]="!morePages()"
+      [message]="'Ver más'"
+      (click)="nextPage()"
+    ></app-button-primary>
   </section>
 }
