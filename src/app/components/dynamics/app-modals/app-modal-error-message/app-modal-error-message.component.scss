@@ -1,43 +1,20 @@
 @use '../../../../../styles/abstract/var' as var;
 
 .c-modal-error {
-  width: 100%;
-  height: 100%;
+  padding: 16px;
+  gap: 16px;
+  display: flex;
+  align-content: center;
   border: 0;
   border-radius: 8px;
   background-color: var.$c-error;
 
-  &__content {
-    width: 100%;
-    height: 100%;
-    padding: 16px;
-  }
-
-  &__message {
-    width: 100%;
-    height: 100%;
-    gap: 16px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
-
-  &__icon-container {
-    padding-right: 16px;
-
-    mat-icon {
-      color: var.$c-on-error !important;
-    }
-  }
-
-  &__text-container {
-    width: 100%;
-    margin: auto;
+  mat-icon {
+    color: var.$c-on-error !important;
   }
 
   &__text {
     font-weight: 700;
-    font-size: 1rem;
     line-height: 140%;
     color: var.$c-on-error;
   }

@@ -40,7 +40,7 @@ export class AppCardHeroComponent implements OnDestroy {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
-        this.snackBar.openFromComponent(AppModalSuccessMessageComponent, {
+        this.snackBar.openFromComponent(AppModalErrorMessageComponent, {
           duration: 5000,
           verticalPosition: 'top',
           data: {
