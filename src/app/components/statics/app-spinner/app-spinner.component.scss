@@ -2,15 +2,13 @@
 @use '../../../../styles/abstract/var' as var;
 
 .c-spinner {
-  width: 100%;
-  height: 100%;
-  padding: 128px 0;
+  padding: 8rem 0;
   display: flex;
   justify-content: center;
   align-content: center;
 
   @include mat.progress-spinner-overrides((
-    size: 16px,
+    size: 1rem,
     active-indicator-color: var.$c-primary,
   ));
 }
