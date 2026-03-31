@@ -1,24 +1,22 @@
-<section class="c-modal-delete">
-  <div class="c-modal-delete__content">
-    <div class="c-modal-delete__title-container">
-      <h2 class="c-modal-delete__title">Eliminar héroe</h2>
-    </div>
-    <div class="c-modal-delete__message-container">
-      <div class="c-modal-delete__icon-container">
-        <mat-icon>warning</mat-icon>
-      </div>
-      <div class="c-modal-delete__message-text-container">
-        <p class="c-modal-delete__message-text c-modal-delete__message-text--bold">
-          ¿Estás seguro de querer eliminar este héroe?
-        </p>
-        <p class="c-modal-delete__message-text">
-          Una vez eliminado no podrás revertir esta acción
-        </p>
-      </div>
-    </div>
-    <div class="c-modal-delete__buttons-container">
-      <app-button-secondary [message]="'Cancelar'" (click)="CloseConfirmDeleteModal()"></app-button-secondary>
-      <app-button-primary [message]="'Sí, eliminar'" (click)="DeleteHeroe()"></app-button-primary>
+<article class="c-modal-delete">
+  <h2 class="c-modal-delete__title">Eliminar héroe</h2>
+  <div class="c-modal-delete__body">
+    <mat-icon>warning</mat-icon>
+    <div class="c-modal-delete__message">
+      <p class="c-modal-delete__message-text c-modal-delete__message-text--bold">
+        ¿Estás seguro de querer eliminar este héroe?
+      </p>
+      <p class="c-modal-delete__message-text">Una vez eliminado no podrás revertir esta acción</p>
     </div>
   </div>
-</section>
+  <div class="c-modal-delete__buttons">
+    <app-button-secondary
+      [message]="'Cancelar'"
+      (click)="CloseConfirmDeleteModal()"
+    ></app-button-secondary>
+    <app-button-primary
+      [message]="'Sí, eliminar'"
+      (click)="DeleteHeroe()"
+    ></app-button-primary>
+  </div>
+</article>
