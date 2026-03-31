@@ -7,6 +7,10 @@
     justify-items: center;
   }
 
+  &__card {
+    list-style: none;
+  }
+
   &__button {
     width: 100%;
     display: flex;
