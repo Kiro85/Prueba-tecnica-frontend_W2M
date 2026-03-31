@@ -3,7 +3,7 @@
 } @else if (error()) {
   <app-error-message message="Error al conectar con el servidor. Por favor, pruebe más tarde."></app-error-message>
 } @else {
-  <div class="s-list-hero">
+  <section class="s-list-hero">
     <ul class="s-list-hero__cards">
 
       <!-- Heroes by name -->
@@ -22,6 +22,7 @@
           </li>
         }
       }
+      
     </ul>
     <div class="s-list-hero__button">
       <app-button-primary
@@ -30,5 +31,5 @@
         (click)="nextPage()"
       ></app-button-primary>
     </div>
-  </div>
+  </section>
 }
