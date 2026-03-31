@@ -1,12 +1,12 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { AppButtonSearchComponent } from '../../dynamics/app-buttons/app-button-search/app-button-search.component';
-import { FormControl, ReactiveFormsModule, ɵInternalFormsSharedModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, Subject } from 'rxjs';
 import { HeroStoreService } from '../../../services/hero-store.service';
 
 @Component({
   selector: 'app-search-bar',
-  imports: [AppButtonSearchComponent, ɵInternalFormsSharedModule, ReactiveFormsModule],
+  imports: [AppButtonSearchComponent, ReactiveFormsModule],
   templateUrl: './app-search-bar.component.html',
   styleUrl: './app-search-bar.component.scss',
 })
