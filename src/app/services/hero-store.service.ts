@@ -86,7 +86,7 @@ export class HeroStoreService implements OnDestroy {
     }
   }
 
-  public createHeroe(request: HeroRequest): Observable<Hero> {
+  public createHero(request: HeroRequest): Observable<Hero> {
     this.loading.set(true);
     this.error.set(null);
 

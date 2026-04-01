@@ -14,17 +14,15 @@
           <input matInput formControlName="name" placeholder="Nombre" />
         </mat-form-field>
         @if (createHeroForm.get('name')?.invalid && createHeroForm.get('name')?.touched) {
-          <span class="c-create-hero-form__error">
             @if (createHeroForm.get('name')?.errors?.['required']) {
-              El nombre es obligatorio.
+              <mat-error>El nombre es obligatorio.</mat-error>
             }
             @if (createHeroForm.get('name')?.errors?.['minlength']) {
-              El nombre debe tener mínimo 3 carácteres.
+              <mat-error>El nombre debe tener mínimo 3 carácteres.</mat-error>
             }
             @if (createHeroForm.get('name')?.errors?.['maxlength']) {
-              El nombre puede tener máximo 32 carácteres
+              <mat-error>El nombre puede tener máximo 32 carácteres</mat-error>
             }
-          </span>
         }
       </div>
 
@@ -37,17 +35,15 @@
         @if (
           createHeroForm.get('superpower')?.invalid && createHeroForm.get('superpower')?.touched
         ) {
-          <span class="c-create-hero-form__error">
             @if (createHeroForm.get('superpower')?.errors?.['required']) {
-              El superpoder es obligatorio.
+              <mat-error>El superpoder es obligatorio.</mat-error>
             }
             @if (createHeroForm.get('superpower')?.errors?.['minlength']) {
-              El superpoder debe tener mínimo 8 carácteres.
+              <mat-error>El superpoder debe tener mínimo 8 carácteres.</mat-error>
             }
             @if (createHeroForm.get('superpower')?.errors?.['maxlength']) {
-              El superpoder puede tener máximo 64 carácteres
+              <mat-error>El superpoder puede tener máximo 64 carácteres</mat-error>
             }
-          </span>
         }
       </div>
     </div>
@@ -61,13 +57,13 @@
       @if (createHeroForm.get('city')?.invalid && createHeroForm.get('city')?.touched) {
         <span class="c-create-hero-form__error">
           @if (createHeroForm.get('city')?.errors?.['required']) {
-            La ciudad es obligatoria.
+            <mat-error>La ciudad es obligatoria.</mat-error>
           }
           @if (createHeroForm.get('city')?.errors?.['minlength']) {
-            La ciudad debe tener mínimo 3 carácteres.
+            <mat-error>La ciudad debe tener mínimo 3 carácteres.</mat-error>
           }
           @if (createHeroForm.get('city')?.errors?.['maxlength']) {
-            La ciudad puede tener máximo 32 carácteres
+            <mat-error>La ciudad puede tener máximo 32 carácteres</mat-error>
           }
         </span>
       }
@@ -89,13 +85,13 @@
       ) {
         <span class="c-create-hero-form__error">
           @if (createHeroForm.get('description')?.errors?.['required']) {
-            La descripción es obligatoria.
+            <mat-error>La descripción es obligatoria.</mat-error>
           }
           @if (createHeroForm.get('description')?.errors?.['minlength']) {
-            La descripción debe tener mínimo 12 carácteres.
+            <mat-error>La descripción debe tener mínimo 12 carácteres.</mat-error>
           }
           @if (createHeroForm.get('description')?.errors?.['maxlength']) {
-            La descripción puede tener máximo 128 carácteres
+            <mat-error>La descripción puede tener máximo 128 carácteres</mat-error>
           }
         </span>
       }
@@ -110,7 +106,7 @@
       @if (createHeroForm.get('image')?.invalid && createHeroForm.get('image')?.touched) {
         <span class="c-create-hero-form__error">
           @if (createHeroForm.get('image')?.errors?.['required']) {
-            La imagen es obligatoria.
+            <mat-error>La imagen es obligatoria.</mat-error>
           }
         </span>
       }

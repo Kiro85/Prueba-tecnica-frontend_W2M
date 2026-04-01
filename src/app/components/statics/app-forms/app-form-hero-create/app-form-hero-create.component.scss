@@ -72,11 +72,11 @@
     }
   }
 
-  &__error {
+  mat-error {
     font-size: 0.875rem;
     line-height: 1rem;
     letter-spacing: 0.0313rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     color: var.$c-text-error;
   }
 

@@ -1,17 +1,23 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { HeroRequest } from '../../../../models/hero';
-import { HeroStoreService } from '../../../../services/hero-store.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app-button-primary-form/app-button-primary-form.component';
 import { ImageService } from '../../../../services/image.service';
-import { Subject } from 'rxjs';
-import { FormatterService } from '../../../../services/formatter.service';
+import { HeroStoreService } from '../../../../services/hero-store.service';
+import { catchError, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-form-hero-create',
@@ -27,69 +33,64 @@ import { FormatterService } from '../../../../services/formatter.service';
   templateUrl: './app-form-hero-create.component.html',
   styleUrl: './app-form-hero-create.component.scss',
 })
-export class AppFormHeroCreateComponent implements OnInit, OnDestroy {
+export class AppFormHeroCreateComponent implements OnInit {
+  private readonly heroService = inject(HeroStoreService);
+
   private readonly dialogRef = inject(MatDialogRef<AppFormHeroCreateComponent>);
-  private readonly heroStoreService = inject(HeroStoreService);
   private readonly imageService = inject(ImageService);
-  private readonly formatterService = inject(FormatterService);
 
   protected createHeroForm!: FormGroup;
+  private fb = inject(FormBuilder);
 
-  private unsubscribe$: Subject<void> = new Subject<void>();
+  private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
     this.initForm();
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
-
   private initForm(): void {
-    this.createHeroForm = new FormGroup({
-      name: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(32),
-      ]),
-      superpower: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(64),
-      ]),
-      city: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(32),
-      ]),
-      description: new FormControl('', [
-        Validators.required,
-        Validators.minLength(12),
-        Validators.maxLength(128),
-      ]),
-      image: new FormControl('', [Validators.required]),
-      termsAndConditions: new FormControl(false, [Validators.requiredTrue]),
+    this.createHeroForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+      superpower: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]],
+      city: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+      description: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(128)]],
+      image: [null, [Validators.required]],
+      termsAndConditions: [false, [Validators.requiredTrue]],
     });
   }
 
   protected async onSubmit(): Promise<void> {
-    this.heroStoreService.createHeroe(await this.createHeroeModel()).subscribe({
-      next: () => this.dialogRef.close(1),
-      error: () => this.dialogRef.close(2),
-    });
+    const heroModel = await this.createHeroModel();
+    this.createHero(heroModel);
   }
 
-  private async createHeroeModel(): Promise<HeroRequest> {
+  private createHero(heroModel: HeroRequest): void {
+    this.heroService
+      .createHero(heroModel)
+      .pipe(
+        tap(() => this.dialogRef.close(1)),
+        catchError((err) => {
+          this.dialogRef.close(2);
+          console.error(
+            'Error - app-form-hero-create.component.ts - createHero() / ' + err.message,
+          );
+          return [];
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
+  }
+
+  private async createHeroModel(): Promise<HeroRequest> {
     const file: File = this.createHeroForm.value.image;
 
     const base64 = await this.imageService.convertFileToBase64(file);
 
     const request: HeroRequest = {
-      name: this.formatterService.firstCharPerWordToUpperCase(this.createHeroForm.value.name),
-      superpower: this.formatterService.firstCharToUpperCase(this.createHeroForm.value.superpower),
-      city: this.formatterService.firstCharToUpperCase(this.createHeroForm.value.city),
-      description: this.formatterService.firstCharToUpperCase(this.createHeroForm.value.description),
+      name: this.createHeroForm.value.name,
+      superpower: this.createHeroForm.value.superpower,
+      city: this.createHeroForm.value.city,
+      description: this.createHeroForm.value.description,
       image: base64,
     };
 
