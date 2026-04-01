@@ -49,22 +49,22 @@ export class AppFormHeroComponent implements OnInit {
     this.heroForm = this.fb.group({
       id: [this.dialogData?.hero.id || ''],
       name: [
-        this.dialogData?.hero.name || '',
+        this.dialogData?.hero.name.toUpperCase() || '',
         [Validators.required, Validators.minLength(3), Validators.maxLength(32)],
       ],
       superpower: [
-        this.dialogData?.hero.superpower || '',
+        this.dialogData?.hero.superpower.toUpperCase() || '',
         [Validators.required, Validators.minLength(8), Validators.maxLength(64)],
       ],
       city: [
-        this.dialogData?.hero.city || '',
+        this.dialogData?.hero.city.toUpperCase() || '',
         [Validators.required, Validators.minLength(3), Validators.maxLength(32)],
       ],
       description: [
-        this.dialogData?.hero.description || '',
+        this.dialogData?.hero.description.toUpperCase() || '',
         [Validators.required, Validators.minLength(12), Validators.maxLength(128)],
       ],
-      image: [this.dialogData?.hero.image || '', [Validators.required]],
+      image: [this.dialogData?.hero.image.toUpperCase() || '', [Validators.required]],
       termsAndConditions: [false, [Validators.requiredTrue]],
     });
   }
