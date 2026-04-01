@@ -23,7 +23,7 @@ export class HeroService {
     return this.http.get<Hero[]>(`${this.apiUrl}?name:contains=${name}`);
   }
 
-  public createHeroe(request: HeroRequest): Observable<Hero> {
+  public createHero(request: HeroRequest): Observable<Hero> {
     return this.http.post<Hero>(this.apiUrl, request);
   }
 
@@ -31,7 +31,7 @@ export class HeroService {
     return this.http.delete<Hero>(`${this.apiUrl}/${id}`);
   }
 
-  public updateHeroe(hero: Hero): Observable<Hero> {
+  public updateHero(hero: Hero): Observable<Hero> {
     return this.http.put<Hero>(`${this.apiUrl}/${hero.id}`, hero);
   }
 }

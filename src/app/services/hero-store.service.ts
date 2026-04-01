@@ -86,26 +86,26 @@ export class HeroStoreService implements OnDestroy {
     }
   }
 
-  public createHero(request: HeroRequest): Observable<Hero> {
-    this.loading.set(true);
-    this.error.set(null);
+  // public createHero(request: HeroRequest): Observable<Hero> {
+  //   this.loading.set(true);
+  //   this.error.set(null);
 
-    return this.heroService.createHeroe(request).pipe(
-      tap(() => {
-        this.page.set(0);
-        this.heroes.set(null);
-        this.getHeroesPaginated(this.page() + 1, this.heroesPerPage);
-        this.loading.set(false);
-      }),
+  //   return this.heroService.createHeroe(request).pipe(
+  //     tap(() => {
+  //       this.page.set(0);
+  //       this.heroes.set(null);
+  //       this.getHeroesPaginated(this.page() + 1, this.heroesPerPage);
+  //       this.loading.set(false);
+  //     }),
 
-      catchError((err) => {
-        this.error.set(err);
-        this.loading.set(false);
-        console.error('Error - hero-store.service.ts - CreateHeroe() / ' + err.message);
-        return throwError(() => err);
-      }),
-    );
-  }
+  //     catchError((err) => {
+  //       this.error.set(err);
+  //       this.loading.set(false);
+  //       console.error('Error - hero-store.service.ts - CreateHeroe() / ' + err.message);
+  //       return throwError(() => err);
+  //     }),
+  //   );
+  // }
 
   public deleteHeroe(hero: Hero): Observable<Hero> {
     this.loading.set(true);
@@ -126,26 +126,26 @@ export class HeroStoreService implements OnDestroy {
     );
   }
 
-  public updateHeroe(hero: Hero): Observable<Hero> {
-    this.loading.set(true);
-    this.error.set(null);
+  // public updateHeroe(hero: Hero): Observable<Hero> {
+  //   this.loading.set(true);
+  //   this.error.set(null);
 
-    return this.heroService.updateHeroe(hero).pipe(
-      tap((res) => {
-        this.heroes.update((current) =>
-          current ? current.map((h) => (h.id === res.id ? res : h)) : [],
-        );
-        this.loading.set(false);
-      }),
+  //   return this.heroService.updateHeroe(hero).pipe(
+  //     tap((res) => {
+  //       this.heroes.update((current) =>
+  //         current ? current.map((h) => (h.id === res.id ? res : h)) : [],
+  //       );
+  //       this.loading.set(false);
+  //     }),
 
-      catchError((err) => {
-        this.error.set(err);
-        this.loading.set(false);
-        console.error('Error - hero-store.service.ts - updateHeroe() / ' + err.message);
-        return throwError(() => err);
-      }),
-    );
-  }
+  //     catchError((err) => {
+  //       this.error.set(err);
+  //       this.loading.set(false);
+  //       console.error('Error - hero-store.service.ts - updateHeroe() / ' + err.message);
+  //       return throwError(() => err);
+  //     }),
+  //   );
+  // }
 
   public searchHeroesByName(q: string): Hero[] | undefined {
     return this.heroes()?.filter((hero) =>

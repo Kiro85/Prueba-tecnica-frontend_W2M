@@ -9,7 +9,7 @@
       <p class="c-card-hero__description">{{formatterService.firstCharToUpperCase(hero?.description)}}</p>
       <p class="c-card-hero__city">{{formatterService.firstCharToUpperCase(hero?.city)}}</p>
       <div class="c-card-hero__buttons">
-        <app-button-edit (click)="OpenFormHeroeEdit()"></app-button-edit>
+        <app-button-edit (click)="OpenFormHeroEdit()"></app-button-edit>
         <app-button-secondary [message]="'Eliminar'" (click)="OpenConfirmDeleteModal()"></app-button-secondary>
       </div>
   </div>

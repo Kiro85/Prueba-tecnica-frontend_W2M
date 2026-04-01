@@ -1,15 +1,15 @@
-import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, Input, OnDestroy } from '@angular/core';
 import { AppButtonEditComponent } from '../../app-buttons/app-button-edit/app-button-edit.component';
 import { Hero } from '../../../../models/hero';
 import { AppButtonSecondaryComponent } from '../../app-buttons/app-button-secondary/app-button-secondary.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AppModalConfirmDeleteComponent } from '../../app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
-import { AppFormHeroEditComponent } from '../../../statics/app-forms/app-form-hero-edit/app-form-hero-edit.component';
 import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppModalSuccessMessageComponent } from '../../app-modals/app-modal-success-message/app-modal-success-message.component';
 import { AppModalErrorMessageComponent } from '../../app-modals/app-modal-error-message/app-modal-error-message.component';
 import { FormatterService } from '../../../../services/formatter.service';
+import { AppFormHeroComponent } from '../../../statics/app-forms/app-form-hero/app-form-hero.component';
 
 @Component({
   selector: 'app-card-hero',
@@ -20,9 +20,9 @@ import { FormatterService } from '../../../../services/formatter.service';
 export class AppCardHeroComponent implements OnDestroy {
   @Input() hero?: Hero;
 
-  private readonly dialog = inject(MatDialog)
-  private readonly snackBar = inject(MatSnackBar)
-  protected readonly formatterService = inject(FormatterService)
+  private readonly dialog = inject(MatDialog);
+  private readonly snackBar = inject(MatSnackBar);
+  protected readonly formatterService = inject(FormatterService);
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
@@ -35,7 +35,6 @@ export class AppCardHeroComponent implements OnDestroy {
     const dialogRef = this.dialog.open(AppModalConfirmDeleteComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
-      data: this.hero,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -59,11 +58,11 @@ export class AppCardHeroComponent implements OnDestroy {
     });
   }
 
-  protected OpenFormHeroeEdit(): void {
-    const dialogRef = this.dialog.open(AppFormHeroEditComponent, {
+  protected OpenFormHeroEdit(): void {
+    const dialogRef = this.dialog.open(AppFormHeroComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
-      data: this.hero,
+      data: { hero: this.hero },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

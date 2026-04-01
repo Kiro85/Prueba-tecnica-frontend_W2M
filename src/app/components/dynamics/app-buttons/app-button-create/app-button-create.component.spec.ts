@@ -4,7 +4,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AppFormHeroCreateComponent } from '../../../statics/app-forms/app-form-hero-create/app-form-hero-create.component';
+import { AppFormHeroCreateComponent } from '../../../statics/app-forms/app-form-hero/app-form-hero.component';
 import { AppModalSuccessMessageComponent } from '../../app-modals/app-modal-success-message/app-modal-success-message.component';
 import { AppModalErrorMessageComponent } from '../../app-modals/app-modal-error-message/app-modal-error-message.component';
 

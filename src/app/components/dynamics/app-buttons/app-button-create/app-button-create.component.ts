@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
-import { AppFormHeroCreateComponent } from '../../../statics/app-forms/app-form-hero-create/app-form-hero-create.component';
+import { AppFormHeroComponent } from '../../../statics/app-forms/app-form-hero/app-form-hero.component';
 import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppModalSuccessMessageComponent } from '../../app-modals/app-modal-success-message/app-modal-success-message.component';
@@ -25,7 +25,7 @@ export class AppButtonCreateComponent implements OnDestroy {
   }
 
   OpenCreateHeroeForm(): void {
-    const dialogRef = this.dialog.open(AppFormHeroCreateComponent, {
+    const dialogRef = this.dialog.open(AppFormHeroComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
     });
