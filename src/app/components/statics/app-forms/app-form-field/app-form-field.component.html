@@ -1,0 +1,22 @@
+<div class="c-form-field">
+  <span class="c-form-field__label">{{ label() }}*</span>
+  @if (type() === 'img') {
+    <input type="file" class="c-form-field__files" (change)="onFileSelected(control(), $event)" />
+  } @else {
+    <mat-form-field class="c-form-field__input" appearance="fill">
+      @if (type() === 'text') {
+        <input matInput [formControl]="control()" [placeholder]="placeholder()" />
+      } @else if (type() === 'textarea') {
+        <textarea
+          matInput
+          [formControl]="control()"
+          [placeholder]="placeholder()"
+          rows="3"
+        ></textarea>
+      }
+    </mat-form-field>
+  }
+  @if (control() && control().invalid && control().touched) {
+    <mat-error>{{ getErrorMessage(control()) }}</mat-error>
+  }
+</div>
