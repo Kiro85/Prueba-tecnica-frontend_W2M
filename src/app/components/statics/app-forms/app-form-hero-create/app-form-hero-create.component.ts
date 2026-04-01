@@ -18,6 +18,7 @@ import { ImageService } from '../../../../services/image.service';
 import { HeroStoreService } from '../../../../services/hero-store.service';
 import { catchError, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AppFormFieldComponent } from '../app-form-field/app-form-field.component';
 
 @Component({
   selector: 'app-form-hero-create',
@@ -29,6 +30,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     MatIconModule,
     AppButtonPrimaryFormComponent,
     ReactiveFormsModule,
+    AppFormFieldComponent,
   ],
   templateUrl: './app-form-hero-create.component.html',
   styleUrl: './app-form-hero-create.component.scss',
@@ -41,6 +43,36 @@ export class AppFormHeroCreateComponent implements OnInit {
 
   protected createHeroForm!: FormGroup;
   private fb = inject(FormBuilder);
+  protected formFields = [
+    {
+      name: 'name',
+      label: 'Nombre',
+      placeholder: 'Nombre',
+      type: 'text',
+      rowClass: 'c-create-hero-form__row-2-content',
+    },
+    {
+      name: 'superpower',
+      label: 'Superpoder',
+      placeholder: 'Superpoder',
+      type: 'text',
+      rowClass: 'c-create-hero-form__row-2-content',
+    },
+    {
+      name: 'city',
+      label: 'Ciudad',
+      placeholder: 'Ciudad',
+      type: 'text',
+      rowClass: 'c-create-hero-form__row',
+    },
+    {
+      name: 'description',
+      label: 'Descripción',
+      placeholder: 'Descripción',
+      type: 'textarea',
+      rowClass: 'c-create-hero-form__row',
+    },
+  ];
 
   private readonly destroyRef = inject(DestroyRef);
 
@@ -97,15 +129,27 @@ export class AppFormHeroCreateComponent implements OnInit {
     return request;
   }
 
-  protected onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (!input.files || input.files.length === 0) return;
-
-    const file = input.files[0];
-    this.createHeroForm.get('image')!.setValue(file);
-  }
-
   protected closeModal(): void {
     this.dialogRef.close();
+  }
+
+  get nameControl(): FormControl {
+    return this.createHeroForm.get('name') as FormControl;
+  }
+
+  get superpowerControl(): FormControl {
+    return this.createHeroForm.get('superpower') as FormControl;
+  }
+
+  get cityControl(): FormControl {
+    return this.createHeroForm.get('city') as FormControl;
+  }
+
+  get descriptionControl(): FormControl {
+    return this.createHeroForm.get('description') as FormControl;
+  }
+
+  get imageControl(): FormControl {
+    return this.createHeroForm.get('image') as FormControl;
   }
 }

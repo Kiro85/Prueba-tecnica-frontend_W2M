@@ -18,7 +18,7 @@ describe('AppFormHeroCreateComponent', () => {
   };
 
   const mockHeroStoreService = {
-    createHeroe: vi.fn(() => of({})),
+    createHero: vi.fn(() => of({})),
   };
 
   const mockImageService = {
@@ -54,7 +54,7 @@ describe('AppFormHeroCreateComponent', () => {
     expect(component['createHeroForm']).toBeTruthy();
   });
 
-  it('should call createHeroe and close dialog with 1 on success', async () => {
+  it('should call createHero and close dialog with 1 on success', async () => {
     const file = new File(['data'], 'file.png');
 
     component['createHeroForm'].patchValue({
@@ -68,12 +68,12 @@ describe('AppFormHeroCreateComponent', () => {
 
     await component['onSubmit']();
 
-    expect(mockHeroStoreService.createHeroe).toHaveBeenCalled();
+    expect(mockHeroStoreService.createHero).toHaveBeenCalled();
     expect(mockDialogRef.close).toHaveBeenCalledWith(1);
   });
 
   it('should close dialog with 2 on error', async () => {
-    mockHeroStoreService.createHeroe.mockReturnValue(throwError(() => new Error()));
+    mockHeroStoreService.createHero.mockReturnValue(throwError(() => new Error()));
 
     const file = new File(['data'], 'file.png');
 
@@ -88,7 +88,7 @@ describe('AppFormHeroCreateComponent', () => {
 
     await component['onSubmit']();
 
-    expect(mockHeroStoreService.createHeroe).toHaveBeenCalled();
+    expect(mockHeroStoreService.createHero).toHaveBeenCalled();
     expect(mockDialogRef.close).toHaveBeenCalledWith(2);
   });
 
@@ -109,39 +109,15 @@ describe('AppFormHeroCreateComponent', () => {
     const file = new File(['data'], 'file.png', { type: 'image/png' });
     component['createHeroForm'].patchValue({ image: file });
 
-    const result = await component['createHeroeModel']();
+    const result = await component['createHeroModel']();
 
     expect(mockImageService.convertFileToBase64).toHaveBeenCalledWith(file);
     expect(result.image).toBe('base64');
-  });
-
-  it('should set file when onFileSelected is triggered', () => {
-    const file = new File(['data'], 'file.png');
-
-    const event = {
-      target: {
-        files: [file],
-      },
-    } as unknown as Event;
-
-    component['onFileSelected'](event);
-
-    expect(component['createHeroForm'].get('image')?.value).toBe(file);
   });
 
   it('should close modal', () => {
     component['closeModal']();
 
     expect(mockDialogRef.close).toHaveBeenCalled();
-  });
-
-  it('should cleanup on destroy', () => {
-    const nextSpy = vi.spyOn(component['unsubscribe$'], 'next');
-    const completeSpy = vi.spyOn(component['unsubscribe$'], 'complete');
-
-    component.ngOnDestroy();
-
-    expect(nextSpy).toHaveBeenCalled();
-    expect(completeSpy).toHaveBeenCalled();
   });
 });
