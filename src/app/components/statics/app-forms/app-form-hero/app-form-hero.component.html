@@ -1,4 +1,4 @@
-<form class="c-hero-form" [formGroup]="createHeroForm" (ngSubmit)="onSubmit()">
+<form class="c-hero-form" [formGroup]="heroForm" (ngSubmit)="onSubmit()">
   <div class="c-hero-form__close" (click)="closeModal()">
     <mat-icon>close</mat-icon>
   </div>
@@ -59,7 +59,7 @@
     <!-- Submit -->
     <app-button-primary-form
       message="Crear héroe"
-      [disabled]="createHeroForm.invalid"
+      [disabled]="heroForm.invalid"
     ></app-button-primary-form>
   </div>
 </form>

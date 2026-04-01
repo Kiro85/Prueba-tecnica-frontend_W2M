@@ -4,13 +4,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Hero, HeroRequest } from '../../../../models/hero';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app-button-primary-form/app-button-primary-form.component';
@@ -42,34 +36,8 @@ export class AppFormHeroComponent implements OnInit {
   private readonly dialogData = inject(MAT_DIALOG_DATA);
   private readonly imageService = inject(ImageService);
 
-  protected createHeroForm!: FormGroup;
   private fb = inject(FormBuilder);
-  protected formFields = [
-    {
-      name: 'name',
-      label: 'Nombre',
-      placeholder: 'Nombre',
-      type: 'text',
-    },
-    {
-      name: 'superpower',
-      label: 'Superpoder',
-      placeholder: 'Superpoder',
-      type: 'text',
-    },
-    {
-      name: 'city',
-      label: 'Ciudad',
-      placeholder: 'Ciudad',
-      type: 'text',
-    },
-    {
-      name: 'description',
-      label: 'Descripción',
-      placeholder: 'Descripción',
-      type: 'textarea',
-    },
-  ];
+  protected heroForm: any;
 
   private readonly destroyRef = inject(DestroyRef);
 
@@ -78,7 +46,7 @@ export class AppFormHeroComponent implements OnInit {
   }
 
   private initForm(): void {
-    this.createHeroForm = this.fb.group({
+    this.heroForm = this.fb.group({
       id: [this.dialogData?.hero.id || ''],
       name: [
         this.dialogData?.hero.name || '',
@@ -96,9 +64,7 @@ export class AppFormHeroComponent implements OnInit {
         this.dialogData?.hero.description || '',
         [Validators.required, Validators.minLength(12), Validators.maxLength(128)],
       ],
-      image: [
-        this.dialogData?.hero.image || '',
-        [Validators.required]],
+      image: [this.dialogData?.hero.image || '', [Validators.required]],
       termsAndConditions: [false, [Validators.requiredTrue]],
     });
   }
@@ -148,7 +114,7 @@ export class AppFormHeroComponent implements OnInit {
   }
 
   private async createHeroModel(isNew: boolean): Promise<HeroRequest | Hero> {
-    const imageControl = this.createHeroForm.value.image;
+    const imageControl = this.heroForm.value.image;
 
     let base64: string;
 
@@ -159,20 +125,20 @@ export class AppFormHeroComponent implements OnInit {
     }
     if (isNew) {
       const request: HeroRequest = {
-        name: this.createHeroForm.value.name,
-        superpower: this.createHeroForm.value.superpower,
-        city: this.createHeroForm.value.city,
-        description: this.createHeroForm.value.description,
+        name: this.heroForm.value.name,
+        superpower: this.heroForm.value.superpower,
+        city: this.heroForm.value.city,
+        description: this.heroForm.value.description,
         image: base64,
       };
       return request;
     } else {
       const hero: Hero = {
-        id: this.createHeroForm.value.id,
-        name: this.createHeroForm.value.name,
-        superpower: this.createHeroForm.value.superpower,
-        city: this.createHeroForm.value.city,
-        description: this.createHeroForm.value.description,
+        id: this.heroForm.value.id,
+        name: this.heroForm.value.name,
+        superpower: this.heroForm.value.superpower,
+        city: this.heroForm.value.city,
+        description: this.heroForm.value.description,
         image: base64,
       };
       return hero;
@@ -184,22 +150,22 @@ export class AppFormHeroComponent implements OnInit {
   }
 
   get nameControl(): FormControl {
-    return this.createHeroForm.get('name') as FormControl;
+    return this.heroForm.get('name') as FormControl;
   }
 
   get superpowerControl(): FormControl {
-    return this.createHeroForm.get('superpower') as FormControl;
+    return this.heroForm.get('superpower') as FormControl;
   }
 
   get cityControl(): FormControl {
-    return this.createHeroForm.get('city') as FormControl;
+    return this.heroForm.get('city') as FormControl;
   }
 
   get descriptionControl(): FormControl {
-    return this.createHeroForm.get('description') as FormControl;
+    return this.heroForm.get('description') as FormControl;
   }
 
   get imageControl(): FormControl {
-    return this.createHeroForm.get('image') as FormControl;
+    return this.heroForm.get('image') as FormControl;
   }
 }
