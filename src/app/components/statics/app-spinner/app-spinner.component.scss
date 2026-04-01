@@ -5,7 +5,6 @@
   padding: 8rem 0;
   display: flex;
   justify-content: center;
-  align-content: center;
 
   @include mat.progress-spinner-overrides((
     size: 1rem,

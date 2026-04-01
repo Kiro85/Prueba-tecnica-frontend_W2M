@@ -59,7 +59,7 @@ describe('SectionCardsComponent', () => {
   it('should expose heroes and state from service', () => {
     expect(component['heroes']).toBe(mockHeroStoreService.heroes);
     expect(component['heroesFiltered']).toBe(mockHeroStoreService.heroesFiltered);
-    expect(component['morePages']).toBe(mockHeroStoreService.nextPage);
+    expect(component['nextPage']).toBe(mockHeroStoreService.nextPage);
     expect(component['loading']).toBe(mockHeroStoreService.loading);
     expect(component['error']).toBe(mockHeroStoreService.error);
   });

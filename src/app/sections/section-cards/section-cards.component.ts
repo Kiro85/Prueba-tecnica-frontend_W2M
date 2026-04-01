@@ -1,10 +1,13 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { AppCardHeroComponent } from '../../components/dynamics/app-cards/app-card-hero/app-card-hero.component';
-import { HeroStoreService } from '../../services/hero-store.service';
 import { CommonModule } from '@angular/common';
 import { AppButtonPrimaryComponent } from '../../components/dynamics/app-buttons/app-button-primary/app-button-primary.component';
 import { AppSpinnerComponent } from '../../components/statics/app-spinner/app-spinner.component';
 import { AppErrorMessageComponent } from '../../components/dynamics/app-error-message/app-error-message.component';
+import { HeroService } from '../../services/hero.service';
+import { Hero } from '../../models/hero';
+import { catchError, finalize, of, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'section-cards',
@@ -19,23 +22,46 @@ import { AppErrorMessageComponent } from '../../components/dynamics/app-error-me
   styleUrl: './section-cards.component.scss',
 })
 export class SectionCardsComponent implements OnInit {
-  private readonly heroStoreService = inject(HeroStoreService);
+  private readonly heroService = inject(HeroService);
 
-  protected heroesFiltered = this.heroStoreService.heroesFiltered;
-  protected heroes = this.heroStoreService.heroes;
-  private readonly heroesPerPage = this.heroStoreService.heroesPerPage;
-  protected morePages = this.heroStoreService.nextPage;
+  public heroesFiltered = signal<Hero[]>([]); // List of heroes filtered by name
+  public heroes = signal<Hero[]>([]); // List of heroes
+  public page = signal<number>(1);
+  public readonly heroesPerPage: number = 8;
+  public nextPage = signal<boolean>(true);
 
-  protected loading = this.heroStoreService.loading;
-  protected error = this.heroStoreService.error;
+  public loading = signal<boolean>(false);
+  public error = signal<string>('');
 
-  ngOnInit(): void {
-    this.nextPage();
+  private readonly destroyRef = inject(DestroyRef);
+
+  public ngOnInit(): void {
+    this.getHeroesPaginated();
   }
 
-  protected nextPage(): void {
-    if (this.morePages()) {
-      this.heroStoreService.getHeroesPaginated(this.heroStoreService.page() + 1, this.heroesPerPage);
-    }
+  protected getHeroesPaginated(): void {
+    this.loading.set(true);
+    this.heroService
+      .getHeroesPaginated(this.page(), this.heroesPerPage)
+      .pipe(
+        tap((res) => {
+          this.handleResponse(res.data);
+        }),
+        catchError((err) => {
+          this.error.set(err.message || '');
+          return of(null);
+        }),
+        finalize(() => {
+          this.loading.set(false);
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
+  }
+
+  private handleResponse(res: Hero[]): void {
+    this.heroes.update((current) => [...current, ...res]);
+    this.page.set(this.page() + 1);
+    this.nextPage.set(res !== null);
   }
 }

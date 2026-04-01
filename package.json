@@ -41,7 +41,6 @@
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.9.0",
     "jsdom": "^28.1.0",
-    "scss-reset": "^1.4.6",
     "typescript": "~5.9.2",
     "vitest": "^3.2.4"
   }

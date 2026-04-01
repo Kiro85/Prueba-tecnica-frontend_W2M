@@ -8,7 +8,7 @@
   <section class="s-list-hero">
     <ul class="s-list-hero__cards">
       <!-- Heroes by name -->
-      @if (heroesFiltered()) {
+      @if (!!heroesFiltered().length) {
         @for (hero of heroesFiltered(); track hero.id) {
           <li class="s-list-hero__card">
             <app-card-hero [hero]="hero"></app-card-hero>
@@ -16,7 +16,7 @@
         }
 
         <!-- All heroes -->
-      } @else if (heroes()) {
+      } @else if (!!heroes().length) {
         @for (hero of heroes(); track hero.id) {
           <li class="s-list-hero__card">
             <app-card-hero [hero]="hero"></app-card-hero>
@@ -26,9 +26,9 @@
     </ul>
     <app-button-primary
       class="s-list-hero__button"
-      [disabled]="!morePages()"
+      [disabled]="!nextPage()"
       [message]="'Ver más'"
-      (click)="nextPage()"
+      (click)="getHeroesPaginated()"
     ></app-button-primary>
   </section>
 }
