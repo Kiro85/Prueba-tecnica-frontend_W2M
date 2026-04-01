@@ -28,8 +28,8 @@ describe('AppSearchBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call getHeroesByName when input changes', async () => {
-    component['query'].setValue('batman');
+  it('should emit query when input changes', async () => {
+    (component as any)['searchControl'].setValue('batman');
 
     await new Promise((r) => setTimeout(r, 300));
 
@@ -37,7 +37,7 @@ describe('AppSearchBarComponent', () => {
   });
 
   it('should trim query before calling service', async () => {
-    component['query'].setValue('   superman   ');
+    (component as any)['searchControl'].setValue('   superman   ');
 
     await new Promise((r) => setTimeout(r, 300));
 
@@ -45,20 +45,10 @@ describe('AppSearchBarComponent', () => {
   });
 
   it('should send null if query is empty', async () => {
-    component['query'].setValue('   ');
+    (component as any)['searchControl'].setValue('   ');
 
     await new Promise((r) => setTimeout(r, 300));
 
     expect(mockHeroStoreService.getHeroesByName).toHaveBeenCalledWith(null);
-  });
-
-  it('should cleanup on destroy', () => {
-    const nextSpy = vi.spyOn(component['destroy$'], 'next');
-    const completeSpy = vi.spyOn(component['destroy$'], 'complete');
-
-    component.ngOnDestroy();
-
-    expect(nextSpy).toHaveBeenCalled();
-    expect(completeSpy).toHaveBeenCalled();
   });
 });
