@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, effect, inject, input, OnInit, signal } from '@angular/core';
 import { AppCardHeroComponent } from '../../components/dynamics/app-cards/app-card-hero/app-card-hero.component';
 import { CommonModule } from '@angular/common';
 import { AppButtonPrimaryComponent } from '../../components/dynamics/app-buttons/app-button-primary/app-button-primary.component';
@@ -25,6 +25,15 @@ export class SectionCardsComponent implements OnInit {
   private readonly heroService = inject(HeroService);
 
   public heroesFiltered = signal<Hero[]>([]); // List of heroes filtered by name
+  public query = input<string>();
+  private queryEffect = effect(() => {
+    const queryValue = this.query();
+    if (queryValue) {
+      this.getHeroesByName(queryValue);
+    } else {
+      this.heroesFiltered.set([]);
+    }
+  });
   public heroes = signal<Hero[]>([]); // List of heroes
   public page = signal<number>(1);
   public readonly heroesPerPage: number = 8;
@@ -63,5 +72,25 @@ export class SectionCardsComponent implements OnInit {
     this.heroes.update((current) => [...current, ...res]);
     this.page.set(this.page() + 1);
     this.nextPage.set(res !== null);
+  }
+
+  private getHeroesByName(name: string): void {
+    this.loading.set(true);
+    this.heroService
+      .getHeroesByName(name)
+      .pipe(
+        tap((res) => {
+          this.heroesFiltered.set(res);
+        }),
+        catchError((err) => {
+          this.error.set(err.message || '');
+          return of(null);
+        }),
+        finalize(() => {
+          this.loading.set(false);
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
   }
 }

@@ -1,8 +1,8 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, output, signal } from '@angular/core';
 import { AppButtonSearchComponent } from '../../dynamics/app-buttons/app-button-search/app-button-search.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map, Subject } from 'rxjs';
-import { HeroStoreService } from '../../../services/hero-store.service';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-search-bar',
@@ -10,29 +10,26 @@ import { HeroStoreService } from '../../../services/hero-store.service';
   templateUrl: './app-search-bar.component.html',
   styleUrl: './app-search-bar.component.scss',
 })
-export class AppSearchBarComponent implements OnInit, OnDestroy {
-  private readonly heroStoreService = inject(HeroStoreService);
+export class AppSearchBarComponent implements OnInit {
+  protected queryControl = new FormControl('');
+  public query = output<string>();
 
-  protected query = new FormControl('');
-
-  private destroy$ = new Subject<void>();
+  private destroyRef = inject(DestroyRef)
 
   ngOnInit(): void {
     this.initSearchBar();
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
   private initSearchBar(): void {
-    this.query.valueChanges
+    this.queryControl.valueChanges
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
-        map((value) => value?.trim() || null),
+        map((value) => value?.trim() ?? ''),
+        takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe((query) => this.heroStoreService.getHeroesByName(query));
+      .subscribe((value) => {
+        this.query.emit(value);
+      });
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { SectionCardsComponent } from '../../sections/section-cards/section-cards.component';
 import { AppBannerComponent } from '../../components/statics/app-banner/app-banner.component';
 import { AppSearchBarComponent } from '../../components/statics/app-search-bar/app-search-bar.component';
@@ -17,4 +17,6 @@ import { SectionFooterComponent } from '../../sections/section-footer/section-fo
   templateUrl: './page-home.component.html',
   styleUrl: './page-home.component.scss',
 })
-export class PageHomeComponent {}
+export class PageHomeComponent {
+  protected query = signal<string>('');
+}

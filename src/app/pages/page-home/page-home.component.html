@@ -3,7 +3,7 @@
 <main class="p-home">
   <section class="p-home__nav">
     <div class="p-home__search-bar">
-      <app-search-bar></app-search-bar>
+      <app-search-bar (query)="query.set($event)"></app-search-bar>
     </div>
     <div class="p-home__button-create">
       <app-button-create></app-button-create>
@@ -18,7 +18,7 @@
     </p>
   </section>
 
-  <section-cards></section-cards>
+  <section-cards [query]="query()"></section-cards>
 </main>
 
 <section-footer></section-footer>
