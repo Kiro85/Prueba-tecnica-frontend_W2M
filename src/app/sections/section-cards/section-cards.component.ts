@@ -39,7 +39,7 @@ export class SectionCardsComponent implements OnInit {
   public readonly heroesPerPage: number = 8;
   public nextPage = signal<boolean>(true);
 
-  public loading = signal<boolean>(false);
+  public loading = signal<boolean>(true);
   public error = signal<string>('');
 
   private readonly destroyRef = inject(DestroyRef);
@@ -49,7 +49,6 @@ export class SectionCardsComponent implements OnInit {
   }
 
   public getHeroesPaginated(): void {
-    this.loading.set(true);
     this.heroService
       .getHeroesPaginated(this.page(), this.heroesPerPage)
       .pipe(
