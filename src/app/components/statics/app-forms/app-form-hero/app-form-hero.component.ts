@@ -30,11 +30,10 @@ import { HeroService } from '../../../../services/hero.service';
   styleUrl: './app-form-hero.component.scss',
 })
 export class AppFormHeroComponent implements OnInit {
-  private readonly heroService = inject(HeroService);
-
   private readonly dialogRef = inject(MatDialogRef<AppFormHeroComponent>);
   private readonly dialogData = inject(MAT_DIALOG_DATA);
   private readonly imageService = inject(ImageService);
+  private readonly heroService = inject(HeroService);
 
   private fb = inject(FormBuilder);
   protected heroForm: any;

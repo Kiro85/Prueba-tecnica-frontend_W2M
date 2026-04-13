@@ -1,10 +1,11 @@
-import { Component, inject, OnDestroy } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { AppButtonSecondaryComponent } from '../../../dynamics/app-buttons/app-button-secondary/app-button-secondary.component';
 import { AppButtonPrimaryComponent } from '../../../dynamics/app-buttons/app-button-primary/app-button-primary.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HeroStoreService } from '../../../../services/hero-store.service';
-import { Subject } from 'rxjs';
+import { HeroService } from '../../../../services/hero.service';
+import { catchError, takeUntil, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-modal-confirm-delete.component',
@@ -12,26 +13,33 @@ import { Subject } from 'rxjs';
   templateUrl: './app-modal-confirm-delete.component.html',
   styleUrl: './app-modal-confirm-delete.component.scss',
 })
-export class AppModalConfirmDeleteComponent implements OnDestroy {
+export class AppModalConfirmDeleteComponent {
   private readonly dialogRef = inject(MatDialogRef<AppModalConfirmDeleteComponent>);
   private readonly dialogData = inject(MAT_DIALOG_DATA);
-  private readonly heroStoreService = inject(HeroStoreService);
+  private readonly heroService = inject(HeroService);
 
-  private unsubscribe$: Subject<void> = new Subject<void>();
+  private readonly destroyRef = inject(DestroyRef);
 
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+  protected deleteHero(): void {
+    this.heroService
+      .deleteHero(this.dialogData.id)
+      .pipe(
+        tap(() => {
+          this.dialogRef.close(1);
+        }),
+        catchError((err) => {
+          this.dialogRef.close(2);
+          console.error(
+            'Error - app-modal-confirm-delete.component.ts - deleteHero() / ' + err.message,
+          );
+          return [];
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
   }
 
-  protected DeleteHeroe(): void {
-    this.heroStoreService.deleteHeroe(this.dialogData).subscribe({
-      next: () => this.dialogRef.close(1),
-      error: () => this.dialogRef.close(2),
-    });
-  }
-
-  protected CloseConfirmDeleteModal(): void {
+  protected closeConfirmDeleteModal(): void {
     this.dialogRef.close();
   }
 }

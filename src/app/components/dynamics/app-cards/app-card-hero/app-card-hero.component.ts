@@ -35,6 +35,7 @@ export class AppCardHeroComponent implements OnDestroy {
     const dialogRef = this.dialog.open(AppModalConfirmDeleteComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
+      data: this.hero,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

@@ -7,5 +7,5 @@ import { Component, input } from '@angular/core';
   styleUrl: './app-error-message.component.scss',
 })
 export class AppErrorMessageComponent {
-  protected message = input('message');
+  public message = input('message');
 }

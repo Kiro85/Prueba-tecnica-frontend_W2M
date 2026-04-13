@@ -107,24 +107,24 @@ export class HeroStoreService implements OnDestroy {
   //   );
   // }
 
-  public deleteHeroe(hero: Hero): Observable<Hero> {
-    this.loading.set(true);
-    this.error.set(null);
+  // public deleteHeroe(hero: Hero): Observable<Hero> {
+  //   this.loading.set(true);
+  //   this.error.set(null);
 
-    return this.heroService.deleteHeroe(hero.id).pipe(
-      tap((res) => {
-        this.heroes.update((current) => (current ? current.filter((h) => h.id !== res.id) : []));
-        this.loading.set(false);
-      }),
+  //   return this.heroService.deleteHeroe(hero.id).pipe(
+  //     tap((res) => {
+  //       this.heroes.update((current) => (current ? current.filter((h) => h.id !== res.id) : []));
+  //       this.loading.set(false);
+  //     }),
 
-      catchError((err) => {
-        this.error.set(err);
-        this.loading.set(false);
-        console.error('Error - hero-store.service.ts - deleteHeroe() / ' + err.message);
-        return throwError(() => err);
-      }),
-    );
-  }
+  //     catchError((err) => {
+  //       this.error.set(err);
+  //       this.loading.set(false);
+  //       console.error('Error - hero-store.service.ts - deleteHeroe() / ' + err.message);
+  //       return throwError(() => err);
+  //     }),
+  //   );
+  // }
 
   // public updateHeroe(hero: Hero): Observable<Hero> {
   //   this.loading.set(true);

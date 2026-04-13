@@ -27,7 +27,7 @@ export class HeroService {
     return this.http.post<Hero>(this.apiUrl, request);
   }
 
-  public deleteHeroe(id: string): Observable<Hero> {
+  public deleteHero(id: string): Observable<Hero> {
     return this.http.delete<Hero>(`${this.apiUrl}/${id}`);
   }
 
