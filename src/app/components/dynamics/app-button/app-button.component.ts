@@ -10,15 +10,17 @@ import { MatIcon } from '@angular/material/icon';
       @if (icon()) {
         <mat-icon>{{ icon() }}</mat-icon>
       }
-      @if (text()) {
-        <p>{{ text() }}</p>
+
+      @if (class() !== 'c-button--search') {
+        <p>
+          <ng-content></ng-content>
+        </p>
       }
     </button>
   `,
 })
 export class AppButtonComponent {
   public icon = input<string>();
-  public text = input<string>();
   public class = input<string>();
   public disabled = input<boolean>(false);
 }

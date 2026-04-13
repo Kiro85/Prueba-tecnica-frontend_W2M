@@ -13,8 +13,8 @@ import { CommonModule } from '@angular/common';
 export class AppFormFieldComponent {
   public control = input<FormControl>(new FormControl());
   public type = input<'text' | 'textarea' | 'img'>();
-  public placeholder = input('');
-  public label = input('');
+  public placeholder = input<string>('');
+  public label = input<string>('');
 
   protected getErrorMessage(control: FormControl | null): string {
     let message: string = '';

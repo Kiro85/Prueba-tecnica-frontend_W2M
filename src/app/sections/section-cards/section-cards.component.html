@@ -24,11 +24,6 @@
         }
       }
     </ul>
-    <app-button
-      (click)="getHeroesPaginated()"
-      text="Ver más"
-      class="c-button--primary"
-      [disabled]="!nextPage()"
-    ></app-button>
+    <app-button (click)="getHeroesPaginated()" class="c-button--primary" [disabled]="!nextPage()">Ver más</app-button>
   </section>
 }
