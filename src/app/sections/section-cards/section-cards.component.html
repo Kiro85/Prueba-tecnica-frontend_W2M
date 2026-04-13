@@ -11,7 +11,7 @@
       @if (!!heroesFiltered().length) {
         @for (hero of heroesFiltered(); track hero.id) {
           <li class="s-list-hero__card">
-            <app-card-hero [hero]="hero"></app-card-hero>
+            <app-card-hero (deleted)="refresh()" (edited)="refresh()" [hero]="hero"></app-card-hero>
           </li>
         }
 
@@ -19,7 +19,7 @@
       } @else if (!!heroes().length) {
         @for (hero of heroes(); track hero.id) {
           <li class="s-list-hero__card">
-            <app-card-hero [hero]="hero"></app-card-hero>
+            <app-card-hero (deleted)="refresh()" (edited)="refresh()" [hero]="hero"></app-card-hero>
           </li>
         }
       }

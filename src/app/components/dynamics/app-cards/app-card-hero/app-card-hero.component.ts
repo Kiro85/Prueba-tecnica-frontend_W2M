@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, input } from '@angular/core';
+import { Component, DestroyRef, inject, input, output } from '@angular/core';
 import { Hero } from '../../../../models/hero';
 import { MatDialog } from '@angular/material/dialog';
 import { AppModalConfirmDeleteComponent } from '../../app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
@@ -20,6 +20,8 @@ import { AppButtonComponent } from '../../app-button/app-button.component';
 })
 export class AppCardHeroComponent {
   public hero = input<Hero>();
+  public deleted = output<void>();
+  public edited = output<void>();
 
   private readonly dialog = inject(MatDialog);
   private readonly snackBar = inject(MatSnackBar);
@@ -47,6 +49,7 @@ export class AppCardHeroComponent {
                 success: true,
               },
             });
+            this.deleted.emit();
           } else if (result === 2) {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
@@ -83,6 +86,7 @@ export class AppCardHeroComponent {
                 success: true,
               },
             });
+            this.edited.emit();
           } else if (result === 2) {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
