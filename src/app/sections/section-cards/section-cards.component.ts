@@ -60,7 +60,7 @@ export class SectionCardsComponent implements OnInit {
           console.error(
             'Error - section-cards.component.ts - getHeroesPaginated() / ' + err.message,
           );
-          return of(null);
+          return of([]);
         }),
         finalize(() => {
           this.loading.set(false);
@@ -87,7 +87,7 @@ export class SectionCardsComponent implements OnInit {
         catchError((err) => {
           this.error.set(err.message || '');
           console.error('Error - section-cards.component.ts - getHeroesByName() / ' + err.message);
-          return of(null);
+          return of([]);
         }),
         finalize(() => {
           this.loading.set(false);

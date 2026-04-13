@@ -34,9 +34,9 @@ export class AppFormFieldComponent {
 
   protected onFileSelected(control: FormControl, event: Event) {
     const input = event.target as HTMLInputElement;
-    if (!input.files || input.files.length === 0) return;
-
-    const file = input.files[0];
-    control.setValue(file);
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      control.setValue(file);
+    }
   }
 }

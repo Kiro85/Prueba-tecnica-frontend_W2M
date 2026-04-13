@@ -4,7 +4,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { of, throwError } from 'rxjs';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { HeroStoreService } from '../../../../services/hero-store.service';
+import { HeroService } from '../../../../services/hero.service';
 
 describe('AppModalConfirmDeleteComponent', () => {
   let fixture: ComponentFixture<AppModalConfirmDeleteComponent>;
@@ -14,8 +14,8 @@ describe('AppModalConfirmDeleteComponent', () => {
     close: vi.fn(),
   };
 
-  const mockHeroStoreService = {
-    deleteHeroe: vi.fn(() => of({})),
+  const mockHeroService = {
+    deleteHero: vi.fn(() => of({})),
   };
 
   const mockDialogData = {
@@ -33,7 +33,7 @@ describe('AppModalConfirmDeleteComponent', () => {
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },
         { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
-        { provide: HeroStoreService, useValue: mockHeroStoreService },
+        { provide: HeroService, useValue: mockHeroService },
       ],
     }).compileComponents();
 
@@ -46,35 +46,25 @@ describe('AppModalConfirmDeleteComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call deleteHeroe and close dialog with 1 on success', () => {
-    component['DeleteHeroe']();
+  it('should call deleteHero and close dialog with 1 on success', () => {
+    component['deleteHero']();
 
-    expect(mockHeroStoreService.deleteHeroe).toHaveBeenCalledWith(mockDialogData);
+    expect(mockHeroService.deleteHero).toHaveBeenCalledWith(mockDialogData);
     expect(mockDialogRef.close).toHaveBeenCalledWith(1);
   });
 
-  it('should call deleteHeroes and close dialog with 2 on error', () => {
-    mockHeroStoreService.deleteHeroe.mockReturnValue(throwError(() => new Error()));
+  it('should call deleteHero and close dialog with 2 on error', () => {
+    mockHeroService.deleteHero.mockReturnValue(throwError(() => new Error()));
 
-    component['DeleteHeroe']();
+    component['deleteHero']();
 
-    expect(mockHeroStoreService.deleteHeroe).toHaveBeenCalledWith(mockDialogData);
+    expect(mockHeroService.deleteHero).toHaveBeenCalledWith(mockDialogData);
     expect(mockDialogRef.close).toHaveBeenCalledWith(2);
   });
 
   it('should close modal without action', () => {
-    component['CloseConfirmDeleteModal']();
+    component['closeConfirmDeleteModal']();
 
     expect(mockDialogRef.close).toHaveBeenCalled();
-  });
-
-  it('should cleanup on destroy', () => {
-    const nextSpy = vi.spyOn(component['unsubscribe$'], 'next');
-    const completeSpy = vi.spyOn(component['unsubscribe$'], 'complete');
-
-    component.ngOnDestroy();
-
-    expect(nextSpy).toHaveBeenCalled();
-    expect(completeSpy).toHaveBeenCalled();
   });
 });
