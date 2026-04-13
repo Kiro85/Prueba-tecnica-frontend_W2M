@@ -1,4 +1,4 @@
-import { CapitalizeWordsPipe } from './capitalize-words.pipe';
+import { CapitalizeWordsPipe } from '../capitalize-words.pipe';
 
 describe('CapitalizeWordsPipe', () => {
   it('create an instance', () => {
