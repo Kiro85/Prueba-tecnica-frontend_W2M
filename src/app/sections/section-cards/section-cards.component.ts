@@ -8,6 +8,7 @@ import { Hero } from '../../models/hero';
 import { catchError, finalize, of, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AppButtonComponent } from '../../components/dynamics/app-button/app-button.component';
+import { Page } from '../../models/page';
 
 @Component({
   selector: 'section-cards',
@@ -53,7 +54,7 @@ export class SectionCardsComponent implements OnInit {
       .getHeroesPaginated(this.page(), this.heroesPerPage)
       .pipe(
         tap((res) => {
-          this.handleResponse(res.data);
+          this.handleResponse(res);
         }),
         catchError((err) => {
           this.error.set(err.message || '');
@@ -70,10 +71,10 @@ export class SectionCardsComponent implements OnInit {
       .subscribe();
   }
 
-  private handleResponse(res: Hero[]): void {
-    this.heroes.update((current) => [...current, ...res]);
+  private handleResponse(res: Page): void {
+    this.heroes.update((current) => [...current, ...res.data]);
     this.page.set(this.page() + 1);
-    this.nextPage.set(res !== null);
+    this.nextPage.set(res.next !== null);
   }
 
   private getHeroesByName(name: string): void {
