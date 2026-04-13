@@ -1,8 +1,6 @@
 import { Component, DestroyRef, ViewChild, inject, signal } from '@angular/core';
 import { SectionCardsComponent } from '../../sections/section-cards/section-cards.component';
-import { AppBannerComponent } from '../../components/statics/app-banner/app-banner.component';
 import { AppSearchBarComponent } from '../../components/statics/app-search-bar/app-search-bar.component';
-import { SectionFooterComponent } from '../../sections/section-footer/section-footer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { tap } from 'rxjs';
@@ -15,8 +13,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   selector: 'page-home',
   imports: [
     SectionCardsComponent,
-    SectionFooterComponent,
-    AppBannerComponent,
     AppSearchBarComponent,
     AppButtonComponent,
   ],
@@ -40,8 +36,8 @@ export class PageHomeComponent {
     dialogRef
       .afterClosed()
       .pipe(
-        tap((result) => {
-          if (result === 1) {
+        tap((success) => {
+          if (success) {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
               verticalPosition: 'top',
@@ -51,8 +47,8 @@ export class PageHomeComponent {
               },
             });
             this.sectionCards?.refresh();
-            
-          } else if (result === 2) {
+
+          } else {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
               verticalPosition: 'top',

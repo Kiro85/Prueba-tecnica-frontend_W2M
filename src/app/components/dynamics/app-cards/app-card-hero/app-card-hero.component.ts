@@ -37,8 +37,8 @@ export class AppCardHeroComponent {
     dialogRef
       .afterClosed()
       .pipe(
-        tap((result) => {
-          if (result === 1) {
+        tap((success) => {
+          if (success) {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
               verticalPosition: 'top',
@@ -48,7 +48,7 @@ export class AppCardHeroComponent {
               },
             });
             this.deleted.emit();
-          } else if (result === 2) {
+          } else {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
               verticalPosition: 'top',
@@ -74,8 +74,8 @@ export class AppCardHeroComponent {
     dialogRef
       .afterClosed()
       .pipe(
-        tap((result) => {
-          if (result === 1) {
+        tap((success) => {
+          if (success) {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
               verticalPosition: 'top',
@@ -85,7 +85,7 @@ export class AppCardHeroComponent {
               },
             });
             this.edited.emit();
-          } else if (result === 2) {
+          } else {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
               verticalPosition: 'top',

@@ -24,10 +24,10 @@ export class AppModalConfirmDeleteComponent {
       .deleteHero(this.dialogData.hero().id)
       .pipe(
         tap(() => {
-          this.dialogRef.close(1);
+          this.dialogRef.close(true);
         }),
         catchError(() => {
-          this.dialogRef.close(2);
+          this.dialogRef.close(false);
           return [];
         }),
         takeUntilDestroyed(this.destroyRef),

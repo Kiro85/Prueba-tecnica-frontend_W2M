@@ -82,9 +82,9 @@ export class AppFormHeroComponent implements OnInit {
     this.heroService
       .createHero(heroModel)
       .pipe(
-        tap(() => this.dialogRef.close(1)),
+        tap(() => this.dialogRef.close(true)),
         catchError(() => {
-          this.dialogRef.close(2);
+          this.dialogRef.close(false);
           return [];
         }),
         takeUntilDestroyed(this.destroyRef),
@@ -96,9 +96,9 @@ export class AppFormHeroComponent implements OnInit {
     this.heroService
       .updateHero(hero)
       .pipe(
-        tap(() => this.dialogRef.close(1)),
+        tap(() => this.dialogRef.close(true)),
         catchError(() => {
-          this.dialogRef.close(2);
+          this.dialogRef.close(false);
           return [];
         }),
         takeUntilDestroyed(this.destroyRef),
