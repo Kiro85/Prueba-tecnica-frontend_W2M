@@ -16,7 +16,7 @@ export class AppSearchBarComponent implements OnInit {
 
   private destroyRef = inject(DestroyRef);
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initSearchBar();
   }
 

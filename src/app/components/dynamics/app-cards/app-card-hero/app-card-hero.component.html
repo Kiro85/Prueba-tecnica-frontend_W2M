@@ -9,8 +9,8 @@
       <p class="c-card-hero__description">{{hero()?.description | capitalizeFirstPipe}}</p>
       <p class="c-card-hero__city">{{hero()?.city | capitalizeWordsPipe}}</p>
       <div class="c-card-hero__buttons">
-        <app-button (click)="OpenFormHeroEdit()" icon="edit" text="Editar" class="c-button--primary"></app-button>
-        <app-button (click)="OpenConfirmDeleteModal()" text="Eliminar" class="c-button--secondary"></app-button>
+        <app-button (click)="openFormHeroEdit()" icon="edit" text="Editar" class="c-button--primary"></app-button>
+        <app-button (click)="openConfirmDeleteModal()" text="Eliminar" class="c-button--secondary"></app-button>
       </div>
   </div>
 </article>

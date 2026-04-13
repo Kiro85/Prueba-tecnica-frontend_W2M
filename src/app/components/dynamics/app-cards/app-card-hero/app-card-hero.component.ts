@@ -27,7 +27,7 @@ export class AppCardHeroComponent {
 
   private readonly destroyRef = inject(DestroyRef);
 
-  protected OpenConfirmDeleteModal(): void {
+  protected openConfirmDeleteModal(): void {
     const dialogRef = this.dialog.open(AppModalConfirmDeleteComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -64,7 +64,7 @@ export class AppCardHeroComponent {
       .subscribe();
   }
 
-  protected OpenFormHeroEdit(): void {
+  protected openFormHeroEdit(): void {
     const dialogRef = this.dialog.open(AppFormHeroComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',

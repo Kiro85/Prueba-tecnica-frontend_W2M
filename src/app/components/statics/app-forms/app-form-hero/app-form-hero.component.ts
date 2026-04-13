@@ -40,7 +40,7 @@ export class AppFormHeroComponent implements OnInit {
 
   private readonly destroyRef = inject(DestroyRef);
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initForm();
   }
 

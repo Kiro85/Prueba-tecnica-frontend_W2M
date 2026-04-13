@@ -27,7 +27,7 @@ export class PageHomeComponent {
 
   private readonly destroyRef = inject(DestroyRef);
 
-  protected OpenCreateHeroForm(): void {
+  protected openCreateHeroForm(): void {
     const dialogRef = this.dialog.open(AppFormHeroComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
