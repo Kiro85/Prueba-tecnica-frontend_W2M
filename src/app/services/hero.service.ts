@@ -16,11 +16,20 @@ export class HeroService {
   }
 
   public getHeroesPaginated(page: number, limit: number): Observable<Page> {
-    return this.http.get<Page>(`${this.apiUrl}?_page=${page}&_per_page=${limit}`);
+    return this.http.get<Page>(this.apiUrl, {
+      params: {
+        _page: page,
+        _per_page: limit,
+      },
+    });
   }
 
   public getHeroesByName(name: string): Observable<Hero[]> {
-    return this.http.get<Hero[]>(`${this.apiUrl}?name:contains=${name}`);
+    return this.http.get<Hero[]>(this.apiUrl, {
+      params: {
+        'name:contains': name,
+      }
+    });
   }
 
   public createHero(request: HeroRequest): Observable<Hero> {
