@@ -83,11 +83,8 @@ export class AppFormHeroComponent implements OnInit {
       .createHero(heroModel)
       .pipe(
         tap(() => this.dialogRef.close(1)),
-        catchError((err) => {
+        catchError(() => {
           this.dialogRef.close(2);
-          console.error(
-            'Error - app-form-hero-create.component.ts - createHero() / ' + err.message,
-          );
           return [];
         }),
         takeUntilDestroyed(this.destroyRef),
@@ -100,11 +97,8 @@ export class AppFormHeroComponent implements OnInit {
       .updateHero(hero)
       .pipe(
         tap(() => this.dialogRef.close(1)),
-        catchError((err) => {
+        catchError(() => {
           this.dialogRef.close(2);
-          console.error(
-            'Error - app-form-hero-create.component.ts - updateHero() / ' + err.message,
-          );
           return [];
         }),
         takeUntilDestroyed(this.destroyRef),

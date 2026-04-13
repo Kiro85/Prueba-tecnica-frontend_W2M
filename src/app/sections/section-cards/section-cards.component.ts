@@ -58,9 +58,6 @@ export class SectionCardsComponent implements OnInit {
         }),
         catchError((err) => {
           this.error.set(err.message || '');
-          console.error(
-            'Error - section-cards.component.ts - getHeroesPaginated() / ' + err.message,
-          );
           return of([]);
         }),
         finalize(() => {
@@ -87,7 +84,6 @@ export class SectionCardsComponent implements OnInit {
         }),
         catchError((err) => {
           this.error.set(err.message || '');
-          console.error('Error - section-cards.component.ts - getHeroesByName() / ' + err.message);
           return of([]);
         }),
         finalize(() => {

@@ -26,11 +26,8 @@ export class AppModalConfirmDeleteComponent {
         tap(() => {
           this.dialogRef.close(1);
         }),
-        catchError((err) => {
+        catchError(() => {
           this.dialogRef.close(2);
-          console.error(
-            'Error - app-modal-confirm-delete.component.ts - deleteHero() / ' + err.message,
-          );
           return [];
         }),
         takeUntilDestroyed(this.destroyRef),
