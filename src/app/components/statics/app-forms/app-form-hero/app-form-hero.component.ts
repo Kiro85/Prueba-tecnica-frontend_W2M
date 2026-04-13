@@ -7,12 +7,12 @@ import { MatInputModule } from '@angular/material/input';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Hero, HeroRequest } from '../../../../models/hero';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AppButtonPrimaryFormComponent } from '../../../dynamics/app-buttons/app-button-primary-form/app-button-primary-form.component';
 import { ImageService } from '../../../../services/image.service';
 import { catchError, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AppFormFieldComponent } from '../app-form-field/app-form-field.component';
 import { HeroService } from '../../../../services/hero.service';
+import { AppButtonComponent } from '../../../dynamics/app-button/app-button.component';
 
 @Component({
   selector: 'app-form-hero',
@@ -22,7 +22,7 @@ import { HeroService } from '../../../../services/hero.service';
     MatCheckboxModule,
     MatButtonModule,
     MatIconModule,
-    AppButtonPrimaryFormComponent,
+    AppButtonComponent,
     ReactiveFormsModule,
     AppFormFieldComponent,
   ],
@@ -31,7 +31,7 @@ import { HeroService } from '../../../../services/hero.service';
 })
 export class AppFormHeroComponent implements OnInit {
   private readonly dialogRef = inject(MatDialogRef<AppFormHeroComponent>);
-  private readonly dialogData = inject(MAT_DIALOG_DATA);
+  protected readonly dialogData = inject(MAT_DIALOG_DATA);
   private readonly imageService = inject(ImageService);
   private readonly heroService = inject(HeroService);
 

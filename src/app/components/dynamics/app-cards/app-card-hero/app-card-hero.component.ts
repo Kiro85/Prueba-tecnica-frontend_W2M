@@ -1,7 +1,5 @@
 import { Component, DestroyRef, inject, input } from '@angular/core';
-import { AppButtonEditComponent } from '../../app-buttons/app-button-edit/app-button-edit.component';
 import { Hero } from '../../../../models/hero';
-import { AppButtonSecondaryComponent } from '../../app-buttons/app-button-secondary/app-button-secondary.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AppModalConfirmDeleteComponent } from '../../app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,16 +10,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { CapitalizeWordsPipe } from '../../../../shared/pipes/capitalize-words.pipe';
 import { CapitalizeFirstPipe } from '../../../../shared/pipes/capitalize-first.pipe';
+import { AppButtonComponent } from '../../app-button/app-button.component';
 
 @Component({
   selector: 'app-card-hero',
-  imports: [
-    AppButtonEditComponent,
-    AppButtonSecondaryComponent,
-    AppButtonSecondaryComponent,
-    CapitalizeWordsPipe,
-    CapitalizeFirstPipe,
-  ],
+  imports: [AppButtonComponent, CapitalizeWordsPipe, CapitalizeFirstPipe],
   templateUrl: './app-card-hero.component.html',
   styleUrl: './app-card-hero.component.scss',
 })

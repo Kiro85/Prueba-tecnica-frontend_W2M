@@ -1,20 +1,20 @@
 import { Component, DestroyRef, effect, inject, input, OnInit, signal } from '@angular/core';
 import { AppCardHeroComponent } from '../../components/dynamics/app-cards/app-card-hero/app-card-hero.component';
 import { CommonModule } from '@angular/common';
-import { AppButtonPrimaryComponent } from '../../components/dynamics/app-buttons/app-button-primary/app-button-primary.component';
 import { AppSpinnerComponent } from '../../components/statics/app-spinner/app-spinner.component';
 import { AppErrorMessageComponent } from '../../components/dynamics/app-error-message/app-error-message.component';
 import { HeroService } from '../../services/hero.service';
 import { Hero } from '../../models/hero';
 import { catchError, finalize, of, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AppButtonComponent } from '../../components/dynamics/app-button/app-button.component';
 
 @Component({
   selector: 'section-cards',
   imports: [
     CommonModule,
     AppCardHeroComponent,
-    AppButtonPrimaryComponent,
+    AppButtonComponent,
     AppSpinnerComponent,
     AppErrorMessageComponent,
   ],
@@ -87,9 +87,7 @@ export class SectionCardsComponent implements OnInit {
         }),
         catchError((err) => {
           this.error.set(err.message || '');
-          console.error(
-            'Error - section-cards.component.ts - getHeroesByName() / ' + err.message,
-          )
+          console.error('Error - section-cards.component.ts - getHeroesByName() / ' + err.message);
           return of(null);
         }),
         finalize(() => {

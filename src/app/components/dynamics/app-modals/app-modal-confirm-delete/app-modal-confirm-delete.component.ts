@@ -1,15 +1,14 @@
 import { Component, DestroyRef, inject, OnDestroy } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { AppButtonSecondaryComponent } from '../../../dynamics/app-buttons/app-button-secondary/app-button-secondary.component';
-import { AppButtonPrimaryComponent } from '../../../dynamics/app-buttons/app-button-primary/app-button-primary.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HeroService } from '../../../../services/hero.service';
-import { catchError, takeUntil, tap } from 'rxjs';
+import { catchError, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AppButtonComponent } from '../../app-button/app-button.component';
 
 @Component({
   selector: 'app-modal-confirm-delete.component',
-  imports: [MatIcon, AppButtonSecondaryComponent, AppButtonPrimaryComponent],
+  imports: [MatIcon, AppButtonComponent],
   templateUrl: './app-modal-confirm-delete.component.html',
   styleUrl: './app-modal-confirm-delete.component.scss',
 })

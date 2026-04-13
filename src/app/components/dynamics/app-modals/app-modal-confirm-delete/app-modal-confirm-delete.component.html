@@ -12,13 +12,15 @@
     </div>
   </div>
   <div class="c-modal-delete__buttons">
-    <app-button-secondary
-      [message]="'Cancelar'"
+    <app-button
       (click)="closeConfirmDeleteModal()"
-    ></app-button-secondary>
-    <app-button-primary
-      [message]="'Sí, eliminar'"
+      text="Cancelar"
+      class="c-button--secondary"
+    ></app-button>
+    <app-button
       (click)="deleteHero()"
-    ></app-button-primary>
+      text="Sí, eliminar"
+      class="c-button--primary"
+    ></app-button>
   </div>
 </article>

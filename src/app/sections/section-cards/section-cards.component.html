@@ -24,11 +24,11 @@
         }
       }
     </ul>
-    <app-button-primary
-      class="s-list-hero__button"
-      [disabled]="!nextPage()"
-      [message]="'Ver más'"
+    <app-button
       (click)="getHeroesPaginated()"
-    ></app-button-primary>
+      text="Ver más"
+      class="c-button--primary"
+      [disabled]="!nextPage()"
+    ></app-button>
   </section>
 }
