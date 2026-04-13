@@ -15,13 +15,13 @@ export class AppFormFieldComponent {
   public type = input<'text' | 'textarea' | 'img'>();
   public placeholder = input('');
   public label = input('');
-  public class = input('');
 
   protected getErrorMessage(control: FormControl | null): string {
     let message: string = '';
 
     if (control && control.touched && control.errors) {
-      if (control.errors['required']) message = 'Este campo es obligatorio.';
+      if (control.errors['required'])
+        message = 'Este campo es obligatorio.';
       if (control.errors['minlength'])
         message = `Mínimo ${control.errors['minlength'].requiredLength} caracteres`;
       if (control.errors['maxlength'])
