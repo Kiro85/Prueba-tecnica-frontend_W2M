@@ -48,7 +48,7 @@ export class SectionCardsComponent implements OnInit {
     this.getHeroesPaginated();
   }
 
-  protected getHeroesPaginated(): void {
+  public getHeroesPaginated(): void {
     this.loading.set(true);
     this.heroService
       .getHeroesPaginated(this.page(), this.heroesPerPage)
@@ -96,5 +96,17 @@ export class SectionCardsComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe();
+  }
+
+  public refresh(): void {
+    this.resetPagination();
+    this.getHeroesPaginated();
+  }
+
+  private resetPagination(): void {
+    this.heroes.set([]);
+    this.heroesFiltered.set([]);
+    this.page.set(1);
+    this.nextPage.set(true);
   }
 }

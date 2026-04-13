@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Component, DestroyRef, ViewChild, inject, signal } from '@angular/core';
 import { SectionCardsComponent } from '../../sections/section-cards/section-cards.component';
 import { AppBannerComponent } from '../../components/statics/app-banner/app-banner.component';
 import { AppSearchBarComponent } from '../../components/statics/app-search-bar/app-search-bar.component';
@@ -27,6 +27,7 @@ export class PageHomeComponent {
   protected query = signal<string>('');
   private readonly dialog = inject(MatDialog);
   private readonly snackBar = inject(MatSnackBar);
+  @ViewChild(SectionCardsComponent) private readonly sectionCards?: SectionCardsComponent;
 
   private readonly destroyRef = inject(DestroyRef);
 
@@ -49,6 +50,8 @@ export class PageHomeComponent {
                 success: true,
               },
             });
+            this.sectionCards?.refresh();
+            
           } else if (result === 2) {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
