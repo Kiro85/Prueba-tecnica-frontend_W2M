@@ -1,63 +1,73 @@
-import { Component, inject, Input, OnDestroy } from '@angular/core';
+import { Component, DestroyRef, inject, input } from '@angular/core';
 import { AppButtonEditComponent } from '../../app-buttons/app-button-edit/app-button-edit.component';
 import { Hero } from '../../../../models/hero';
 import { AppButtonSecondaryComponent } from '../../app-buttons/app-button-secondary/app-button-secondary.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AppModalConfirmDeleteComponent } from '../../app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
-import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormatterService } from '../../../../services/formatter.service';
 import { AppFormHeroComponent } from '../../../statics/app-forms/app-form-hero/app-form-hero.component';
 import { AppModalMessageComponent } from '../../app-modals/app-modal-message/app-modal-message.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { tap } from 'rxjs';
+import { CapitalizeWordsPipe } from '../../../../shared/pipes/capitalize-words.pipe';
+import { CapitalizeFirstPipe } from '../../../../shared/pipes/capitalize-first.pipe';
 
 @Component({
   selector: 'app-card-hero',
-  imports: [AppButtonEditComponent, AppButtonSecondaryComponent, AppButtonSecondaryComponent],
+  imports: [
+    AppButtonEditComponent,
+    AppButtonSecondaryComponent,
+    AppButtonSecondaryComponent,
+    CapitalizeWordsPipe,
+    CapitalizeFirstPipe,
+  ],
   templateUrl: './app-card-hero.component.html',
   styleUrl: './app-card-hero.component.scss',
 })
-export class AppCardHeroComponent implements OnDestroy {
-  @Input() hero?: Hero;
+export class AppCardHeroComponent {
+  public hero = input<Hero>();
 
   private readonly dialog = inject(MatDialog);
   private readonly snackBar = inject(MatSnackBar);
   protected readonly formatterService = inject(FormatterService);
 
-  private unsubscribe$: Subject<void> = new Subject<void>();
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
+  private readonly destroyRef = inject(DestroyRef);
 
   protected OpenConfirmDeleteModal(): void {
     const dialogRef = this.dialog.open(AppModalConfirmDeleteComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
-      data: this.hero,
+      data: { hero: this.hero },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        this.snackBar.openFromComponent(AppModalMessageComponent, {
-          duration: 5000,
-          verticalPosition: 'top',
-          data: {
-            message: 'Este héroe se ha eliminado',
-            success: true,
-          },
-        });
-      } else if (result === 2) {
-        this.snackBar.openFromComponent(AppModalMessageComponent, {
-          duration: 5000,
-          verticalPosition: 'top',
-          data: {
-            message: 'Ha ocurrido un error',
-            success: false,
-          },
-        });
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        tap((result) => {
+          if (result === 1) {
+            this.snackBar.openFromComponent(AppModalMessageComponent, {
+              duration: 5000,
+              verticalPosition: 'top',
+              data: {
+                message: 'Este héroe se ha eliminado',
+                success: true,
+              },
+            });
+          } else if (result === 2) {
+            this.snackBar.openFromComponent(AppModalMessageComponent, {
+              duration: 5000,
+              verticalPosition: 'top',
+              data: {
+                message: 'Ha ocurrido un error',
+                success: false,
+              },
+            });
+          }
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
   }
 
   protected OpenFormHeroEdit(): void {
@@ -67,26 +77,32 @@ export class AppCardHeroComponent implements OnDestroy {
       data: { hero: this.hero },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        this.snackBar.openFromComponent(AppModalMessageComponent, {
-          duration: 5000,
-          verticalPosition: 'top',
-          data: {
-            message: 'Héroe modificado con éxito',
-            success: true,
-          },
-        });
-      } else if (result === 2) {
-        this.snackBar.openFromComponent(AppModalMessageComponent, {
-          duration: 5000,
-          verticalPosition: 'top',
-          data: {
-            message: 'Ha ocurrido un error',
-            success: false,
-          },
-        });
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        tap((result) => {
+          if (result === 1) {
+            this.snackBar.openFromComponent(AppModalMessageComponent, {
+              duration: 5000,
+              verticalPosition: 'top',
+              data: {
+                message: 'Este héroe se ha modificado',
+                success: true,
+              },
+            });
+          } else if (result === 2) {
+            this.snackBar.openFromComponent(AppModalMessageComponent, {
+              duration: 5000,
+              verticalPosition: 'top',
+              data: {
+                message: 'Ha ocurrido un error',
+                success: false,
+              },
+            });
+          }
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
   }
 }
