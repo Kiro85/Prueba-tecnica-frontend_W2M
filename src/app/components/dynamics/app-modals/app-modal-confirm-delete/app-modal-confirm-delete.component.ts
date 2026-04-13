@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnDestroy } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HeroService } from '../../../../services/hero.service';
@@ -21,7 +21,7 @@ export class AppModalConfirmDeleteComponent {
 
   protected deleteHero(): void {
     this.heroService
-      .deleteHero(this.dialogData.id)
+      .deleteHero(this.dialogData.hero().id)
       .pipe(
         tap(() => {
           this.dialogRef.close(1);
