@@ -8,7 +8,7 @@ export class CapitalizeWordsPipe implements PipeTransform {
     return value
       ? value
           .split(' ')
-          .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
           .join(' ')
       : '';
   }

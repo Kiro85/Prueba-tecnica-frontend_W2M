@@ -50,18 +50,18 @@
     },
     {
       "id": "7",
-      "name": "Viuda Negra",
-      "superpower": "exespía soviética, artista marcial y francotiradora. ",
-      "city": "Sevilla, Esp.",
-      "description": "Natasha nació en Rusia durante la Guerra Fría y fue entrenada por la KGB",
+      "name": "VIUDA NEGRA",
+      "superpower": "EXESPÍA SOVIÉTICA, ARTISTA MARCIAL Y FRANCOTIRADORA. ",
+      "city": "SEVILLA, ESP.",
+      "description": "NATASHA NACIÓ EN RUSIA DURANTE LA GUERRA FRÍA Y FUE ENTRENADA POR LA KGB",
       "image": "heroes/viuda-negra.png"
     },
     {
       "id": "8",
-      "name": "Ironman",
-      "superpower": "Armadura",
-      "city": "Buenos Aires, Arg.",
-      "description": "La armadura de Iron Man está hecha de nanotecnología y se almacena en un reactor que Tony Stark lleva en el pecho.",
+      "name": "IRONMAN",
+      "superpower": "ARMADURA",
+      "city": "BUENOS AIRES, ARG.",
+      "description": "LA ARMADURA DE IRON MAN ESTÁ HECHA DE NANOTECNOLOGÍA Y SE ALMACENA EN UN REACTOR QUE TONY STARK LLEVA EN EL PECHO.",
       "image": "heroes/ironman.png"
     },
     {

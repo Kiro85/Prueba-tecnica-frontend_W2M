@@ -7,11 +7,9 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
   imports: [MatIcon],
   styleUrl: './app-modal-message.component.scss',
   template: `
-    <article class="{{ success ? 'c-modal-success' : 'c-modal-error' }}">
+    <article class="c-modal {{ success ? 'c-modal--success' : 'c-modal--error' }}">
       <mat-icon>{{ success ? 'check_circle' : 'error' }}</mat-icon>
-      <p class="{{ success ? 'c-modal-success__text' : 'c-modal-error__text' }}">
-        {{ snackBarData.message }}
-      </p>
+      <p>{{ snackBarData.message }}</p>
     </article>
   `,
 })
