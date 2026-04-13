@@ -4,8 +4,7 @@ import { MatIcon } from '@angular/material/icon';
 import { AppFormHeroComponent } from '../../../statics/app-forms/app-form-hero/app-form-hero.component';
 import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AppModalSuccessMessageComponent } from '../../app-modals/app-modal-success-message/app-modal-success-message.component';
-import { AppModalErrorMessageComponent } from '../../app-modals/app-modal-error-message/app-modal-error-message.component';
+import { AppModalMessageComponent } from '../../app-modals/app-modal-message/app-modal-message.component';
 
 @Component({
   selector: 'app-button-create',
@@ -32,19 +31,21 @@ export class AppButtonCreateComponent implements OnDestroy {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
-        this.snackBar.openFromComponent(AppModalSuccessMessageComponent, {
+        this.snackBar.openFromComponent(AppModalMessageComponent, {
           duration: 5000,
           verticalPosition: 'top',
           data: {
             message: 'Héroe creado con éxito',
+            success: true,
           },
         });
       } else if (result === 2) {
-        this.snackBar.openFromComponent(AppModalErrorMessageComponent, {
+        this.snackBar.openFromComponent(AppModalMessageComponent, {
           duration: 5000,
           verticalPosition: 'top',
           data: {
             message: 'Ha ocurrido un error',
+            success: false,
           },
         });
       }

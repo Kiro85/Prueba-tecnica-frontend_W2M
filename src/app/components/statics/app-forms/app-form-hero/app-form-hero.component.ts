@@ -63,7 +63,7 @@ export class AppFormHeroComponent implements OnInit {
         this.dialogData?.hero.description.toUpperCase() || '',
         [Validators.required, Validators.minLength(12), Validators.maxLength(128)],
       ],
-      image: [this.dialogData?.hero.image.toUpperCase() || '', [Validators.required]],
+      image: [this.dialogData?.hero.image || '', [Validators.required]],
       termsAndConditions: [false, [Validators.requiredTrue]],
     });
   }
