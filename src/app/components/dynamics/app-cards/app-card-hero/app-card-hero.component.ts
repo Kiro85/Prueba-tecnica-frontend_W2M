@@ -3,7 +3,6 @@ import { Hero } from '../../../../models/hero';
 import { MatDialog } from '@angular/material/dialog';
 import { AppModalConfirmDeleteComponent } from '../../app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormatterService } from '../../../../services/formatter.service';
 import { AppFormHeroComponent } from '../../../statics/app-forms/app-form-hero/app-form-hero.component';
 import { AppModalMessageComponent } from '../../app-modals/app-modal-message/app-modal-message.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -25,7 +24,6 @@ export class AppCardHeroComponent {
 
   private readonly dialog = inject(MatDialog);
   private readonly snackBar = inject(MatSnackBar);
-  protected readonly formatterService = inject(FormatterService);
 
   private readonly destroyRef = inject(DestroyRef);
 
