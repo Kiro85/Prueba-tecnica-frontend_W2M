@@ -40,29 +40,26 @@ export class PageHomeComponent {
       .pipe(
         tap((success) => {
           if (success === true) {
-            this.snackBar.openFromComponent(AppModalMessageComponent, {
-              duration: 5000,
-              verticalPosition: 'top',
-              data: {
-                message: 'Héroe creado con éxito',
-                success: true,
-              },
-            });
+            this.showSnackbar('Héroe creado con éxito', true);
             this.sectionCards?.refresh();
 
           } else if (success === false) {
-            this.snackBar.openFromComponent(AppModalMessageComponent, {
-              duration: 5000,
-              verticalPosition: 'top',
-              data: {
-                message: 'Ha ocurrido un error',
-                success: false,
-              },
-            });
+            this.showSnackbar('Ha ocurrido un error', false);
           }
         }),
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe();
+  }
+
+  private showSnackbar(message: string, success: boolean): void {
+    this.snackBar.openFromComponent(AppModalMessageComponent, {
+      duration: 5000,
+      verticalPosition: 'top',
+      data: {
+        message,
+        success,
+      },
+    });
   }
 }

@@ -20,13 +20,15 @@ export class AppFormFieldComponent {
     let message: string = '';
 
     if (control && control.touched && control.errors) {
-      if (control.errors['required'])
-        message = 'Este campo es obligatorio.';
-      if (control.errors['minlength'])
-        message = `Mínimo ${control.errors['minlength'].requiredLength} caracteres`;
-      if (control.errors['maxlength'])
-        message = `Máximo ${control.errors['maxlength'].requiredLength} caracteres`;
-      if (control.errors['requiredTrue']) message = 'Debes aceptar los términos';
+      const errorMessages: Record<string, () => string> = {
+        required: () => 'Este campo es obligatorio.',
+        minlength: () => `Mínimo ${control.errors!['minlength'].requiredLength} caracteres`,
+        maxlength: () => `Máximo ${control.errors!['maxlength'].requiredLength} caracteres`,
+        requiredTrue: () => 'Debes aceptar los términos',
+      };
+
+      const error = Object.keys(control.errors)[0];
+      message = errorMessages[error]?.();
     }
 
     return message;

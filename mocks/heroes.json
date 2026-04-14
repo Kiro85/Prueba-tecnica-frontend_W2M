@@ -2,10 +2,10 @@
   "heroes": [
     {
       "id": "1",
-      "name": "Wonder Woman",
-      "superpower": "Fuerza sobrehumana, Supervelocidad",
-      "city": "Sevilla, Esp.",
-      "description": "Wonder Woman es considerada una de las superheroínas más fuertes del planeta. ",
+      "name": "WONDER WOMAN",
+      "superpower": "FUERZA SOBREHUMANA, SUPERVELOCIDAD",
+      "city": "SEVILLA, ESP.",
+      "description": "WONDER WOMAN ES CONSIDERADA UNA DE LAS SUPERHEROÍNAS MÁS FUERTES DEL PLANETA. ",
       "image": "assets/heroes/wonder-woman.png"
     },
     {

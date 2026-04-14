@@ -21,8 +21,7 @@ import { AppFormHeroComponent } from '@components/statics/app-forms/app-form-her
 })
 export class AppCardHeroComponent {
   public hero = input<Hero>();
-  public deleted = output<void>();
-  public edited = output<void>();
+  public modified = output<void>();
 
   private readonly dialog = inject(MatDialog);
   private readonly snackBar = inject(MatSnackBar);
@@ -41,24 +40,10 @@ export class AppCardHeroComponent {
       .pipe(
         tap((success) => {
           if (success === true) {
-            this.snackBar.openFromComponent(AppModalMessageComponent, {
-              duration: 5000,
-              verticalPosition: 'top',
-              data: {
-                message: 'Este héroe se ha eliminado',
-                success: true,
-              },
-            });
-            this.deleted.emit();
+            this.showSnackbar('Héroe eliminado con éxito', true);
+            this.modified.emit();
           } else if (success === false) {
-            this.snackBar.openFromComponent(AppModalMessageComponent, {
-              duration: 5000,
-              verticalPosition: 'top',
-              data: {
-                message: 'Ha ocurrido un error',
-                success: false,
-              },
-            });
+            this.showSnackbar('Ha ocurrido un error', false);
           }
         }),
         takeUntilDestroyed(this.destroyRef),
@@ -78,28 +63,25 @@ export class AppCardHeroComponent {
       .pipe(
         tap((success) => {
           if (success === true) {
-            this.snackBar.openFromComponent(AppModalMessageComponent, {
-              duration: 5000,
-              verticalPosition: 'top',
-              data: {
-                message: 'Este héroe se ha modificado',
-                success: true,
-              },
-            });
-            this.edited.emit();
+            this.showSnackbar('Héroe editado con éxito', true);
+            this.modified.emit();
           } else if (success === false) {
-            this.snackBar.openFromComponent(AppModalMessageComponent, {
-              duration: 5000,
-              verticalPosition: 'top',
-              data: {
-                message: 'Ha ocurrido un error',
-                success: false,
-              },
-            });
+            this.showSnackbar('Ha ocurrido un error', false);
           }
         }),
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe();
+  }
+
+  private showSnackbar(message: string, success: boolean): void {
+    this.snackBar.openFromComponent(AppModalMessageComponent, {
+      duration: 5000,
+      verticalPosition: 'top',
+      data: {
+        message,
+        success,
+      },
+    });
   }
 }
