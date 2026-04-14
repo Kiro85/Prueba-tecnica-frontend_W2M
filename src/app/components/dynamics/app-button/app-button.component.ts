@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -6,7 +6,7 @@ import { MatIcon } from '@angular/material/icon';
   imports: [MatIcon],
   styleUrl: './app-button.component.scss',
   template: `
-    <button class="c-button {{ class() }}" [disabled]="disabled()">
+    <button class="c-button {{ class() }}" [disabled]="disabled()" (click)="pressed.emit()">
       @if (icon()) {
         <mat-icon>{{ icon() }}</mat-icon>
       }
@@ -23,4 +23,5 @@ export class AppButtonComponent {
   public icon = input<string>();
   public class = input<string>();
   public disabled = input<boolean>(false);
+  public pressed = output<void>();
 }
