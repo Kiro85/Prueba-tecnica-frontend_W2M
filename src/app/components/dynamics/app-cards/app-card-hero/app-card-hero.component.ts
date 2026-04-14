@@ -38,7 +38,7 @@ export class AppCardHeroComponent {
       .afterClosed()
       .pipe(
         tap((success) => {
-          if (success) {
+          if (success === true) {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
               verticalPosition: 'top',
@@ -48,7 +48,7 @@ export class AppCardHeroComponent {
               },
             });
             this.deleted.emit();
-          } else {
+          } else if (success === false) {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
               verticalPosition: 'top',
@@ -75,7 +75,7 @@ export class AppCardHeroComponent {
       .afterClosed()
       .pipe(
         tap((success) => {
-          if (success) {
+          if (success === true) {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
               verticalPosition: 'top',
@@ -85,7 +85,7 @@ export class AppCardHeroComponent {
               },
             });
             this.edited.emit();
-          } else {
+          } else if (success === false) {
             this.snackBar.openFromComponent(AppModalMessageComponent, {
               duration: 5000,
               verticalPosition: 'top',
