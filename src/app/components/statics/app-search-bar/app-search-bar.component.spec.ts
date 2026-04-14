@@ -1,22 +1,24 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppSearchBarComponent } from './app-search-bar.component';
+
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { HeroStoreService } from '../../../services/hero-store.service';
+import { HeroService } from '@services/hero.service';
+
 
 describe('AppSearchBarComponent', () => {
   let fixture: ComponentFixture<AppSearchBarComponent>;
   let component: AppSearchBarComponent;
 
-  const mockHeroStoreService = {
+  const mockHeroService = {
     getHeroesByName: vi.fn(),
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppSearchBarComponent, ReactiveFormsModule],
-      providers: [{ provide: HeroStoreService, useValue: mockHeroStoreService }],
+      providers: [{ provide: HeroService, useValue: mockHeroService }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppSearchBarComponent);
@@ -29,26 +31,26 @@ describe('AppSearchBarComponent', () => {
   });
 
   it('should emit query when input changes', async () => {
-    (component as any)['searchControl'].setValue('batman');
+    (component as any)['queryControl'].setValue('batman');
 
     await new Promise((r) => setTimeout(r, 300));
 
-    expect(mockHeroStoreService.getHeroesByName).toHaveBeenCalledWith('batman');
+    expect(mockHeroService.getHeroesByName).toHaveBeenCalledWith('batman');
   });
 
   it('should trim query before calling service', async () => {
-    (component as any)['searchControl'].setValue('   superman   ');
+    (component as any)['queryControl'].setValue('   superman   ');
 
     await new Promise((r) => setTimeout(r, 300));
 
-    expect(mockHeroStoreService.getHeroesByName).toHaveBeenCalledWith('superman');
+    expect(mockHeroService.getHeroesByName).toHaveBeenCalledWith('superman');
   });
 
   it('should send null if query is empty', async () => {
-    (component as any)['searchControl'].setValue('   ');
+    (component as any)['queryControl'].setValue('   ');
 
     await new Promise((r) => setTimeout(r, 300));
 
-    expect(mockHeroStoreService.getHeroesByName).toHaveBeenCalledWith(null);
+    expect(mockHeroService.getHeroesByName).toHaveBeenCalledWith(null);
   });
 });

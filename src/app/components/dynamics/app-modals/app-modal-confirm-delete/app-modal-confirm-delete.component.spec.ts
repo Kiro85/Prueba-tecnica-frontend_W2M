@@ -1,10 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppModalConfirmDeleteComponent } from './app-modal-confirm-delete.component';
+
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { of, throwError } from 'rxjs';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { HeroService } from '../../../../services/hero.service';
+
+import { HeroService } from '@services/hero.service';
 
 describe('AppModalConfirmDeleteComponent', () => {
   let fixture: ComponentFixture<AppModalConfirmDeleteComponent>;
@@ -46,20 +48,20 @@ describe('AppModalConfirmDeleteComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call deleteHero and close dialog with 1 on success', () => {
+  it('should call deleteHero and close dialog with true on success', () => {
     component['deleteHero']();
 
     expect(mockHeroService.deleteHero).toHaveBeenCalledWith(mockDialogData);
-    expect(mockDialogRef.close).toHaveBeenCalledWith(1);
+    expect(mockDialogRef.close).toHaveBeenCalledWith(true);
   });
 
-  it('should call deleteHero and close dialog with 2 on error', () => {
+  it('should call deleteHero and close dialog with false on error', () => {
     mockHeroService.deleteHero.mockReturnValue(throwError(() => new Error()));
 
     component['deleteHero']();
 
     expect(mockHeroService.deleteHero).toHaveBeenCalledWith(mockDialogData);
-    expect(mockDialogRef.close).toHaveBeenCalledWith(2);
+    expect(mockDialogRef.close).toHaveBeenCalledWith(false);
   });
 
   it('should close modal without action', () => {

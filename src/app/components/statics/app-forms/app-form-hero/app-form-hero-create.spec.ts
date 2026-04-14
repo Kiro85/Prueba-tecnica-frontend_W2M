@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppFormHeroComponent } from './app-form-hero.component';
+
 import { MatDialogRef } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import { of, throwError } from 'rxjs';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-import { HeroStoreService } from '../../../../services/hero-store.service';
-import { ImageService } from '../../../../services/image.service';
-import { FormatterService } from '../../../../services/formatter.service';
-import { AppFormHeroComponent } from './app-form-hero.component';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { of, throwError } from 'rxjs';
+
+import { ImageService } from '@services/image.service';
 
 describe('AppFormHeroComponent', () => {
   let fixture: ComponentFixture<AppFormHeroComponent>;
@@ -17,7 +17,7 @@ describe('AppFormHeroComponent', () => {
     close: vi.fn(),
   };
 
-  const mockHeroStoreService = {
+  const mockHeroService = {
     createHero: vi.fn(() => of({})),
   };
 
@@ -25,19 +25,12 @@ describe('AppFormHeroComponent', () => {
     convertFileToBase64: vi.fn(() => Promise.resolve('base64')),
   };
 
-  const mockFormatterService = {
-    firstCharPerWordToUpperCase: vi.fn((v) => v),
-    firstCharToUpperCase: vi.fn((v) => v),
-  };
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppFormHeroComponent, ReactiveFormsModule],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },
-        { provide: HeroStoreService, useValue: mockHeroStoreService },
         { provide: ImageService, useValue: mockImageService },
-        { provide: FormatterService, useValue: mockFormatterService },
       ],
     }).compileComponents();
 
@@ -54,7 +47,7 @@ describe('AppFormHeroComponent', () => {
     expect(component['heroForm']).toBeTruthy();
   });
 
-  it('should call createHero and close dialog with 1 on success', async () => {
+  it('should call createHero and close dialog with true on success', async () => {
     const file = new File(['data'], 'file.png');
 
     component['heroForm'].patchValue({
@@ -68,12 +61,12 @@ describe('AppFormHeroComponent', () => {
 
     await component['onSubmit']();
 
-    expect(mockHeroStoreService.createHero).toHaveBeenCalled();
-    expect(mockDialogRef.close).toHaveBeenCalledWith(1);
+    expect(mockHeroService.createHero).toHaveBeenCalled();
+    expect(mockDialogRef.close).toHaveBeenCalledWith(true);
   });
 
-  it('should close dialog with 2 on error', async () => {
-    mockHeroStoreService.createHero.mockReturnValue(throwError(() => new Error()));
+  it('should close dialog with false on error', async () => {
+    mockHeroService.createHero.mockReturnValue(throwError(() => new Error()));
 
     const file = new File(['data'], 'file.png');
 
@@ -88,8 +81,8 @@ describe('AppFormHeroComponent', () => {
 
     await component['onSubmit']();
 
-    expect(mockHeroStoreService.createHero).toHaveBeenCalled();
-    expect(mockDialogRef.close).toHaveBeenCalledWith(2);
+    expect(mockHeroService.createHero).toHaveBeenCalled();
+    expect(mockDialogRef.close).toHaveBeenCalledWith(false);
   });
 
   it('should be invalid when required fields are empty', () => {

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AppFormFieldComponent } from './app-form-field.component';
+
 import { FormControl } from '@angular/forms';
 
 describe('AppFormFieldComponent', () => {
@@ -9,9 +9,8 @@ describe('AppFormFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppFormFieldComponent]
-    })
-    .compileComponents();
+      imports: [AppFormFieldComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AppFormFieldComponent);
     component = fixture.componentInstance;
@@ -22,7 +21,7 @@ describe('AppFormFieldComponent', () => {
     expect(component).toBeTruthy();
   });
 
-    it('should set file when onFileSelected is triggered', () => {
+  it('should set file when onFileSelected is triggered', () => {
     const control = new FormControl();
     const file = new File(['data'], 'file.png');
 
