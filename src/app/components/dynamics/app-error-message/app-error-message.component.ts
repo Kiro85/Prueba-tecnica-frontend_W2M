@@ -7,10 +7,10 @@ import { Component, input } from '@angular/core';
   template: `
     <article class="c-error-message">
       <span class="c-error-message__title">Ha ocurrido un error!</span>
-      <span class="c-error-message__text">{{ message() }}</span>
+      <span class="c-error-message__text">
+        <ng-content></ng-content>
+      </span>
     </article>
   `,
 })
-export class AppErrorMessageComponent {
-  public message = input<string>('message');
-}
+export class AppErrorMessageComponent {}
