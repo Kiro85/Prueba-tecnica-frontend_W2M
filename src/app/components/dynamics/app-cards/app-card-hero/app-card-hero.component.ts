@@ -1,15 +1,15 @@
 import { Component, DestroyRef, inject, input, output } from '@angular/core';
-import { Hero } from '../../../../models/hero';
 import { MatDialog } from '@angular/material/dialog';
-import { AppModalConfirmDeleteComponent } from '../../app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AppFormHeroComponent } from '../../../statics/app-forms/app-form-hero/app-form-hero.component';
-import { AppModalMessageComponent } from '../../app-modals/app-modal-message/app-modal-message.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
-import { CapitalizeWordsPipe } from '../../../../shared/pipes/capitalize-words.pipe';
-import { CapitalizeFirstPipe } from '../../../../shared/pipes/capitalize-first.pipe';
-import { AppButtonComponent } from '../../app-button/app-button.component';
+import { Hero } from '@models/hero';
+import { CapitalizeWordsPipe } from '@shared/pipes/capitalize-words.pipe';
+import { CapitalizeFirstPipe } from '@shared/pipes/capitalize-first.pipe';
+import { AppModalConfirmDeleteComponent } from '@components/dynamics/app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
+import { AppModalMessageComponent } from '@components/dynamics/app-modals/app-modal-message/app-modal-message.component';
+import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
+import { AppFormHeroComponent } from '@components/statics/app-forms/app-form-hero/app-form-hero.component';
 
 @Component({
   selector: 'app-card-hero',

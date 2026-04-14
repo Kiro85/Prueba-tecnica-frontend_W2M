@@ -1,10 +1,10 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HeroService } from '../../../../services/hero.service';
-import { catchError, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AppButtonComponent } from '../../app-button/app-button.component';
+import { catchError, tap } from 'rxjs';
+import { HeroService } from '@services/hero.service';
+import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 
 @Component({
   selector: 'app-modal-confirm-delete.component',

@@ -5,14 +5,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Hero, HeroRequest } from '../../../../models/hero';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ImageService } from '../../../../services/image.service';
-import { catchError, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AppFormFieldComponent } from '../app-form-field/app-form-field.component';
-import { HeroService } from '../../../../services/hero.service';
-import { AppButtonComponent } from '../../../dynamics/app-button/app-button.component';
+import { catchError, tap } from 'rxjs';
+import { Hero, HeroRequest } from '@models/hero';
+import { ImageService } from '@services/image.service';
+import { HeroService } from '@services/hero.service';
+import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
+import { AppFormFieldComponent } from '@components/statics/app-forms/app-form-field/app-form-field.component';
 
 @Component({
   selector: 'app-form-hero',

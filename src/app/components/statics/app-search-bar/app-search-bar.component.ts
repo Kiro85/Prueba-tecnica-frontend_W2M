@@ -1,8 +1,8 @@
 import { Component, DestroyRef, inject, OnInit, output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AppButtonComponent } from '../../dynamics/app-button/app-button.component';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs';
+import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 
 @Component({
   selector: 'app-search-bar',
