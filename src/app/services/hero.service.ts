@@ -9,7 +9,7 @@ import { Page } from '../models/page';
 })
 export class HeroService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:3000/heroes';
+  private readonly apiUrl = '/heroes';
 
   public getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.apiUrl);
