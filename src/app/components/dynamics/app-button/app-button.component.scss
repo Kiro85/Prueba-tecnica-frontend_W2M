@@ -1,4 +1,5 @@
 @use 'abstract/var' as var;
+@use 'abstract/mixin' as mixin;
 
 .c-button {
   display: inline-block;
@@ -25,80 +26,19 @@
   }
 
   &--primary {
-    background-color: var.$c-primary;
-
-    &:hover {
-      background-color: var.$c-primary-hover;
-    }
-
-    mat-icon {
-      color: var.$c-on-primary;
-    }
-
-    p {
-      color: var.$c-on-primary;
-    }
+    @include mixin.button-primary;
   }
 
   &--secondary {
-    background-color: var.$c-button;
-
-    &:hover {
-      background-color: var.$c-button-hover;
-    }
-
-    p {
-      color: var.$c-on-button;
-    }
+    @include mixin.button-secondary;
   }
 
   &--create {
-    width: auto;
-    height: 56px;
-    padding: 0 16px;
-    background-color: var.$c-primary;
-
-    &:hover {
-      background-color: var.$c-primary-hover;
-    }
-
-    mat-icon {
-      color: var.$c-on-primary;
-    }
-
-    p {
-      color: var.$c-on-primary;
-    }
+    @include mixin.button-create;
   }
 
   &--search {
-    width: 72px;
-    height: 72px;
-    padding: 0;
-    background-color: var.$c-primary;
-    border-radius: 100px;
-
-    &:hover {
-      background-color: var.$c-primary-hover;
-    }
-
-    mat-icon {
-      color: var.$c-on-primary;
-    }
-  }
-
-  &--primary-form {
-    width: 100%;
-    padding: 0 16px;
-    background-color: var.$c-primary;
-
-    &:hover {
-      background-color: var.$c-primary-hover;
-    }
-
-    p {
-      color: var.$c-on-primary;
-    }
+    @include mixin.button-search;
   }
 
   &[disabled],

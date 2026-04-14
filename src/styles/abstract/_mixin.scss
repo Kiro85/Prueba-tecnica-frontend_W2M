@@ -1,0 +1,60 @@
+@use 'abstract/var' as var;
+
+@mixin button-primary {
+  background-color: var.$c-primary;
+
+  &:hover {
+    background-color: var.$c-primary-hover;
+  }
+
+  mat-icon {
+    color: var.$c-on-primary;
+  }
+
+  p {
+    color: var.$c-on-primary;
+  }
+}
+
+@mixin button-secondary {
+  background-color: var.$c-button;
+
+  &:hover {
+    background-color: var.$c-button-hover;
+  }
+
+  p {
+    color: var.$c-on-button;
+  }
+}
+
+@mixin button-create {
+  width: auto;
+  height: 56px;
+  padding: 0 16px;
+  background-color: var.$c-primary;
+
+  &:hover {
+    background-color: var.$c-primary-hover;
+  }
+
+  mat-icon {
+    color: var.$c-on-primary;
+  }
+
+  p {
+    color: var.$c-on-primary;
+  }
+}
+
+@mixin button-search {
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  background-color: var.$c-primary;
+  border-radius: 100px;
+
+  &:hover {
+    background-color: var.$c-primary-hover;
+  }
+}

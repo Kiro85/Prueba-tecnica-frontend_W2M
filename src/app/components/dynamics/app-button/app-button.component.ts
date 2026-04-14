@@ -8,7 +8,7 @@ import { MatIcon } from '@angular/material/icon';
   template: `
     <button class="c-button {{ class() }}" [disabled]="disabled()" (click)="pressed.emit()">
       @if (icon()) {
-        <mat-icon fontIcon="{{ icon() }}"></mat-icon>
+        <mat-icon fontIcon="{{ icon() }}" ></mat-icon>
       }
 
       @if (class() !== 'c-button--search') {
