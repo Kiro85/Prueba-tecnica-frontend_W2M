@@ -2,7 +2,7 @@ import { Component, DestroyRef, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { catchError, tap } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { HeroService } from '@services/hero.service';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 
@@ -26,9 +26,9 @@ export class AppModalConfirmDeleteComponent {
         tap(() => {
           this.dialogRef.close(true);
         }),
-        catchError(() => {
+        catchError((err) => {
           this.dialogRef.close(false);
-          return [];
+          return throwError(() => err);
         }),
         takeUntilDestroyed(this.destroyRef),
       )

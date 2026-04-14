@@ -7,10 +7,8 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       let message = 'Unknown error';
 
       if (error.error instanceof ErrorEvent) {
-        // CLient-side error
         message = error.error.message;
       } else {
-        // Server-side error
         message = `Code ${error.status}: ${error.message}`;
       }
 

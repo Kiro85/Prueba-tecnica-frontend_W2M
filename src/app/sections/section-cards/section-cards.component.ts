@@ -5,7 +5,7 @@ import { AppSpinnerComponent } from '../../components/statics/app-spinner/app-sp
 import { AppErrorMessageComponent } from '../../components/dynamics/app-error-message/app-error-message.component';
 import { HeroService } from '../../services/hero.service';
 import { Hero } from '../../models/hero';
-import { catchError, finalize, of, tap } from 'rxjs';
+import { catchError, finalize, of, tap, throwError } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AppButtonComponent } from '../../components/dynamics/app-button/app-button.component';
 import { Page } from '../../models/page';
@@ -58,7 +58,7 @@ export class SectionCardsComponent implements OnInit {
         }),
         catchError((err) => {
           this.error.set(err.message || '');
-          return of([]);
+          return throwError(() => err);
         }),
         finalize(() => {
           this.loading.set(false);
@@ -84,7 +84,7 @@ export class SectionCardsComponent implements OnInit {
         }),
         catchError((err) => {
           this.error.set(err.message || '');
-          return of([]);
+          return throwError(() => err);
         }),
         finalize(() => {
           this.loading.set(false);

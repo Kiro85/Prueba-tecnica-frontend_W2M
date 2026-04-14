@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { catchError, tap } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { Hero, HeroRequest } from '@models/hero';
 import { ImageService } from '@services/image.service';
 import { HeroService } from '@services/hero.service';
@@ -83,9 +83,9 @@ export class AppFormHeroComponent implements OnInit {
       .createHero(heroModel)
       .pipe(
         tap(() => this.dialogRef.close(true)),
-        catchError(() => {
+        catchError((err) => {
           this.dialogRef.close(false);
-          return [];
+          return throwError(() => err);
         }),
         takeUntilDestroyed(this.destroyRef),
       )
@@ -97,9 +97,9 @@ export class AppFormHeroComponent implements OnInit {
       .updateHero(hero)
       .pipe(
         tap(() => this.dialogRef.close(true)),
-        catchError(() => {
+        catchError((err) => {
           this.dialogRef.close(false);
-          return [];
+          return throwError(() => err);
         }),
         takeUntilDestroyed(this.destroyRef),
       )
