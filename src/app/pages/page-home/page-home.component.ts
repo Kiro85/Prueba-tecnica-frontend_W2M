@@ -1,13 +1,15 @@
 import { Component, DestroyRef, ViewChild, inject, signal } from '@angular/core';
-import { SectionCardsComponent } from '../../sections/section-cards/section-cards.component';
-import { AppSearchBarComponent } from '../../components/statics/app-search-bar/app-search-bar.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { tap } from 'rxjs';
-import { AppFormHeroComponent } from '../../components/statics/app-forms/app-form-hero/app-form-hero.component';
-import { AppModalMessageComponent } from '../../components/dynamics/app-modals/app-modal-message/app-modal-message.component';
-import { AppButtonComponent } from '../../components/dynamics/app-button/app-button.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+import { tap } from 'rxjs';
+
+import { SectionCardsComponent } from '@sections/section-cards/section-cards.component';
+import { AppModalMessageComponent } from '@components/dynamics/app-modals/app-modal-message/app-modal-message.component';
+import { AppSearchBarComponent } from '@components/statics/app-search-bar/app-search-bar.component';
+import { AppFormHeroComponent } from '@components/statics/app-forms/app-form-hero/app-form-hero.component';
+import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 
 @Component({
   selector: 'page-home',

@@ -3,8 +3,13 @@ import { Component, input } from '@angular/core';
 @Component({
   selector: 'app-error-message',
   imports: [],
-  templateUrl: './app-error-message.component.html',
   styleUrl: './app-error-message.component.scss',
+  template: `
+    <article class="c-error-message">
+      <span class="c-error-message__title">Ha ocurrido un error!</span>
+      <span class="c-error-message__text">{{ message() }}</span>
+    </article>
+  `,
 })
 export class AppErrorMessageComponent {
   public message = input<string>('message');

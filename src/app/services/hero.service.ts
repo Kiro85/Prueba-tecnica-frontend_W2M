@@ -1,8 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Hero, HeroRequest } from '../models/hero';
 import { HttpClient } from '@angular/common/http';
-import { Page } from '../models/page';
+
+import { Observable } from 'rxjs';
+
+import { Hero, HeroRequest } from '@models/hero';
+import { Page } from '@models/page';
 
 @Injectable({
   providedIn: 'root',

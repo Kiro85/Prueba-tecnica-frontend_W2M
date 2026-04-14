@@ -2,7 +2,9 @@ import { Component, DestroyRef, inject, input, output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
 import { tap } from 'rxjs';
+
 import { Hero } from '@models/hero';
 import { CapitalizeWordsPipe } from '@shared/pipes/capitalize-words.pipe';
 import { CapitalizeFirstPipe } from '@shared/pipes/capitalize-first.pipe';

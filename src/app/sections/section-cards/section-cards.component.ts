@@ -1,14 +1,16 @@
 import { Component, DestroyRef, effect, inject, input, OnInit, signal } from '@angular/core';
-import { AppCardHeroComponent } from '../../components/dynamics/app-cards/app-card-hero/app-card-hero.component';
 import { CommonModule } from '@angular/common';
-import { AppSpinnerComponent } from '../../components/statics/app-spinner/app-spinner.component';
-import { AppErrorMessageComponent } from '../../components/dynamics/app-error-message/app-error-message.component';
-import { HeroService } from '../../services/hero.service';
-import { Hero } from '../../models/hero';
-import { catchError, finalize, of, tap, throwError } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AppButtonComponent } from '../../components/dynamics/app-button/app-button.component';
-import { Page } from '../../models/page';
+
+import { catchError, finalize, tap, throwError } from 'rxjs';
+
+import { Hero } from '@models/hero';
+import { Page } from '@models/page';
+import { HeroService } from '@services/hero.service';
+import { AppSpinnerComponent } from '@components/statics/app-spinner/app-spinner.component';
+import { AppCardHeroComponent } from '@components/dynamics/app-cards/app-card-hero/app-card-hero.component';
+import { AppErrorMessageComponent } from '@components/dynamics/app-error-message/app-error-message.component';
+import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 
 @Component({
   selector: 'section-cards',

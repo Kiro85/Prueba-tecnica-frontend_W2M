@@ -1,11 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SectionCardsComponent } from './section-cards.component';
 
-import { signal } from '@angular/core';
-
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 
-import { Hero } from '@models/hero';
 import { HeroService } from '@services/hero.service';
 
 describe('SectionCardsComponent', () => {
