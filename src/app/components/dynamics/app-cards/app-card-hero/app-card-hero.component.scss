@@ -1,7 +1,6 @@
 @use 'abstract/var' as var;
 
 .c-card-hero {
-  width: 100%;
   box-shadow: 0 0.625rem 2.5rem 0 rgba(0, 0, 0, 0.1);
   color: var.$c-text;
 
@@ -17,7 +16,6 @@
   }
 
   &__info {
-    width: 90%;
     padding: 1rem;
     gap: 1rem;
     display: flex;
@@ -45,8 +43,6 @@
   }
 
   &__buttons {
-    width: 16.75rem;
-    height: 2.5rem;
     gap: 1rem;
     display: flex;
   }

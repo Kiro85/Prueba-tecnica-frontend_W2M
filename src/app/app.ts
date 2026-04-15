@@ -7,6 +7,5 @@ import { SectionFooterComponent } from './sections/section-footer/section-footer
   selector: 'app-root',
   imports: [RouterOutlet, AppBannerComponent, SectionFooterComponent],
   templateUrl: './app.html',
-  styleUrl: './app.scss',
 })
 export class App {}

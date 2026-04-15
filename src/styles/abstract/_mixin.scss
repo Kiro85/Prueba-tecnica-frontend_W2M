@@ -1,52 +1,29 @@
 @use 'abstract/var' as var;
 
-@mixin button-primary {
-  background-color: var.$c-primary;
+@mixin button-base($bg, $hover-bg, $text-color) {
+  background-color: $bg;
 
   &:hover {
-    background-color: var.$c-primary-hover;
+    background-color: $hover-bg;
   }
 
   p {
-    color: var.$c-on-primary;
+    color: $text-color;
   }
 }
 
-@mixin button-secondary {
-  background-color: var.$c-button;
+@mixin button($type) {
+  @if $type == 'primary' {
+    @include button-base(var.$c-primary, var.$c-primary-hover, var.$c-on-primary);
 
-  &:hover {
-    background-color: var.$c-button-hover;
-  }
+  } @else if $type == 'secondary' {
+    @include button-base(var.$c-button, var.$c-button-hover, var.$c-on-button);
 
-  p {
-    color: var.$c-on-button;
-  }
-}
-
-@mixin button-create {
-  width: auto;
-  height: 56px;
-  padding: 0 16px;
-  background-color: var.$c-primary;
-
-  &:hover {
-    background-color: var.$c-primary-hover;
-  }
-
-  p {
-    color: var.$c-on-primary;
-  }
-}
-
-@mixin button-search {
-  width: 72px;
-  height: 72px;
-  padding: 0;
-  background-color: var.$c-primary;
-  border-radius: 100px;
-
-  &:hover {
-    background-color: var.$c-primary-hover;
+  } @else if $type == 'search' {
+    @include button-base(var.$c-primary, var.$c-primary-hover, var.$c-on-primary);
+    width: 72px;
+    height: 72px;
+    padding: 0;
+    border-radius: 100px;
   }
 }
