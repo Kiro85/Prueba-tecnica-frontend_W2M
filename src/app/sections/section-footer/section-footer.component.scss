@@ -9,6 +9,11 @@
   justify-content: space-between;
   align-items: center;
 
+  @media (max-width: var.$bp-tablet) {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
   &__copyright {
     text-align: center;
     font-family: 'Comfortaa';
@@ -26,17 +31,10 @@
   &__social-media-icon {
     width: 1.5rem;
     height: 1.5rem;
-    transition: scale ease-in-out .3s;
+    transition: scale ease-in-out 0.3s;
 
     &:hover {
       scale: 1.1;
     }
-  }
-}
-
-@media (max-width: var.$bp-tablet) {
-  .s-footer {
-    flex-direction: column;
-    gap: 1.5rem;
   }
 }

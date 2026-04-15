@@ -12,17 +12,33 @@
     position: relative;
     display: flex;
     justify-content: center;
+
+    @media (max-width: var.$bp-tablet) {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
   }
 
   &__search-bar {
     width: 55%;
     margin: 0 auto;
+
+    @media (max-width: var.$bp-tablet) {
+      width: 85%;
+    }
   }
 
   &__button-create {
     position: absolute;
     top: 1.25rem;
     right: 2rem;
+
+    @media (max-width: var.$bp-tablet) {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      right: 0;
+    }
   }
 
   &__title {
@@ -47,26 +63,6 @@
     p {
       font-size: 1rem;
       color: var.$c-text;
-    }
-  }
-}
-
-@media (max-width: var.$bp-tablet) {
-  .p-home {
-    &__nav {
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    &__search-bar {
-      width: 85%;
-    }
-
-    &__button-create {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      right: 0;
     }
   }
 }

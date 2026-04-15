@@ -3,7 +3,6 @@
 
 .c-hero-form {
   width: 58.5rem;
-  height: 39rem;
   padding: 1.25rem;
   gap: 2rem;
   display: flex;
@@ -11,6 +10,11 @@
   justify-content: space-between;
   align-items: center;
   overflow-x: hidden;
+
+  @media (max-width: var.$bp-tablet) {
+    width: 100%;
+    gap: 1.5rem;
+  }
 
   &__close {
     position: absolute;
@@ -36,12 +40,23 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: var.$bp-tablet) {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
   }
 
   &__row-2 {
     width: 100%;
     gap: 1.5rem;
     display: flex;
+
+    @media (max-width: var.$bp-tablet) {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
   }
 
   &__field {
@@ -53,27 +68,8 @@
     gap: 2rem;
     display: flex;
     justify-content: space-between;
-  }
-}
 
-@media (max-width: var.$bp-tablet) {
-  .c-hero-form {
-    width: 100%;
-    height: 100%;
-    gap: 1.5rem;
-
-    &__rows {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    &__row-2 {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    &__submit {
+    @media (max-width: var.$bp-tablet) {
       flex-direction: column;
       align-items: flex-start;
     }
