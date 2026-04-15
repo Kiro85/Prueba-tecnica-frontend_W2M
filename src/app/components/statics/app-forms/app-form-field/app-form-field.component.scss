@@ -8,8 +8,8 @@
 
   &__label {
     padding-bottom: 0.625rem;
-    font-size: 0.875rem;
-    line-height: 0.5625rem;
+    font-size: var.$fs-s;
+    line-height: var.$lh-m;
     letter-spacing: 2%;
   }
 
@@ -31,8 +31,8 @@
   }
 
   mat-error {
-    font-size: 0.875rem;
-    line-height: 1rem;
+    font-size: var.$fs-s;
+    line-height: var.$lh-m;
     letter-spacing: 0.0313rem;
     margin-bottom: 1rem;
     color: var.$c-text-error;

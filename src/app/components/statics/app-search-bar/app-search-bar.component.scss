@@ -1,7 +1,9 @@
+@use 'abstract/variables' as var;
+
 .c-search-bar {
   height: 5.75rem;
   padding: 0 1rem;
-  gap: 1rem;
+  gap: var.$gap-m;
   display: flex;
   align-items: center;
   box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);

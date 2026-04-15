@@ -3,7 +3,7 @@
 
 .c-button {
   padding: 0.75rem 2rem;
-  gap: 0.5rem;
+  gap: var.$gap-s;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,9 +21,8 @@
   }
 
   p {
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 120%;
+    font-size: var.$fs-m;
+    line-height: var.$lh-m;
   }
 
   $decorators: primary, secondary, search;

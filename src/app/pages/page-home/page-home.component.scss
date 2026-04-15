@@ -4,7 +4,7 @@
   max-width: 1344px;
   padding: 0 0.625rem;
   margin: 2rem auto;
-  gap: 2rem;
+  gap: var.$gap-xl;
   display: flex;
   flex-direction: column;
 
@@ -15,7 +15,7 @@
 
     @media (max-width: var.$bp-tablet) {
       flex-direction: column;
-      gap: 1.5rem;
+      gap: var.$gap-l;
     }
   }
 
@@ -44,24 +44,24 @@
   &__title {
     max-width: 41.25rem;
     margin: 0 auto;
-    gap: 1rem;
+    gap: var.$gap-m;
     display: flex;
     flex-direction: column;
     text-align: center;
 
     h2,
     p {
-      line-height: 120%;
-      font-weight: 400;
+      line-height: var.$lh-m;
+      font-weight: var.$fw-regular;
     }
 
     h2 {
-      font-size: 1.9375rem;
+      font-size: var.$fs-xl;
       color: var.$c-primary;
     }
 
     p {
-      font-size: 1rem;
+      font-size: var.$fs-m;
       color: var.$c-text;
     }
   }

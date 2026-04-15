@@ -11,19 +11,19 @@
 
   @media (max-width: var.$bp-tablet) {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var.$gap-l;
   }
 
   &__copyright {
     text-align: center;
     font-family: 'Comfortaa';
-    font-weight: 700;
-    font-size: 0.75rem;
+    font-weight: var.$fw-bold;
+    font-size: var.$fs-xs;
     color: var.$c-text-footer;
   }
 
   &__social-media {
-    gap: 0.5rem;
+    gap: var.$gap-s;
     display: flex;
     justify-content: center;
   }

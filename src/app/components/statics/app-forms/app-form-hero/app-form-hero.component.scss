@@ -4,7 +4,7 @@
 .c-hero-form {
   width: 58.5rem;
   padding: 1.25rem;
-  gap: 2rem;
+  gap: var.$gap-xl;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,7 +13,7 @@
 
   @media (max-width: var.$bp-tablet) {
     width: 100%;
-    gap: 1.5rem;
+    gap: var.$gap-l;
   }
 
   &__close {
@@ -29,9 +29,9 @@
   }
 
   &__title {
-    font-weight: 600;
-    font-size: 1.25rem;
-    line-height: 120%;
+    font-weight: var.$fw-medium;
+    font-size: var.$fs-l;
+    line-height: var.$lh-m;
     text-align: center;
     color: var.$c-text-form;
   }
@@ -44,18 +44,18 @@
     @media (max-width: var.$bp-tablet) {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: var.$gap-s;
     }
   }
 
   &__row-2 {
     width: 100%;
-    gap: 1.5rem;
+    gap: var.$gap-l;
     display: flex;
 
     @media (max-width: var.$bp-tablet) {
       flex-direction: column;
-      gap: 0.5rem;
+      gap: var.$gap-s;
     }
   }
 
@@ -65,7 +65,7 @@
 
   &__submit {
     width: 100%;
-    gap: 2rem;
+    gap: var.$gap-xl;
     display: flex;
     justify-content: space-between;
 

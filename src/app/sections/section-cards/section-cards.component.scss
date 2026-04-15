@@ -1,12 +1,14 @@
+@use 'abstract/variables' as var;
+
 .s-list-hero {
   margin: 0.625rem 0;
   display: flex;
   flex-direction: column;
   align-content: center;
-  gap: 16rem;
+  gap: var.$gap-xxl;
 
   &__cards {
-    gap: 1.5rem;
+    gap: var.$gap-l;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(19.875rem, 1fr));
     justify-items: center;
