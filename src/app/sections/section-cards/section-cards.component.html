@@ -8,7 +8,7 @@
       <!-- Heroes by name -->
       @if (!!heroesFiltered().length) {
         @for (hero of heroesFiltered(); track hero.id) {
-          <li class="s-list-hero__card">
+          <li>
             <app-card-hero (modified)="refresh()" [hero]="hero"></app-card-hero>
           </li>
         }
@@ -16,7 +16,7 @@
         <!-- All heroes -->
       } @else if (!!heroes().length) {
         @for (hero of heroes(); track hero.id) {
-          <li class="s-list-hero__card">
+          <li>
             <app-card-hero (modified)="refresh()" [hero]="hero"></app-card-hero>
           </li>
         }
