@@ -1,4 +1,4 @@
-@use 'abstract/var' as var;
+@use 'abstract/variables' as var;
 
 @mixin button-base($bg, $hover-bg, $text-color) {
   background-color: $bg;

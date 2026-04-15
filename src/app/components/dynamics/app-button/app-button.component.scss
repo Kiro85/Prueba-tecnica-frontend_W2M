@@ -1,5 +1,5 @@
-@use 'abstract/var' as var;
-@use 'abstract/mixin' as mix;
+@use 'abstract/variables' as var;
+@use 'abstract/mixins' as mix;
 
 .c-button {
   padding: 0.75rem 2rem;
