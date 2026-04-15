@@ -6,12 +6,12 @@ import { MatIcon } from '@angular/material/icon';
   imports: [MatIcon],
   styleUrl: './app-button.component.scss',
   template: `
-    <button class="c-button {{ class() }}" [disabled]="disabled()" (click)="pressed.emit()">
+    <button class="c-button {{ customClass() }}" [disabled]="disabled()" (click)="pressed.emit()">
       @if (icon()) {
         <mat-icon fontIcon="{{ icon() }}" ></mat-icon>
       }
 
-      @if (class() !== 'c-button--search') {
+      @if (customClass() !== 'c-button--search') {
         <p>
           <ng-content></ng-content>
         </p>
@@ -21,7 +21,7 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class AppButtonComponent {
   public icon = input<string>();
-  public class = input<string>();
+  public customClass = input<string>();
   public disabled = input<boolean>(false);
   public pressed = output<void>();
 }

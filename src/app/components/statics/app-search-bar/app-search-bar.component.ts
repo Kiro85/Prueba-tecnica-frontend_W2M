@@ -18,7 +18,7 @@ import { AppButtonComponent } from '@components/dynamics/app-button/app-button.c
         placeholder="Busca un héroe"
         [formControl]="queryControl"
       />
-      <app-button icon="search" class="c-button--search"></app-button>
+      <app-button icon="search" customClass="c-button--search"></app-button>
     </article>
   `,
 })
