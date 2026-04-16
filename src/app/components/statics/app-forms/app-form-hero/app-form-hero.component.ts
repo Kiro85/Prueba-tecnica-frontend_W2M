@@ -56,24 +56,24 @@ export class AppFormHeroComponent implements OnInit {
 
   private initForm(): void {
     this.heroForm = this.fb.group({
-      id: [this.dialogData?.hero().id || ''],
+      id: [this.dialogData?.hero.id || ''],
       name: [
-        this.dialogData?.hero().name.toUpperCase() || '',
+        this.dialogData?.hero.name.toUpperCase() || '',
         [Validators.required, Validators.minLength(3), Validators.maxLength(32)],
       ],
       superpower: [
-        this.dialogData?.hero().superpower.toUpperCase() || '',
+        this.dialogData?.hero.superpower.toUpperCase() || '',
         [Validators.required, Validators.minLength(8), Validators.maxLength(64)],
       ],
       city: [
-        this.dialogData?.hero().city.toUpperCase() || '',
+        this.dialogData?.hero.city.toUpperCase() || '',
         [Validators.required, Validators.minLength(3), Validators.maxLength(32)],
       ],
       description: [
-        this.dialogData?.hero().description.toUpperCase() || '',
+        this.dialogData?.hero.description.toUpperCase() || '',
         [Validators.required, Validators.minLength(12), Validators.maxLength(128)],
       ],
-      image: [this.dialogData?.hero().image || '', [Validators.required]],
+      image: [this.dialogData?.hero.image || '', [Validators.required]],
       termsAndConditions: [false, [Validators.requiredTrue]],
     });
   }

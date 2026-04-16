@@ -12,6 +12,7 @@ import { AppSpinnerComponent } from '@components/statics/app-spinner/app-spinner
 import { AppCardHeroComponent } from '@components/dynamics/app-cards/app-card-hero/app-card-hero.component';
 import { AppErrorMessageComponent } from '@components/dynamics/app-error-message/app-error-message.component';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
+import { HeroReloadService } from '@services/hero-reload.service';
 
 @Component({
   selector: 'section-cards',
@@ -27,6 +28,7 @@ import { AppButtonComponent } from '@components/dynamics/app-button/app-button.c
 })
 export class SectionCardsComponent implements OnInit {
   private readonly heroService = inject(HeroService);
+  private readonly heroReloadService = inject(HeroReloadService);
 
   public heroesFiltered = signal<Hero[]>([]); // List of heroes filtered by name
   public query = input<string>();
@@ -52,7 +54,7 @@ export class SectionCardsComponent implements OnInit {
       disabled: !this.nextPage(),
     }));
   });
-  
+
   protected moreButton = signal<Button>({
     content: 'Ver más',
     customClass: 'primary',
@@ -64,6 +66,12 @@ export class SectionCardsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.getHeroesPaginated();
+
+    this.heroReloadService.reload$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.refresh();
+      });
   }
 
   public getHeroesPaginated(): void {

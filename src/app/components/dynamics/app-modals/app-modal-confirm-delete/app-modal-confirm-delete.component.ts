@@ -36,7 +36,7 @@ export class AppModalConfirmDeleteComponent {
 
   protected deleteHero(): void {
     this.heroService
-      .deleteHero(this.dialogData.hero().id)
+      .deleteHero(this.dialogData.hero.id)
       .pipe(
         tap(() => {
           this.dialogRef.close(true);
