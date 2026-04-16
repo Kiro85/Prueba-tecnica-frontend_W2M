@@ -7,10 +7,10 @@ import { HeroService } from '@services/hero.service';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 
 @Component({
-  selector: 'app-modal-confirm-delete.component',
+  selector: 'app-modal-delete.component',
   imports: [MatIcon, AppButtonComponent],
-  templateUrl: './app-modal-confirm-delete.component.html',
-  styleUrl: './app-modal-confirm-delete.component.scss',
+  templateUrl: './app-modal-delete.component.html',
+  styleUrl: './app-modal-delete.component.scss',
 })
 export class AppModalDeleteComponent {
   private readonly dialogRef = inject(MatDialogRef<AppModalDeleteComponent>);
