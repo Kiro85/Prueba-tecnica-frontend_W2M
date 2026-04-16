@@ -15,14 +15,17 @@ export class HeroFormMapperService {
         ? formValue.image
         : await this.imageService.convertFileToBase64(formValue.image);
 
-    const hero: Hero = {
-      id: formValue.id,
+    let hero: Hero = {
       name: formValue.name,
       superpower: formValue.superpower,
       city: formValue.city,
       description: formValue.description,
       image,
     };
+
+    if (formValue.id) {
+      hero = {id: formValue.id, ...hero};
+    }
 
     return hero;
   }

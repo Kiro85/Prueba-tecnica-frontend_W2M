@@ -30,6 +30,6 @@ export class HeroFormValidatorsService {
   }
 
   public termsAndConditions(): any {
-    return [Validators.required];
+    return [Validators.requiredTrue];
   }
 }

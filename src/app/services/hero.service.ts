@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Hero, HeroRequest } from '@models/hero';
+import { Hero } from '@models/hero';
 import { Page } from '@models/page';
 
 @Injectable({
@@ -34,7 +34,7 @@ export class HeroService {
     });
   }
 
-  public createHero(request: HeroRequest): Observable<Hero> {
+  public createHero(request: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.apiUrl, request);
   }
 
