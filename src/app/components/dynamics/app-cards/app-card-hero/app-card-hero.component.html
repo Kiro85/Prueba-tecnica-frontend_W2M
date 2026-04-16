@@ -1,13 +1,13 @@
 <article class="c-card-hero">
    <figure class="c-card-hero__img">
-     <img src="{{hero()?.image}}" alt="Image of {{hero()?.name}}">
+     <img src="{{hero().image}}" alt="Image of {{hero().name}}">
    </figure>
 
   <div class="c-card-hero__info">
-      <h2 class="c-card-hero__name">{{hero()?.name | capitalizeWordsPipe}}</h2>
-      <p class="c-card-hero__superpower">{{hero()?.superpower | capitalizeWordsPipe}}</p>
-      <p class="c-card-hero__description">{{hero()?.description | capitalizeFirstPipe}}</p>
-      <p class="c-card-hero__city">{{hero()?.city | capitalizeWordsPipe}}</p>
+      <h2 class="c-card-hero__name">{{hero().name | capitalizeWordsPipe}}</h2>
+      <p class="c-card-hero__superpower">{{hero().superpower | capitalizeWordsPipe}}</p>
+      <p class="c-card-hero__description">{{hero().description | capitalizeFirstPipe}}</p>
+      <p class="c-card-hero__city">{{hero().city | capitalizeWordsPipe}}</p>
       <div class="c-card-hero__buttons">
         <app-button (pressed)="openFormHeroEdit()" [button]="editButton"></app-button>
         <app-button (pressed)="openConfirmDeleteModal()" [button]="deleteButton"></app-button>

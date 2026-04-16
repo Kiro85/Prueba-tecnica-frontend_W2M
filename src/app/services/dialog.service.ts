@@ -16,7 +16,7 @@ export class DialogService {
   private readonly snackBar = inject(MatSnackBar);
 
   public openDialog(
-    component: ComponentType<unknown>,
+    component: ComponentType<any>,
     successMessage: string,
     errorMessage: string,
     hero?: Hero,
