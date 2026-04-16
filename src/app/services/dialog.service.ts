@@ -5,7 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Hero } from '@models/hero';
 import { HeroReloadService } from '@services/hero-reload.service';
-import { AppModalMessageComponent } from '@components/dynamics/app-modals/app-modal-message/app-modal-message.component';
+import { AppMessageSnackbarComponent } from '@components/dynamics/app-messages/app-message-snackbar/app-message-snackbar.component';
+
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,7 @@ export class DialogService {
   }
 
   private showSnackbar(message: string, success: boolean): void {
-    this.snackBar.openFromComponent(AppModalMessageComponent, {
+    this.snackBar.openFromComponent(AppMessageSnackbarComponent, {
       duration: 5000,
       verticalPosition: 'top',
       data: {

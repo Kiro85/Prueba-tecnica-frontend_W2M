@@ -1,9 +1,7 @@
 @if (loading()) {
   <app-spinner></app-spinner>
 } @else if (error()) {
-  <app-error-message
-    >Error al conectar con el servidor. Por favor, pruebe más tarde.</app-error-message
-  >
+  <app-message [success]="false">Error al conectar con el servidor. Por favor, pruebe más tarde.</app-message>
 } @else {
   <section class="s-list-hero">
     <ul class="s-list-hero__cards">

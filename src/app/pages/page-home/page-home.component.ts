@@ -7,10 +7,10 @@ import { tap } from 'rxjs';
 
 import { Button } from '@interfaces/button';
 import { SectionCardsComponent } from '@sections/section-cards/section-cards.component';
-import { AppModalMessageComponent } from '@components/dynamics/app-modals/app-modal-message/app-modal-message.component';
+import { AppMessageSnackbarComponent } from '@components/dynamics/app-messages/app-message-snackbar/app-message-snackbar.component';
+import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 import { AppSearchBarComponent } from '@components/statics/app-search-bar/app-search-bar.component';
 import { AppFormHeroComponent } from '@components/statics/app-forms/app-form-hero/app-form-hero.component';
-import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 
 @Component({
   selector: 'page-home',
@@ -61,7 +61,7 @@ export class PageHomeComponent {
   }
 
   private showSnackbar(message: string, success: boolean): void {
-    this.snackBar.openFromComponent(AppModalMessageComponent, {
+    this.snackBar.openFromComponent(AppMessageSnackbarComponent, {
       duration: 5000,
       verticalPosition: 'top',
       data: {

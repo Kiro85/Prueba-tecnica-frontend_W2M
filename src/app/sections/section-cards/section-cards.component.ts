@@ -10,7 +10,7 @@ import { Button } from '@interfaces/button';
 import { HeroService } from '@services/hero.service';
 import { AppSpinnerComponent } from '@components/statics/app-spinner/app-spinner.component';
 import { AppCardHeroComponent } from '@components/dynamics/app-cards/app-card-hero/app-card-hero.component';
-import { AppErrorMessageComponent } from '@components/dynamics/app-error-message/app-error-message.component';
+import { AppMessageComponent } from '@components/dynamics/app-messages/app-message/app-message.component';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 import { HeroReloadService } from '@services/hero-reload.service';
 
@@ -21,7 +21,7 @@ import { HeroReloadService } from '@services/hero-reload.service';
     AppCardHeroComponent,
     AppButtonComponent,
     AppSpinnerComponent,
-    AppErrorMessageComponent,
+    AppMessageComponent,
   ],
   templateUrl: './section-cards.component.html',
   styleUrl: './section-cards.component.scss',
