@@ -1,44 +1,36 @@
-@use '../../../../../sass/var' as var;
+@use 'abstract/variables' as var;
 
 .c-modal-delete {
-  width: 703px;
-  height: 267px;
-  padding: 24px 0;
+  width: 43.9375rem;
+  min-height: 16.6875rem;
+  padding: var.$s-xl var.$s-0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: var.$c-text;
 
-  &__content {
+  @media (max-width: var.$bp-tablet) {
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  &__title-container {
-    width: 100%;
-    height: 48px;
-    padding: 0 24px;
-    text-align: center;
   }
 
   &__title {
-    font-weight: 600;
-    font-size: 1.25rem;
-    line-height: 120%;
-    letter-spacing: 0;
-    color: var.$c-text;
+    text-align: center;
+    font-weight: var.$fw-medium;
+    font-size: var.$fs-l;
+    line-height: var.$lh-m;
   }
 
-  &__message-container {
-    width: 100%;
-    height: 100%;
-    padding: 16px 24px 24px;
-    gap: 16px;
+  &__body {
+    width: 90%;
+    margin: var.$s-0 auto;
+    padding: var.$s-m var.$s-xl var.$s-xl;
+    gap: var.$gap-m;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
   }
 
-  &__icon-container {
+  &__icon {
     display: flex;
     align-items: center;
 
@@ -47,43 +39,29 @@
     }
   }
 
-  &__message-text-container {
-    gap: 4px;
+  &__message {
+    gap: var.$gap-xs;
     display: flex;
     flex-direction: column;
   }
 
   &__message-text {
-    font-weight: 400;
-    font-size: 1rem;
-    letter-spacing: 0;
-    color: var.$c-text;
-
     &--bold {
-      font-weight: 700;
-      font-size: 20px;
+      font-weight: var.$fw-bold;
+      font-size: var.$fs-l;
     }
   }
 
-  &__buttons-container {
+  &__buttons {
     width: 95%;
-    gap: 20px;
+    gap: var.$gap-l;
     display: flex;
     justify-content: flex-end;
-  }
-}
+    align-items: center;
 
-@media (max-width: 960px) {
-  .c-modal-delete {
-    width: 312px;
-    height: 100%;
-
-    &__content {
-      gap: 32px;
-    }
-
-    &__title-container {
-      height: 24px;
+    @media (max-width: var.$bp-mobile) {
+      flex-direction: column;
+      align-items: center;
     }
   }
 }

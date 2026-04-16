@@ -1,38 +1,54 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { AppButtonSearchComponent } from '../../dynamics/app-buttons/app-button-search/app-button-search.component';
-import { FormControl, ReactiveFormsModule, ɵInternalFormsSharedModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map, Subject } from 'rxjs';
-import { HeroStoreService } from '../../../services/hero-store.service';
+import { Component, DestroyRef, inject, OnInit, output } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+import { debounceTime, distinctUntilChanged, map } from 'rxjs';
+
+import { Button } from '@interfaces/button';
+import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 
 @Component({
   selector: 'app-search-bar',
-  imports: [AppButtonSearchComponent, ɵInternalFormsSharedModule, ReactiveFormsModule],
-  templateUrl: './app-search-bar.component.html',
+  imports: [AppButtonComponent, ReactiveFormsModule],
   styleUrl: './app-search-bar.component.scss',
+  template: `
+    <article class="c-search-bar">
+      <input
+        class="c-search-bar__input"
+        type="text"
+        placeholder="Busca un héroe"
+        [formControl]="queryControl"
+      />
+      <app-button [button]="searchButton"></app-button>
+    </article>
+  `,
 })
-export class AppSearchBarComponent implements OnInit, OnDestroy {
-  private readonly heroStoreService = inject(HeroStoreService);
+export class AppSearchBarComponent implements OnInit {
+  protected queryControl = new FormControl('');
+  public query = output<string>();
 
-  protected query = new FormControl('');
+  protected searchButton: Button = {
+    icon: 'search',
+    customClass: 'search',
+    disabled: false,
+  };
 
-  private destroy$ = new Subject<void>();
+  private destroyRef = inject(DestroyRef);
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initSearchBar();
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
   private initSearchBar(): void {
-    this.query.valueChanges
+    this.queryControl.valueChanges
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
-        map((value) => value?.trim() || null),
+        map((value) => value?.trim() ?? ''),
+        takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe((query) => this.heroStoreService.getHeroesByName(query));
+      .subscribe((value) => {
+        this.query.emit(value);
+      });
   }
 }

@@ -1,0 +1,42 @@
+@use 'abstract/variables' as var;
+@use 'abstract/mixins' as mix;
+
+.c-button {
+  padding: var.$s-s var.$s-xxl;
+  gap: var.$gap-s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var.$r-l;
+  border: none;
+  cursor: pointer;
+  transition: scale ease-in-out 0.3s;
+
+  &:hover {
+    scale: 1.1;
+  }
+
+  mat-icon {
+    color: var.$c-on-primary;
+  }
+
+  p {
+    font-size: var.$fs-m;
+    line-height: var.$lh-m;
+  }
+
+  $decorators: primary, secondary, search;
+
+  @each $type in $decorators {
+    &--#{$type} {
+      @include mix.button($type);
+    }
+  }
+
+  &[disabled],
+  &:disabled {
+    background-color: var.$c-disabled;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}

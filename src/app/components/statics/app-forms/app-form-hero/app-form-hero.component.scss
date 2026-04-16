@@ -1,0 +1,77 @@
+@use '@angular/material' as mat;
+@use 'abstract/variables' as var;
+
+.c-hero-form {
+  width: 58.5rem;
+  padding: var.$s-l;
+  gap: var.$gap-xl;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: hidden;
+
+  @media (max-width: var.$bp-tablet) {
+    width: 100%;
+    gap: var.$gap-l;
+  }
+
+  &__close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    cursor: pointer;
+    transition: scale 0.2s ease-in-out;
+
+    &:hover {
+      scale: 1.3;
+    }
+  }
+
+  &__title {
+    font-weight: var.$fw-medium;
+    font-size: var.$fs-l;
+    line-height: var.$lh-m;
+    text-align: center;
+    color: var.$c-text-form;
+  }
+
+  &__rows {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: var.$bp-tablet) {
+      display: flex;
+      flex-direction: column;
+      gap: var.$gap-s;
+    }
+  }
+
+  &__row-2 {
+    width: 100%;
+    gap: var.$gap-l;
+    display: flex;
+
+    @media (max-width: var.$bp-tablet) {
+      flex-direction: column;
+      gap: var.$gap-s;
+    }
+  }
+
+  &__field {
+    width: 100%;
+  }
+
+  &__submit {
+    width: 100%;
+    gap: var.$gap-xl;
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: var.$bp-tablet) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}

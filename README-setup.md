@@ -32,7 +32,7 @@ ng serve
 Run json-server:
 
 ```bash
-json-server --watch mocks/heroes.json --port 3000
+npx json-server --watch mocks/heroes.json --port 3000
 ```
 
 > [!CAUTION]

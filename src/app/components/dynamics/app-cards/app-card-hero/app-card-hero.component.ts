@@ -1,89 +1,53 @@
-import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
-import { AppButtonEditComponent } from '../../app-buttons/app-button-edit/app-button-edit.component';
-import { Hero } from '../../../../models/hero';
-import { AppButtonSecondaryComponent } from '../../app-buttons/app-button-secondary/app-button-secondary.component';
-import { MatDialog } from '@angular/material/dialog';
-import { AppModalConfirmDeleteComponent } from '../../app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
-import { AppFormHeroEditComponent } from '../../../statics/app-forms/app-form-hero-edit/app-form-hero-edit.component';
-import { Subject } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { AppModalSuccessMessageComponent } from '../../app-modals/app-modal-success-message/app-modal-success-message.component';
-import { AppModalErrorMessageComponent } from '../../app-modals/app-modal-error-message/app-modal-error-message.component';
-import { FormatterService } from '../../../../services/formatter.service';
+import { Component, inject, input, output } from '@angular/core';
+
+import { Hero } from '@models/hero';
+import { Button } from '@interfaces/button';
+import { CapitalizeWordsPipe } from '@shared/pipes/capitalize-words.pipe';
+import { CapitalizeFirstPipe } from '@shared/pipes/capitalize-first.pipe';
+import { DialogService } from '@services/dialog.service';
+import { AppModalConfirmDeleteComponent } from '@components/dynamics/app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
+import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
+import { AppFormHeroComponent } from '@components/statics/app-forms/app-form-hero/app-form-hero.component';
 
 @Component({
   selector: 'app-card-hero',
-  imports: [AppButtonEditComponent, AppButtonSecondaryComponent, AppButtonSecondaryComponent],
+  imports: [AppButtonComponent, CapitalizeWordsPipe, CapitalizeFirstPipe],
   templateUrl: './app-card-hero.component.html',
   styleUrl: './app-card-hero.component.scss',
 })
-export class AppCardHeroComponent implements OnDestroy {
-  @Input() hero?: Hero;
+export class AppCardHeroComponent {
+  private readonly dialogService = inject(DialogService);
+  public hero = input.required<Hero>();
+  public modified = output<void>();
 
-  private readonly dialog = inject(MatDialog)
-  private readonly snackBar = inject(MatSnackBar)
-  protected readonly formatterService = inject(FormatterService)
+  protected editButton: Button = {
+    content: 'Editar',
+    icon: 'edit',
+    customClass: 'primary',
+    disabled: false,
+  };
 
-  private unsubscribe$: Subject<void> = new Subject<void>();
+  protected deleteButton: Button = {
+    content: 'Eliminar',
+    customClass: 'secondary',
+    disabled: false,
+  };
 
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+  protected openConfirmDeleteModal(): void {
+    this.dialogService.openDialog(
+      AppModalConfirmDeleteComponent,
+      'Héroe eliminado con éxito',
+      'Ha ocurrido un error al eliminar el héroe',
+      this.hero()
+    );
   }
 
-  protected OpenConfirmDeleteModal(): void {
-    const dialogRef = this.dialog.open(AppModalConfirmDeleteComponent, {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      data: this.hero,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        this.snackBar.openFromComponent(AppModalSuccessMessageComponent, {
-          duration: 5000,
-          verticalPosition: 'top',
-          data: {
-            message: 'Este héroe se ha eliminado',
-          },
-        });
-      } else if (result === 2) {
-        this.snackBar.openFromComponent(AppModalErrorMessageComponent, {
-          duration: 5000,
-          verticalPosition: 'top',
-          data: {
-            message: 'Ha ocurrido un error',
-          },
-        });
-      }
-    });
-  }
-
-  protected OpenFormHeroeEdit(): void {
-    const dialogRef = this.dialog.open(AppFormHeroEditComponent, {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      data: this.hero,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        this.snackBar.openFromComponent(AppModalSuccessMessageComponent, {
-          duration: 5000,
-          verticalPosition: 'top',
-          data: {
-            message: 'Héroe modificado con éxito',
-          },
-        });
-      } else if (result === 2) {
-        this.snackBar.openFromComponent(AppModalErrorMessageComponent, {
-          duration: 5000,
-          verticalPosition: 'top',
-          data: {
-            message: 'Ha ocurrido un error',
-          },
-        });
-      }
-    });
+  protected openFormHeroEdit(): void {
+    this.dialogService.openDialog(
+      AppFormHeroComponent,
+      'Héroe actualizado con éxito',
+      'Ha ocurrido un error al actualizar el héroe',
+      this.hero()
+    );
   }
 }

@@ -1,37 +1,16 @@
-<section class="s-footer">
-  <div class="s-footer__content">
-    <div class="s-footer__copyright">
-      <p class="s-footer__copyright-text">© 2025 SUPERHEROCRUD, Inc</p>
-    </div>
+<footer class="s-footer">
+  <span class="s-footer__copyright">© {{currentYear}} {{companyName}}</span>
 
-    <div class="s-footer__social-media">
-      <ul class="s-footer__social-media-icons">
-        <li class="s-footer__social-media-icon">
-          <a href="#">
-            <img src="social-media-icons/instagram.svg" alt="Instagram icon" />
-          </a>
-        </li>
-        <li class="s-footer__social-media-icon">
-          <a href="#">
-            <img src="social-media-icons/youtube.svg" alt="Youtube icon" />
-          </a>
-        </li>
-        <li class="s-footer__social-media-icon">
-          <a href="#">
-            <img src="social-media-icons/linkedin.svg" alt="Linkedin icon" />
-          </a>
-        </li>
-        <li class="s-footer__social-media-icon">
-          <a href="#">
-            <img src="social-media-icons/facebook.svg" alt="Facebook icon" />
-          </a>
-        </li>
-        <li class="s-footer__social-media-icon">
-          <a href="#">
-            <img src="social-media-icons/x.svg" alt="X icon" />
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
+  <ul class="s-footer__social-media">
+    @for (icon of iconList; track icon) {
+      <li class="s-footer__social-media-icon">
+        <a href="#">
+          <img
+            src="assets/social-media-icons/{{icon}}.svg"
+            alt="{{icon}} icon"
+          />
+        </a>
+      </li>
+    }
+  </ul>
+</footer>

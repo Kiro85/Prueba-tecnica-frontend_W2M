@@ -1,33 +1,16 @@
 <main class="p-home">
-  <section class="p-home__header">
-    <app-banner></app-banner>
+  <section class="p-home__nav">
+      <app-search-bar class="p-home__search-bar" (query)="query.set($event)"></app-search-bar>
+      <app-button class="p-home__button-create" (pressed)="openCreateHeroForm()" [button]="createButton"></app-button>
   </section>
 
-  <section class="p-home__main">
-    <div class="p-home__content">
-      <div class="p-home__nav">
-        <div class="p-home__search-bar">
-          <app-search-bar></app-search-bar>
-        </div>
-        <div class="p-home__create-button">
-          <app-button-create></app-button-create>
-        </div>
-      </div>
-
-      <div class="p-home__list">
-        <section class="p-home__list-title">
-          <h2>Héroes más allá de la imaginación</h2>
-          <p>Desde tiempos inmemoriales, la humanidad ha soñado con figuras
-            extraordinarias capaces de desafiar los límites de la realidad.</p>
-        </section>
-        <div class="p-home__list-cards">
-          <section-cards></section-cards>
-        </div>
-      </div>
-    </div>
+  <section class="p-home__title">
+    <h2>Héroes más allá de la imaginación</h2>
+    <p>
+      Desde tiempos inmemoriales, la humanidad ha soñado con figuras extraordinarias capaces de
+      desafiar los límites de la realidad.
+    </p>
   </section>
+
+  <section-cards [query]="query()"></section-cards>
 </main>
-
-<footer class="p-home-footer">
-  <section-footer></section-footer>
-</footer>

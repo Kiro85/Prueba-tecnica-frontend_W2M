@@ -1,17 +1,25 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { AppCardHeroComponent } from '../../components/dynamics/app-cards/app-card-hero/app-card-hero.component';
-import { HeroStoreService } from '../../services/hero-store.service';
+import { Component, DestroyRef, effect, inject, input, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppButtonPrimaryComponent } from '../../components/dynamics/app-buttons/app-button-primary/app-button-primary.component';
-import { AppSpinnerComponent } from '../../components/statics/app-spinner/app-spinner.component';
-import { AppErrorMessageComponent } from '../../components/dynamics/app-error-message/app-error-message.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+import { catchError, finalize, tap, throwError } from 'rxjs';
+
+import { Hero } from '@models/hero';
+import { Page } from '@models/page';
+import { Button } from '@interfaces/button';
+import { HeroService } from '@services/hero.service';
+import { AppSpinnerComponent } from '@components/statics/app-spinner/app-spinner.component';
+import { AppCardHeroComponent } from '@components/dynamics/app-cards/app-card-hero/app-card-hero.component';
+import { AppErrorMessageComponent } from '@components/dynamics/app-error-message/app-error-message.component';
+import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
+import { HeroReloadService } from '@services/hero-reload.service';
 
 @Component({
   selector: 'section-cards',
   imports: [
     CommonModule,
     AppCardHeroComponent,
-    AppButtonPrimaryComponent,
+    AppButtonComponent,
     AppSpinnerComponent,
     AppErrorMessageComponent,
   ],
@@ -19,23 +27,107 @@ import { AppErrorMessageComponent } from '../../components/dynamics/app-error-me
   styleUrl: './section-cards.component.scss',
 })
 export class SectionCardsComponent implements OnInit {
-  private readonly heroStoreService = inject(HeroStoreService);
+  private readonly heroService = inject(HeroService);
+  private readonly heroReloadService = inject(HeroReloadService);
 
-  protected heroesFiltered = this.heroStoreService.heroesFiltered;
-  protected heroes = this.heroStoreService.heroes;
-  private readonly heroesPerPage = this.heroStoreService.heroesPerPage;
-  protected morePages = this.heroStoreService.nextPage;
+  public heroesFiltered = signal<Hero[]>([]); // List of heroes filtered by name
+  public query = input<string>();
+  public heroes = signal<Hero[]>([]); // List of heroes
+  public page = signal<number>(1);
+  public readonly heroesPerPage: number = 8;
+  public nextPage = signal<boolean>(true);
 
-  protected loading = this.heroStoreService.loading;
-  protected error = this.heroStoreService.error;
+  public loading = signal<boolean>(true);
+  public error = signal<string>('');
 
-  ngOnInit(): void {
-    this.nextPage();
+  private queryEffect = effect(() => {
+    const queryValue = this.query();
+    if (queryValue) {
+      this.getHeroesByName(queryValue);
+    } else {
+      this.heroesFiltered.set([]);
+    }
+  });
+  private readonly moreButtonEffect = effect(() => {
+    this.moreButton.update((current) => ({
+      ...current,
+      disabled: !this.nextPage(),
+    }));
+  });
+
+  protected moreButton = signal<Button>({
+    content: 'Ver más',
+    customClass: 'primary',
+    disabled: !this.nextPage(),
+  });
+
+
+  private readonly destroyRef = inject(DestroyRef);
+
+  public ngOnInit(): void {
+    this.getHeroesPaginated();
+
+    this.heroReloadService.reload$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.refresh();
+      });
   }
 
-  protected nextPage(): void {
-    if (this.morePages()) {
-      this.heroStoreService.getHeroesPaginated(this.heroStoreService.page() + 1, this.heroesPerPage);
-    }
+  public getHeroesPaginated(): void {
+    this.heroService
+      .getHeroesPaginated(this.page(), this.heroesPerPage)
+      .pipe(
+        tap((res) => {
+          this.handleResponse(res);
+        }),
+        catchError((err) => {
+          this.error.set(err.message || '');
+          return throwError(() => err);
+        }),
+        finalize(() => {
+          this.loading.set(false);
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
+  }
+
+  private handleResponse(res: Page): void {
+    this.heroes.update((current) => [...current, ...res.data]);
+    this.page.set(this.page() + 1);
+    this.nextPage.set(res.next !== null);
+  }
+
+  private getHeroesByName(name: string): void {
+    this.loading.set(true);
+    this.heroService
+      .getHeroesByName(name)
+      .pipe(
+        tap((res) => {
+          this.heroesFiltered.set(res);
+        }),
+        catchError((err) => {
+          this.error.set(err.message || '');
+          return throwError(() => err);
+        }),
+        finalize(() => {
+          this.loading.set(false);
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
+  }
+
+  public refresh(): void {
+    this.resetPagination();
+    this.getHeroesPaginated();
+  }
+
+  private resetPagination(): void {
+    this.heroes.set([]);
+    this.heroesFiltered.set([]);
+    this.page.set(1);
+    this.nextPage.set(true);
   }
 }

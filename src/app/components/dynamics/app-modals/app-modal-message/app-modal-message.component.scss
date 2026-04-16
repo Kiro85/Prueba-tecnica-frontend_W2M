@@ -1,0 +1,39 @@
+@use 'abstract/variables' as var;
+
+.c-modal {
+  padding: var.$s-m;
+  gap: var.$gap-m;
+  display: flex;
+  align-content: center;
+  border: 0;
+  border-radius: var.$r-s;
+
+  p {
+    font-weight: var.$fw-bold;
+    line-height: var.$lh-l;
+  }
+
+  &--success {
+    background-color: var.$c-success;
+
+    mat-icon {
+      color: var.$c-on-success;
+    }
+
+    p {
+      color: var.$c-on-success;
+    }
+  }
+
+  &--error {
+    background-color: var.$c-error;
+
+    mat-icon {
+      color: var.$c-on-error;
+    }
+
+    p {
+      color: var.$c-on-error;
+    }
+  }
+}

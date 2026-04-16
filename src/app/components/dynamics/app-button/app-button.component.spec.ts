@@ -1,0 +1,29 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppButtonComponent } from './app-button.component';
+
+describe('AppButtonComponent', () => {
+  let component: AppButtonComponent;
+  let fixture: ComponentFixture<AppButtonComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppButtonComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(AppButtonComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should emit pressed event when button is clicked', () => {
+    vi.spyOn(component.pressed, 'emit');
+    const button = fixture.nativeElement.querySelector('button');
+    button.click();
+    expect(component.pressed.emit).toHaveBeenCalled();
+  });
+});

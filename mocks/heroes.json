@@ -2,11 +2,11 @@
   "heroes": [
     {
       "id": "1",
-      "name": "Wonder Woman",
-      "superpower": "Fuerza sobrehumana, Supervelocidad",
-      "city": "Sevilla, Esp.",
-      "description": "Wonder Woman es considerada una de las superheroínas más fuertes del planeta. ",
-      "image": "heroes/wonder-woman.png"
+      "name": "WONDER WOMAN",
+      "superpower": "FUERZA SOBREHUMANA, SUPERVELOCIDAD",
+      "city": "SEVILLA, ESP.",
+      "description": "WONDER WOMAN ES CONSIDERADA UNA DE LAS SUPERHEROÍNAS MÁS FUERTES DEL PLANETA. ",
+      "image": "assets/heroes/wonder-woman.png"
     },
     {
       "id": "2",
@@ -14,15 +14,7 @@
       "superpower": "Super fuerte y enojón",
       "city": "Barcelona, Esp.",
       "description": "Hulk es un ser colosal con una musculatura impresionante que parece desafiar los límites de lo humano.",
-      "image": "heroes/hulk.png"
-    },
-    {
-      "id": "3",
-      "name": "Capitana Marvel",
-      "superpower": "Curación acelerada e inmortal",
-      "city": "New York, USA.",
-      "description": "La Capitana Marvel obtuvo sus poderes cósmicos del Teseracto, que albergaba la gema del espacio.",
-      "image": "heroes/capitana-marvel.png"
+      "image": "assets/heroes/hulk.png"
     },
     {
       "id": "4",
@@ -30,7 +22,7 @@
       "superpower": "Superpoderes arácnidos",
       "city": "Mallorca, Esp.",
       "description": "Fuerza, velocidad, agilidad, durabilidad, reflejos, coordinación, equilibrio y resistencia sobrehumanas.",
-      "image": "heroes/spiderman.jpg"
+      "image": "assets/heroes/spiderman.jpg"
     },
     {
       "id": "5",
@@ -38,31 +30,23 @@
       "superpower": "Experta en artes marciales. ",
       "city": "Culiacán, Méx",
       "description": "Gamora es una combatiente cuerpo a cuerpo y una maestra en el uso de armas. Es una tiradora experta.",
-      "image": "heroes/gamora.png"
-    },
-    {
-      "id": "6",
-      "name": "Batman",
-      "superpower": "Una gran fortuna",
-      "city": "Ciudad de México, Méx. ",
-      "description": "Batman utiliza su intelecto y aplicaciones científicas para desarrollar gadgets y vehículos.",
-      "image": "heroes/batman.png"
+      "image": "assets/heroes/gamora.png"
     },
     {
       "id": "7",
-      "name": "Viuda Negra",
-      "superpower": "exespía soviética, artista marcial y francotiradora. ",
-      "city": "Sevilla, Esp.",
-      "description": "Natasha nació en Rusia durante la Guerra Fría y fue entrenada por la KGB",
-      "image": "heroes/viuda-negra.png"
+      "name": "VIUDA NEGRA",
+      "superpower": "EXESPÍA SOVIÉTICA, ARTISTA MARCIAL Y FRANCOTIRADORA. ",
+      "city": "SEVILLA, ESP.",
+      "description": "NATASHA NACIÓ EN RUSIA DURANTE LA GUERRA FRÍA Y FUE ENTRENADA POR LA KGB",
+      "image": "assets/heroes/viuda-negra.png"
     },
     {
       "id": "8",
-      "name": "Ironman",
-      "superpower": "Armadura",
-      "city": "Buenos Aires, Arg.",
-      "description": "La armadura de Iron Man está hecha de nanotecnología y se almacena en un reactor que Tony Stark lleva en el pecho.",
-      "image": "heroes/ironman.png"
+      "name": "IRONMAN",
+      "superpower": "ARMADURA",
+      "city": "BUENOS AIRES, ARG.",
+      "description": "LA ARMADURA DE IRON MAN ESTÁ HECHA DE NANOTECNOLOGÍA Y SE ALMACENA EN UN REACTOR QUE TONY STARK LLEVA EN EL PECHO.",
+      "image": "assets/heroes/ironman.png"
     },
     {
       "id": "3189",

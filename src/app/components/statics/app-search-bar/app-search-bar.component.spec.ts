@@ -1,22 +1,24 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppSearchBarComponent } from './app-search-bar.component';
+
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { HeroStoreService } from '../../../services/hero-store.service';
+import { HeroService } from '@services/hero.service';
+
 
 describe('AppSearchBarComponent', () => {
   let fixture: ComponentFixture<AppSearchBarComponent>;
   let component: AppSearchBarComponent;
 
-  const mockHeroStoreService = {
+  const mockHeroService = {
     getHeroesByName: vi.fn(),
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppSearchBarComponent, ReactiveFormsModule],
-      providers: [{ provide: HeroStoreService, useValue: mockHeroStoreService }],
+      providers: [{ provide: HeroService, useValue: mockHeroService }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppSearchBarComponent);
@@ -28,37 +30,27 @@ describe('AppSearchBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call getHeroesByName when input changes', async () => {
-    component['query'].setValue('batman');
+  it('should emit query when input changes', async () => {
+    (component as any)['queryControl'].setValue('batman');
 
     await new Promise((r) => setTimeout(r, 300));
 
-    expect(mockHeroStoreService.getHeroesByName).toHaveBeenCalledWith('batman');
+    expect(mockHeroService.getHeroesByName).toHaveBeenCalledWith('batman');
   });
 
   it('should trim query before calling service', async () => {
-    component['query'].setValue('   superman   ');
+    (component as any)['queryControl'].setValue('   superman   ');
 
     await new Promise((r) => setTimeout(r, 300));
 
-    expect(mockHeroStoreService.getHeroesByName).toHaveBeenCalledWith('superman');
+    expect(mockHeroService.getHeroesByName).toHaveBeenCalledWith('superman');
   });
 
   it('should send null if query is empty', async () => {
-    component['query'].setValue('   ');
+    (component as any)['queryControl'].setValue('   ');
 
     await new Promise((r) => setTimeout(r, 300));
 
-    expect(mockHeroStoreService.getHeroesByName).toHaveBeenCalledWith(null);
-  });
-
-  it('should cleanup on destroy', () => {
-    const nextSpy = vi.spyOn(component['destroy$'], 'next');
-    const completeSpy = vi.spyOn(component['destroy$'], 'complete');
-
-    component.ngOnDestroy();
-
-    expect(nextSpy).toHaveBeenCalled();
-    expect(completeSpy).toHaveBeenCalled();
+    expect(mockHeroService.getHeroesByName).toHaveBeenCalledWith(null);
   });
 });

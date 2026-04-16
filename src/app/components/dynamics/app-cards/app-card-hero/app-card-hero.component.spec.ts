@@ -1,16 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppCardHeroComponent } from './app-card-hero.component';
+
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { of } from 'rxjs';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormatterService } from '../../../../services/formatter.service';
 
-import { AppModalConfirmDeleteComponent } from '../../app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
-import { AppFormHeroEditComponent } from '../../../statics/app-forms/app-form-hero-edit/app-form-hero-edit.component';
-import { AppModalSuccessMessageComponent } from '../../app-modals/app-modal-success-message/app-modal-success-message.component';
-import { AppModalErrorMessageComponent } from '../../app-modals/app-modal-error-message/app-modal-error-message.component';
+import { AppModalConfirmDeleteComponent } from '@components/dynamics/app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
+import { AppFormHeroComponent } from '@components/statics/app-forms/app-form-hero/app-form-hero.component';
+import { AppModalMessageComponent } from '@components/dynamics/app-modals/app-modal-message/app-modal-message.component';
 
 describe('AppCardHeroComponent', () => {
   let fixture: ComponentFixture<AppCardHeroComponent>;
@@ -28,34 +27,17 @@ describe('AppCardHeroComponent', () => {
     openFromComponent: vi.fn(),
   };
 
-  const mockFormatterService = {
-    firstCharPerWordToUpperCase: vi.fn((v) => v),
-    firstCharToUpperCase: vi.fn((v) => v),
-  };
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppCardHeroComponent],
       providers: [
         { provide: MatDialog, useValue: mockDialog },
         { provide: MatSnackBar, useValue: mockSnackBar },
-        { provide: FormatterService, useValue: mockFormatterService },
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppCardHeroComponent);
     component = fixture.componentInstance;
-
-    // @Input
-    component.hero = {
-      id: '1',
-      name: 'BATMAN',
-      superpower: 'Intelligence',
-      city: 'Gotham',
-      description: 'Dark hero',
-      image: 'img',
-    };
-
     fixture.detectChanges();
   });
 
@@ -63,85 +45,79 @@ describe('AppCardHeroComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should open delete dialog and show success snackbar when result is 1', () => {
-    mockDialogRef.afterClosed.mockReturnValue(of(1));
+  it('should open delete dialog and show success snackbar when result is true', () => {
+    mockDialogRef.afterClosed.mockReturnValue(of(true));
 
-    component['OpenConfirmDeleteModal']();
-
-    expect(mockDialog.open).toHaveBeenCalledWith(
-      AppModalConfirmDeleteComponent,
-      expect.objectContaining({
-        data: component.hero,
-      }),
-    );
-
-    expect(mockSnackBar.openFromComponent).toHaveBeenCalledWith(
-      AppModalSuccessMessageComponent,
-      expect.any(Object),
-    );
-  });
-
-  it('should open delete dialog and show error snackbar when delete result is 2', () => {
-    mockDialogRef.afterClosed.mockReturnValue(of(2));
-
-    component['OpenConfirmDeleteModal']();
+    component['openConfirmDeleteModal']();
 
     expect(mockDialog.open).toHaveBeenCalledWith(
       AppModalConfirmDeleteComponent,
-      expect.objectContaining({
-        data: component.hero,
-      }),
     );
 
     expect(mockSnackBar.openFromComponent).toHaveBeenCalledWith(
-      AppModalErrorMessageComponent,
-      expect.any(Object),
+      AppModalMessageComponent,
+      expect.objectContaining({
+        data: expect.objectContaining({
+          success: true,
+        }),
+      }),
     );
   });
 
-  it('should open edit dialog and show success snackbar when result is 1', () => {
-    mockDialogRef.afterClosed.mockReturnValue(of(1));
+  it('should open delete dialog and show error snackbar when result is false', () => {
+    mockDialogRef.afterClosed.mockReturnValue(of(false));
 
-    component['OpenFormHeroeEdit']();
+    component['openConfirmDeleteModal']();
 
     expect(mockDialog.open).toHaveBeenCalledWith(
-      AppFormHeroEditComponent,
-      expect.objectContaining({
-        data: component.hero,
-      }),
+      AppModalConfirmDeleteComponent,
     );
 
     expect(mockSnackBar.openFromComponent).toHaveBeenCalledWith(
-      AppModalSuccessMessageComponent,
-      expect.any(Object),
+      AppModalMessageComponent,
+      expect.objectContaining({
+        data: expect.objectContaining({
+          success: false,
+        }),
+      }),
     );
   });
 
-  it('should open edit dialog and show error snackbar when edit result is 2', () => {
-    mockDialogRef.afterClosed.mockReturnValue(of(2));
+  it('should open edit dialog and show success snackbar when result is true', () => {
+    mockDialogRef.afterClosed.mockReturnValue(of(true));
 
-    component['OpenFormHeroeEdit']();
+    component['openFormHeroEdit']();
 
     expect(mockDialog.open).toHaveBeenCalledWith(
-      AppFormHeroEditComponent,
-      expect.objectContaining({
-        data: component.hero,
-      }),
+      AppFormHeroComponent,
     );
 
     expect(mockSnackBar.openFromComponent).toHaveBeenCalledWith(
-      AppModalErrorMessageComponent,
-      expect.any(Object),
+      AppModalMessageComponent,
+      expect.objectContaining({
+        data: expect.objectContaining({
+          success: true,
+        }),
+      }),
     );
   });
 
-  it('should cleanup on destroy', () => {
-    const nextSpy = vi.spyOn(component['unsubscribe$'], 'next');
-    const completeSpy = vi.spyOn(component['unsubscribe$'], 'complete');
+  it('should open edit dialog and show error snackbar when result is false', () => {
+    mockDialogRef.afterClosed.mockReturnValue(of(false));
 
-    component.ngOnDestroy();
+    component['openFormHeroEdit']();
 
-    expect(nextSpy).toHaveBeenCalled();
-    expect(completeSpy).toHaveBeenCalled();
+    expect(mockDialog.open).toHaveBeenCalledWith(
+      AppFormHeroComponent,
+    );
+
+    expect(mockSnackBar.openFromComponent).toHaveBeenCalledWith(
+      AppModalMessageComponent,
+      expect.objectContaining({
+        data: expect.objectContaining({
+          success: false,
+        }),
+      }),
+    );
   });
 });

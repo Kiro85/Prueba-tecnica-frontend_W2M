@@ -1,11 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-error-message',
   imports: [],
-  templateUrl: './app-error-message.component.html',
   styleUrl: './app-error-message.component.scss',
+  template: `
+    <article class="c-error-message">
+      <span class="c-error-message__title">Ha ocurrido un error!</span>
+      <span class="c-error-message__text">
+        <ng-content></ng-content>
+      </span>
+    </article>
+  `,
 })
-export class AppErrorMessageComponent {
-  @Input() message!: string;
-}
+export class AppErrorMessageComponent {}

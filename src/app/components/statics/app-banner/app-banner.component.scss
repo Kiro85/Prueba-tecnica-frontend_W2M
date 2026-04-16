@@ -1,25 +1,13 @@
 .c-banner {
   position: relative;
-  width: 100%;
-  height: 480px;
-  background-image: url('../../../../assets/banner-img.png');
+  height: 30rem;
+  background-image: url('../../../../../public/assets/banner-img.png');
   background-position: center;
   object-fit: cover;
 
   &__logo {
     position: absolute;
-    top: 65px;
-    left: 40px;
-  }
-
-  &__title {
-    position: absolute;
-    top: 364px;
-    left: 1080px;
-    font-size: 4rem;
-    font-weight: 700;
-    font-family: 'Comic Sans MzS';
-    line-height: 120%;
-    color: #000000;
+    top: 4.0625rem;
+    left: 2.5rem;
   }
 }

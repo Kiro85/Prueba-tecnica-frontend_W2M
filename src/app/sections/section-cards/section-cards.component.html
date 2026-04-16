@@ -1,30 +1,29 @@
 @if (loading()) {
   <app-spinner></app-spinner>
 } @else if (error()) {
-  <app-error-message message="Error al conectar con el servidor. Por favor, pruebe más tarde."></app-error-message>
+  <app-error-message
+    >Error al conectar con el servidor. Por favor, pruebe más tarde.</app-error-message
+  >
 } @else {
-  <div class="s-list-hero">
+  <section class="s-list-hero">
     <ul class="s-list-hero__cards">
-      
       <!-- Heroes by name -->
-      @if (heroesFiltered()) {
+      @if (!!heroesFiltered().length) {
         @for (hero of heroesFiltered(); track hero.id) {
-          <app-card-hero [hero]="hero"></app-card-hero>
+          <li>
+            <app-card-hero (modified)="refresh()" [hero]="hero"></app-card-hero>
+          </li>
         }
 
-      <!-- All heroes -->
-      } @else if (heroes()) {
+        <!-- All heroes -->
+      } @else if (!!heroes().length) {
         @for (hero of heroes(); track hero.id) {
-          <app-card-hero [hero]="hero"></app-card-hero>
+          <li>
+            <app-card-hero (modified)="refresh()" [hero]="hero"></app-card-hero>
+          </li>
         }
       }
     </ul>
-    <div class="s-list-hero__button">
-      <app-button-primary
-        [disabled]="!morePages()"
-        [message]="'Ver más'"
-        (click)="nextPage()"
-      ></app-button-primary>
-    </div>
-  </div>
+    <app-button (pressed)="getHeroesPaginated()" [button]="moreButton()"></app-button>
+  </section>
 }

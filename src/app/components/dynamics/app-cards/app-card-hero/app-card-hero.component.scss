@@ -1,63 +1,49 @@
-@use '../../../../../sass/var' as var;
+@use 'abstract/variables' as var;
 
 .c-card-hero {
-  width: 318px;
-  box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.1);
-
-  &__img-container {
-    width: 100%;
-    height: 238px;
-  }
+  box-shadow: var.$shadow-light;
+  color: var.$c-text;
 
   &__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-  }
+    height: 14.875rem;
 
-  &__content {
-    width: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
   }
 
   &__info {
-    width: 286px;
-    padding: 16px;
-    gap: 16px;
+    padding: var.$s-m;
+    gap: var.$gap-m;
     display: flex;
     flex-direction: column;
   }
 
   &__name {
-    font-weight: 400;
-    font-size: 1.25rem;
-    line-height: 120%;
-    color: var.$c-text;
+    font-size: var.$fs-l;
+    font-weight: var.$fw-medium;
+    line-height: var.$lh-m;
   }
 
   &__superpower {
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 140%;
-    color: var.$c-text;
+    font-weight: var.$fw-bold;
+    line-height: var.$lh-l;
   }
 
   &__description {
-    font-weight: 400;
-    font-size: 0.875rem;
-    line-height: 120%;
+    font-size: var.$fs-s;
+    line-height: var.$lh-m;
   }
 
   &__city {
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 120%;
+    line-height: var.$lh-m;
   }
 
   &__buttons {
-    width: 268px;
-    height: 40px;
-    gap: 16px;
+    gap: var.$gap-m;
     display: flex;
   }
 }

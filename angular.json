@@ -26,11 +26,16 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/assets"
+                "input": "public"
               }
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "styles": [
-              "src/styles.scss"
+              "src/styles/index.scss"
             ]
           },
           "configurations": {

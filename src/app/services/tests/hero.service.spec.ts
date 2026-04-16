@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-
 import { HeroService } from '../hero.service';
+
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
-import { ErrorHandleService } from '../error-handle.service';
-import { Hero, HeroRequest } from '../../models/hero';
+
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+
+import { Hero, HeroRequest } from '@models/hero';
 
 describe('HeroService', () => {
   let httpMock: HttpTestingController;
@@ -52,7 +53,6 @@ describe('HeroService', () => {
         HeroService,
         provideHttpClient(),
         provideHttpClientTesting(),
-        { provide: ErrorHandleService, useValue: mockErrorHandleService },
       ],
     });
 
@@ -99,7 +99,7 @@ describe('HeroService', () => {
   });
 
   it('should create hero', () => {
-    service.createHeroe(heroRequest).subscribe((res) => {
+    service.createHero(heroRequest).subscribe((res) => {
       expect(res).toEqual(mockHero);
     });
 
@@ -112,7 +112,7 @@ describe('HeroService', () => {
   });
 
   it('should delete hero', () => {
-    service.deleteHeroe(mockHero.id).subscribe((res) => {
+    service.deleteHero(mockHero.id).subscribe((res) => {
       expect(res).toEqual(mockHero);
     });
 
@@ -124,7 +124,7 @@ describe('HeroService', () => {
   });
 
   it('should update hero', () => {
-    service.updateHeroe(mockHero).subscribe((res) => {
+    service.updateHero(mockHero).subscribe((res) => {
       expect(res).toEqual(mockHero);
     });
 
