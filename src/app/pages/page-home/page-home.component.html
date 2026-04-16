@@ -1,6 +1,6 @@
 <main class="p-home">
   <section class="p-home__nav">
-      <app-search-bar class="p-home__search-bar" (query)="query.set($event)"></app-search-bar>
+      <app-search-bar class="p-home__search-bar"></app-search-bar>
       <app-button class="p-home__button-create" (pressed)="openCreateHeroForm()" [button]="createButton"></app-button>
   </section>
 
@@ -12,5 +12,5 @@
     </p>
   </section>
 
-  <section-cards [query]="query()"></section-cards>
+  <section-cards></section-cards>
 </main>

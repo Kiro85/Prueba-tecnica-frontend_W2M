@@ -8,6 +8,7 @@ import { Hero } from '@models/hero';
 import { Page } from '@models/page';
 import { Button } from '@interfaces/button';
 import { HeroService } from '@services/hero.service';
+import { HeroSearchService } from '@services/hero-search.service';
 import { AppSpinnerComponent } from '@components/statics/app-spinner/app-spinner.component';
 import { AppCardHeroComponent } from '@components/dynamics/app-cards/app-card-hero/app-card-hero.component';
 import { AppMessageComponent } from '@components/dynamics/app-messages/app-message/app-message.component';
@@ -29,6 +30,7 @@ import { HeroReloadService } from '@services/hero-reload.service';
 export class SectionCardsComponent implements OnInit {
   private readonly heroService = inject(HeroService);
   private readonly heroReloadService = inject(HeroReloadService);
+  private readonly heroSearchService = inject(HeroSearchService);
 
   public heroesFiltered = signal<Hero[]>([]); // List of heroes filtered by name
   public query = input<string>();
@@ -71,6 +73,12 @@ export class SectionCardsComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.refresh();
+      });
+
+    this.heroSearchService.search$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((query) => {
+        this.getHeroesByName(query);
       });
   }
 

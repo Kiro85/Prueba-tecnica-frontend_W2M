@@ -5,6 +5,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs';
 
 import { Button } from '@interfaces/button';
+import { HeroSearchService } from '@services/hero-search.service';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 
 @Component({
@@ -17,15 +18,16 @@ import { AppButtonComponent } from '@components/dynamics/app-button/app-button.c
         class="c-search-bar__input"
         type="text"
         placeholder="Busca un héroe"
-        [formControl]="queryControl"
+        [formControl]="searchControl"
       />
       <app-button [button]="searchButton"></app-button>
     </article>
   `,
 })
 export class AppSearchBarComponent implements OnInit {
-  protected queryControl = new FormControl('');
-  public query = output<string>();
+  private readonly heroSearchService = inject(HeroSearchService);
+  protected searchControl = new FormControl('');
+  private destroyRef = inject(DestroyRef);
 
   protected searchButton: Button = {
     icon: 'search',
@@ -33,14 +35,12 @@ export class AppSearchBarComponent implements OnInit {
     disabled: false,
   };
 
-  private destroyRef = inject(DestroyRef);
-
   public ngOnInit(): void {
-    this.initSearchBar();
+    this.initSearch();
   }
 
-  private initSearchBar(): void {
-    this.queryControl.valueChanges
+  private initSearch(): void {
+    this.searchControl.valueChanges
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
@@ -48,7 +48,7 @@ export class AppSearchBarComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe((value) => {
-        this.query.emit(value);
+        this.heroSearchService.search(value);
       });
   }
 }
