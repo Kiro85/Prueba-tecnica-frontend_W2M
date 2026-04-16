@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="c-modal-delete__buttons">
-    <app-button (click)="closeConfirmDeleteModal()" customClass="c-button--secondary">Cancelar</app-button>
-    <app-button (click)="deleteHero()" customClass="c-button--primary">Sí, eliminar</app-button>
+    <app-button (click)="closeConfirmDeleteModal()" [button]="cancelButton"></app-button>
+    <app-button (click)="deleteHero()" [button]="confirmButton"></app-button>
   </div>
 </article>

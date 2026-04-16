@@ -6,6 +6,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 
 import { Hero } from '@models/hero';
+import { Button } from '@interfaces/button';
 import { CapitalizeWordsPipe } from '@shared/pipes/capitalize-words.pipe';
 import { CapitalizeFirstPipe } from '@shared/pipes/capitalize-first.pipe';
 import { AppModalConfirmDeleteComponent } from '@components/dynamics/app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
@@ -27,6 +28,19 @@ export class AppCardHeroComponent {
   private readonly snackBar = inject(MatSnackBar);
 
   private readonly destroyRef = inject(DestroyRef);
+
+  protected editButton: Button = {
+    content: 'Editar',
+    icon: 'edit',
+    customClass: 'primary',
+    disabled: false,
+  };
+
+  protected deleteButton: Button = {
+    content: 'Eliminar',
+    customClass: 'secondary',
+    disabled: false,
+  };
 
   protected openConfirmDeleteModal(): void {
     const dialogRef = this.dialog.open(AppModalConfirmDeleteComponent, {

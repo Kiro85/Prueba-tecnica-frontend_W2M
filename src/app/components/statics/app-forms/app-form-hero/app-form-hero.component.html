@@ -53,8 +53,6 @@
     </mat-checkbox>
 
     <!-- Submit -->
-    <app-button customClass="c-button--primary" [disabled]="heroForm.invalid">
-      {{ this.dialogData ? 'Guardar cambios' : 'Crear héroe' }}
-    </app-button>
+    <app-button [button]="submitButton"></app-button>
   </div>
 </form>

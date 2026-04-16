@@ -4,6 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { debounceTime, distinctUntilChanged, map } from 'rxjs';
 
+import { Button } from '@interfaces/button';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 
 @Component({
@@ -18,13 +19,19 @@ import { AppButtonComponent } from '@components/dynamics/app-button/app-button.c
         placeholder="Busca un héroe"
         [formControl]="queryControl"
       />
-      <app-button icon="search" customClass="c-button--search"></app-button>
+      <app-button [button]="searchButton"></app-button>
     </article>
   `,
 })
 export class AppSearchBarComponent implements OnInit {
   protected queryControl = new FormControl('');
   public query = output<string>();
+
+  protected searchButton: Button = {
+    icon: 'search',
+    customClass: 'search',
+    disabled: false,
+  };
 
   private destroyRef = inject(DestroyRef);
 

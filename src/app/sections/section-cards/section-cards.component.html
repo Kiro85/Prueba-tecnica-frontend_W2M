@@ -1,7 +1,9 @@
 @if (loading()) {
   <app-spinner></app-spinner>
 } @else if (error()) {
-  <app-error-message>Error al conectar con el servidor. Por favor, pruebe más tarde.</app-error-message>
+  <app-error-message
+    >Error al conectar con el servidor. Por favor, pruebe más tarde.</app-error-message
+  >
 } @else {
   <section class="s-list-hero">
     <ul class="s-list-hero__cards">
@@ -22,6 +24,6 @@
         }
       }
     </ul>
-    <app-button (pressed)="getHeroesPaginated()" customClass="c-button--primary" [disabled]="!nextPage()">Ver más</app-button>
+    <app-button (pressed)="getHeroesPaginated()" [button]="moreButton()"></app-button>
   </section>
 }

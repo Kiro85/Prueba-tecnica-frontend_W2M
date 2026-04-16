@@ -6,6 +6,7 @@ import { catchError, finalize, tap, throwError } from 'rxjs';
 
 import { Hero } from '@models/hero';
 import { Page } from '@models/page';
+import { Button } from '@interfaces/button';
 import { HeroService } from '@services/hero.service';
 import { AppSpinnerComponent } from '@components/statics/app-spinner/app-spinner.component';
 import { AppCardHeroComponent } from '@components/dynamics/app-cards/app-card-hero/app-card-hero.component';
@@ -29,6 +30,14 @@ export class SectionCardsComponent implements OnInit {
 
   public heroesFiltered = signal<Hero[]>([]); // List of heroes filtered by name
   public query = input<string>();
+  public heroes = signal<Hero[]>([]); // List of heroes
+  public page = signal<number>(1);
+  public readonly heroesPerPage: number = 8;
+  public nextPage = signal<boolean>(true);
+
+  public loading = signal<boolean>(true);
+  public error = signal<string>('');
+
   private queryEffect = effect(() => {
     const queryValue = this.query();
     if (queryValue) {
@@ -37,13 +46,19 @@ export class SectionCardsComponent implements OnInit {
       this.heroesFiltered.set([]);
     }
   });
-  public heroes = signal<Hero[]>([]); // List of heroes
-  public page = signal<number>(1);
-  public readonly heroesPerPage: number = 8;
-  public nextPage = signal<boolean>(true);
+  private readonly moreButtonEffect = effect(() => {
+    this.moreButton.update((current) => ({
+      ...current,
+      disabled: !this.nextPage(),
+    }));
+  });
+  
+  protected moreButton = signal<Button>({
+    content: 'Ver más',
+    customClass: 'primary',
+    disabled: !this.nextPage(),
+  });
 
-  public loading = signal<boolean>(true);
-  public error = signal<string>('');
 
   private readonly destroyRef = inject(DestroyRef);
 

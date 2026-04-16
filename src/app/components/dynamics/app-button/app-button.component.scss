@@ -10,7 +10,7 @@
   border-radius: var.$r-l;
   border: none;
   cursor: pointer;
-  transition: all ease-in-out 0.3s;
+  transition: scale ease-in-out 0.3s;
 
   &:hover {
     scale: 1.1;

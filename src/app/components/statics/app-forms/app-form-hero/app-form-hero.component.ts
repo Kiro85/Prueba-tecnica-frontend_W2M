@@ -11,6 +11,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { catchError, tap, throwError } from 'rxjs';
 
 import { Hero, HeroRequest } from '@models/hero';
+import { Button } from '@interfaces/button';
 import { ImageService } from '@services/image.service';
 import { HeroService } from '@services/hero.service';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
@@ -39,6 +40,13 @@ export class AppFormHeroComponent implements OnInit {
 
   private fb = inject(FormBuilder);
   protected heroForm: any;
+
+  protected submitButton: Button = {
+    content: this.dialogData ? 'Actualizar' : 'Crear',
+    icon: this.dialogData ? 'edit' : 'add',
+    customClass: 'primary',
+    disabled: false,
+  };
 
   private readonly destroyRef = inject(DestroyRef);
 

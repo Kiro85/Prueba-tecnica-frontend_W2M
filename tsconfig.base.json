@@ -6,7 +6,8 @@
       "@pages/*": ["./src/app/pages/*"],
       "@shared/*": ["./src/app/shared/*"],
       "@services/*": ["./src/app/services/*"],
-      "@models/*": ["./src/app/models/*"]
+      "@models/*": ["./src/app/models/*"],
+      "@interfaces/*": ["./src/app/interfaces/*"],
     }
   }
 }

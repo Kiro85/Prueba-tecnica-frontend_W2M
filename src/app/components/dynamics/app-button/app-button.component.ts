@@ -1,27 +1,31 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input,  output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
+
+import { Button } from '@interfaces/button';
 
 @Component({
   selector: 'app-button',
   imports: [MatIcon],
   styleUrl: './app-button.component.scss',
   template: `
-    <button class="c-button {{ customClass() }}" [disabled]="disabled()" (click)="pressed.emit()">
-      @if (icon()) {
-        <mat-icon fontIcon="{{ icon() }}" ></mat-icon>
+    <button class="c-button {{ buttonClass() }}" [disabled]="button()?.disabled" (click)="pressed.emit()">
+      @if (button()?.icon) {
+        <mat-icon fontIcon="{{ button()?.icon }}" ></mat-icon>
       }
 
-      @if (customClass() !== 'c-button--search') {
-        <p>
-          <ng-content></ng-content>
-        </p>
+      @if (button()?.content) {
+        <p>{{ button()?.content }}</p>
       }
     </button>
   `,
 })
 export class AppButtonComponent {
-  public icon = input<string>();
-  public customClass = input<string>();
-  public disabled = input<boolean>(false);
+  button = input<Button>();
   public pressed = output<void>();
+
+  buttonClass = computed(() => {
+    const baseClass = 'c-button';
+    const variantClass = this.button()?.customClass ? `c-button--${this.button()?.customClass}` : '';
+    return `${baseClass} ${variantClass}`;
+  })
 }

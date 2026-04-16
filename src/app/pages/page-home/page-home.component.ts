@@ -5,6 +5,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { tap } from 'rxjs';
 
+import { Button } from '@interfaces/button';
 import { SectionCardsComponent } from '@sections/section-cards/section-cards.component';
 import { AppModalMessageComponent } from '@components/dynamics/app-modals/app-modal-message/app-modal-message.component';
 import { AppSearchBarComponent } from '@components/statics/app-search-bar/app-search-bar.component';
@@ -26,6 +27,13 @@ export class PageHomeComponent {
   private readonly dialog = inject(MatDialog);
   private readonly snackBar = inject(MatSnackBar);
   @ViewChild(SectionCardsComponent) private readonly sectionCards?: SectionCardsComponent;
+
+  protected createButton: Button = {
+    content: 'Crear nuevo héroe',
+    icon: 'add',
+    customClass: 'primary',
+    disabled: false,
+  };
 
   private readonly destroyRef = inject(DestroyRef);
 
