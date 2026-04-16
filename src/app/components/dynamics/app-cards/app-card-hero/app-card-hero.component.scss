@@ -1,7 +1,7 @@
 @use 'abstract/variables' as var;
 
 .c-card-hero {
-  box-shadow: 0 0.625rem 2.5rem 0 rgba(0, 0, 0, 0.1);
+  box-shadow: var.$shadow-light;
   color: var.$c-text;
 
   &__img {
@@ -16,7 +16,7 @@
   }
 
   &__info {
-    padding: 1rem;
+    padding: var.$s-m;
     gap: var.$gap-m;
     display: flex;
     flex-direction: column;

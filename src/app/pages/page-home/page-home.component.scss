@@ -2,8 +2,8 @@
 
 .p-home {
   max-width: 1344px;
-  padding: 0 0.625rem;
-  margin: 2rem auto;
+  padding: var.$s-0 var.$s-xs;
+  margin: var.$s-xxl auto;
   gap: var.$gap-xl;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
 
   &__search-bar {
     width: 55%;
-    margin: 0 auto;
+    margin: var.$s-0 auto;
 
     @media (max-width: var.$bp-tablet) {
       width: 85%;
@@ -43,7 +43,7 @@
 
   &__title {
     max-width: 41.25rem;
-    margin: 0 auto;
+    margin: var.$s-0 auto;
     gap: var.$gap-m;
     display: flex;
     flex-direction: column;

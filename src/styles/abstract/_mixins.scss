@@ -21,9 +21,9 @@
 
   } @else if $type == 'search' {
     @include button-base(var.$c-primary, var.$c-primary-hover, var.$c-on-primary);
-    width: 72px;
-    height: 72px;
-    padding: 0;
-    border-radius: 100px;
+    width: 4.5rem;
+    height: 4.5rem;
+    padding: var.$s-0;
+    border-radius: var.$r-xl;
   }
 }

@@ -3,7 +3,7 @@
 
 .c-hero-form {
   width: 58.5rem;
-  padding: 1.25rem;
+  padding: var.$s-l;
   gap: var.$gap-xl;
   display: flex;
   flex-direction: column;

@@ -1,12 +1,12 @@
 @use 'abstract/variables' as var;
 
 .c-modal {
-  padding: 1rem;
+  padding: var.$s-m;
   gap: var.$gap-m;
   display: flex;
   align-content: center;
   border: 0;
-  border-radius: 0.5rem;
+  border-radius: var.$r-s;
 
   p {
     font-weight: var.$fw-bold;

@@ -2,8 +2,8 @@
 
 .s-footer {
   max-width: 1344px;
-  margin: 0 auto;
-  padding: 3.125rem 1rem;
+  margin: var.$s-0 auto;
+  padding: var.$s-xxxl var.$s-m;
   border-top: 0.0625rem solid #0000001a;
   display: flex;
   justify-content: space-between;

@@ -2,13 +2,13 @@
 
 .c-error-message {
   width: 90%;
-  margin: 1.5rem auto;
-  padding: 0.75rem 1rem;
+  margin: var.$s-xl auto;
+  padding: var.$s-s var.$s-m;
   gap: var.$gap-xs;
   display: flex;
   flex-direction: column;
   border: 0.0625rem solid var.$c-error;
-  border-radius: 0.5rem;
+  border-radius: var.$r-s;
   background: var.$c-error;
   color: var.$c-on-error;
 

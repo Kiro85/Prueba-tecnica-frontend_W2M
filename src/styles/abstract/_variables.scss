@@ -71,7 +71,6 @@ $fs-l: 1.25rem;
 $fs-xl: 2rem;
 
 
-
 //------------
 // Font Weights
 //------------
@@ -99,3 +98,35 @@ $gap-m: 1rem;
 $gap-l: 1.5rem;
 $gap-xl: 2rem;
 $gap-xxl: 16rem;
+
+
+//------------
+// Spacing
+//------------
+
+$s-0: 0;
+$s-xs: 0.625rem;
+$s-s: 0.75rem;
+$s-m: 1rem;
+$s-l: 1.25rem;
+$s-xl: 1.5rem;
+$s-xxl: 2rem;
+$s-xxxl: 3.125rem;
+
+
+//------------
+// Radius
+//------------
+
+$r-s: 0.5rem;
+$r-m: 1rem;
+$r-l: 2rem;
+$r-xl: 5rem;
+
+
+//------------
+// Shadows
+//------------
+
+$shadow-light: 0 0.0625rem 0.25rem 0 rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);

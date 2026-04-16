@@ -7,7 +7,7 @@
   flex-direction: column;
 
   &__label {
-    padding-bottom: 0.625rem;
+    padding-bottom: var.$s-xs;
     font-size: var.$fs-s;
     line-height: var.$lh-m;
     letter-spacing: 2%;
@@ -34,21 +34,21 @@
     font-size: var.$fs-s;
     line-height: var.$lh-m;
     letter-spacing: 0.0313rem;
-    margin-bottom: 1rem;
+    margin-bottom: var.$s-m;
     color: var.$c-text-error;
   }
 
   &__files {
     width: 100%;
-    margin: 1.25rem 0;
+    margin: var.$s-l var.$s-0;
   }
 
   &__files::file-selector-button {
     height: 2.5rem;
     border: none;
-    border-radius: 2rem;
-    padding: 0 1rem;
-    margin-right: 1rem;
+    border-radius: var.$r-l;
+    padding: var.$s-0 var.$s-m;
+    margin-right: var.$s-m;
     background-color: var.$c-secondary;
     cursor: pointer;
     transition: all ease-in-out 0.3s;
@@ -59,7 +59,7 @@
 
     @media (max-width: var.$bp-tablet) {
       display: block;
-      margin-bottom: 1rem;
+      margin-bottom: var.$s-m;
     }
   }
 }

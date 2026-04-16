@@ -2,12 +2,12 @@
 @use 'abstract/mixins' as mix;
 
 .c-button {
-  padding: 0.75rem 2rem;
+  padding: var.$s-s var.$s-xxl;
   gap: var.$gap-s;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 2rem;
+  border-radius: var.$r-l;
   border: none;
   cursor: pointer;
   transition: all ease-in-out 0.3s;
