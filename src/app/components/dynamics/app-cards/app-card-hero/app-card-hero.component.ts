@@ -5,7 +5,7 @@ import { Button } from '@interfaces/button';
 import { CapitalizeWordsPipe } from '@shared/pipes/capitalize-words.pipe';
 import { CapitalizeFirstPipe } from '@shared/pipes/capitalize-first.pipe';
 import { DialogService } from '@services/dialog.service';
-import { AppModalConfirmDeleteComponent } from '@components/dynamics/app-modals/app-modal-confirm-delete/app-modal-confirm-delete.component';
+import { AppModalDeleteComponent } from '@components/dynamics/app-modals/app-modal-confirm-delete/app-modal-delete.component';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 import { AppFormHeroComponent } from '@components/statics/app-forms/app-form-hero/app-form-hero.component';
 
@@ -35,10 +35,10 @@ export class AppCardHeroComponent {
 
   protected openConfirmDeleteModal(): void {
     this.dialogService.openDialog(
-      AppModalConfirmDeleteComponent,
+      AppModalDeleteComponent,
       'Héroe eliminado con éxito',
       'Ha ocurrido un error al eliminar el héroe',
-      this.hero()
+      this.hero(),
     );
   }
 
@@ -47,7 +47,7 @@ export class AppCardHeroComponent {
       AppFormHeroComponent,
       'Héroe actualizado con éxito',
       'Ha ocurrido un error al actualizar el héroe',
-      this.hero()
+      this.hero(),
     );
   }
 }

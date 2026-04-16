@@ -41,14 +41,6 @@
       "image": "assets/heroes/viuda-negra.png"
     },
     {
-      "id": "8",
-      "name": "IRONMAN",
-      "superpower": "ARMADURA",
-      "city": "BUENOS AIRES, ARG.",
-      "description": "LA ARMADURA DE IRON MAN ESTÁ HECHA DE NANOTECNOLOGÍA Y SE ALMACENA EN UN REACTOR QUE TONY STARK LLEVA EN EL PECHO.",
-      "image": "assets/heroes/ironman.png"
-    },
-    {
       "id": "3189",
       "name": "deku",
       "superpower": "One For All",

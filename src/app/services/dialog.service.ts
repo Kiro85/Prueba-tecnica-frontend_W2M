@@ -30,8 +30,10 @@ export class DialogService {
       })
       .afterClosed()
       .subscribe((success) => {
-        this.showSnackbar(success ? successMessage : errorMessage, success);
-        success ? this.heroReloadService.triggerReload() : '';
+        if (success !== undefined) {
+          this.showSnackbar(success ? successMessage : errorMessage, success);
+          success ? this.heroReloadService.triggerReload() : '';
+        }
       });
   }
 

@@ -20,7 +20,7 @@ import { Button } from '@interfaces/button';
   `,
 })
 export class AppButtonComponent {
-  button = input<Button>();
+  public button = input<Button>();
   public pressed = output<void>();
 
   buttonClass = computed(() => {

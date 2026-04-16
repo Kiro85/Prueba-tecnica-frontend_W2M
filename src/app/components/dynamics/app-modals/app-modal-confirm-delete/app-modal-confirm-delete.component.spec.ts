@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppModalConfirmDeleteComponent } from './app-modal-confirm-delete.component';
+import { AppModalDeleteComponent } from './app-modal-delete.component';
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { of, throwError } from 'rxjs';
@@ -8,9 +8,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { HeroService } from '@services/hero.service';
 
-describe('AppModalConfirmDeleteComponent', () => {
-  let fixture: ComponentFixture<AppModalConfirmDeleteComponent>;
-  let component: AppModalConfirmDeleteComponent;
+describe('AppModalDeleteComponent', () => {
+  let fixture: ComponentFixture<AppModalDeleteComponent>;
+  let component: AppModalDeleteComponent;
 
   const mockDialogRef = {
     close: vi.fn(),
@@ -31,7 +31,7 @@ describe('AppModalConfirmDeleteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppModalConfirmDeleteComponent],
+      imports: [AppModalDeleteComponent],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },
         { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
@@ -39,7 +39,7 @@ describe('AppModalConfirmDeleteComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AppModalConfirmDeleteComponent);
+    fixture = TestBed.createComponent(AppModalDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -65,7 +65,7 @@ describe('AppModalConfirmDeleteComponent', () => {
   });
 
   it('should close modal without action', () => {
-    component['closeConfirmDeleteModal']();
+    component['closeDeleteModal']();
 
     expect(mockDialogRef.close).toHaveBeenCalled();
   });
