@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal} from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -40,8 +40,6 @@ export class AppFormHeroComponent {
 
   protected heroForm = this.heroFormBuilder.buildForm(this.dialogData?.hero);
 
-  // -------
-  // TODO: ENTENDER ESTO
   protected formStatus = toSignal(this.heroForm.statusChanges, {
     initialValue: this.heroForm.status,
   });
@@ -52,15 +50,12 @@ export class AppFormHeroComponent {
     customClass: 'primary',
     disabled: this.formStatus() === 'INVALID',
   }));
-  // -------
 
-  // -------
-  // TODO: SE PUEDE QUITAR EL ASYNC/AWAIT Y SIMPLEMENTE USAR EL SUBSCRIBE?
-  protected async onSubmit(): Promise<void> {
-    const hero: Hero = await this.heroFormMapper.mapToHero(this.heroForm.value);
-    hero.id ? this.updateHero(hero) : this.createHero(hero);
+  protected onSubmit(): void {
+    this.heroFormMapper.mapToHero(this.heroForm.value).subscribe((hero: Hero) => {
+      hero.id ? this.updateHero(hero) : this.createHero(hero);
+    });
   }
-  // -------
 
   private createHero(heroModel: Hero): void {
     this.heroService.createHero(heroModel).subscribe((success) => {
