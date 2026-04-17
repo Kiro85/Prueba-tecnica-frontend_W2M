@@ -1,4 +1,4 @@
-import { Component, DestroyRef, effect, inject, input, OnInit, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -33,53 +33,37 @@ export class SectionCardsComponent implements OnInit {
   private readonly heroSearchService = inject(HeroSearchService);
 
   public heroesFiltered = signal<Hero[]>([]); // List of heroes filtered by name
-  public query = input<string>();
   public heroes = signal<Hero[]>([]); // List of heroes
   public page = signal<number>(1);
-  public readonly heroesPerPage: number = 8;
   public nextPage = signal<boolean>(true);
+  public readonly heroesPerPage: number = 8;
 
   public loading = signal<boolean>(true);
   public error = signal<string>('');
+  private readonly destroyRef = inject(DestroyRef);
 
-  private queryEffect = effect(() => {
-    const queryValue = this.query();
-    if (queryValue) {
-      this.getHeroesByName(queryValue);
-    } else {
-      this.heroesFiltered.set([]);
-    }
-  });
-  private readonly moreButtonEffect = effect(() => {
-    this.moreButton.update((current) => ({
-      ...current,
-      disabled: !this.nextPage(),
-    }));
-  });
-
-  protected moreButton = signal<Button>({
+  protected moreButton = computed<Button>(() => ({
     content: 'Ver más',
     customClass: 'primary',
     disabled: !this.nextPage(),
-  });
-
-
-  private readonly destroyRef = inject(DestroyRef);
+  }));
 
   public ngOnInit(): void {
     this.getHeroesPaginated();
+    this.reloadHeroes();
+    this.searchHeroes();
+  }
 
-    this.heroReloadService.reload$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
-        this.refresh();
-      });
+  private reloadHeroes(): void {
+    this.heroReloadService.reload$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
+      this.refresh();
+    });
+  }
 
-    this.heroSearchService.search$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((query) => {
-        this.getHeroesByName(query);
-      });
+  private searchHeroes(): void {
+    this.heroSearchService.search$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((query) => {
+      this.getHeroesByName(query);
+    });
   }
 
   public getHeroesPaginated(): void {
@@ -96,7 +80,6 @@ export class SectionCardsComponent implements OnInit {
         finalize(() => {
           this.loading.set(false);
         }),
-        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe();
   }
@@ -108,7 +91,6 @@ export class SectionCardsComponent implements OnInit {
   }
 
   private getHeroesByName(name: string): void {
-    this.loading.set(true);
     this.heroService
       .getHeroesByName(name)
       .pipe(
@@ -122,7 +104,6 @@ export class SectionCardsComponent implements OnInit {
         finalize(() => {
           this.loading.set(false);
         }),
-        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe();
   }
