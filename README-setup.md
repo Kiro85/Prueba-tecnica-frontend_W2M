@@ -40,14 +40,6 @@ npx json-server --watch mocks/heroes.json --port 3000
 
 Open `http://localhost:4200/` in your browser.
 
-# 🧪 Set up for testing
-
-Run the following command:
-
-```bash
-ng test
-```
-
 # 📖 More documentation
 
 ## ☘️ [General Readme](README.md)
