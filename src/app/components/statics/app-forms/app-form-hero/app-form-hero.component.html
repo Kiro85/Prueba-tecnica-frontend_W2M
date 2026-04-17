@@ -10,7 +10,7 @@
     <div class="c-hero-form__row-2">
       <app-form-field
         class="c-hero-form__field"
-        [control]="nameControl"
+        [control]="heroForm.controls.name"
         label="Nombre"
         placeholder="Nombre"
         type="text"
@@ -19,7 +19,7 @@
       <!-- Superpower -->
       <app-form-field
         class="c-hero-form__field"
-        [control]="superpowerControl"
+        [control]="heroForm.controls.superpower"
         label="Superpoder"
         placeholder="Superpoder"
         type="text"
@@ -28,7 +28,7 @@
 
     <!-- City -->
     <app-form-field
-      [control]="cityControl"
+      [control]="heroForm.controls.city"
       label="Ciudad"
       placeholder="Ciudad"
       type="text"
@@ -36,14 +36,14 @@
 
     <!-- Description -->
     <app-form-field
-      [control]="descriptionControl"
+      [control]="heroForm.controls.description"
       label="Descripción"
       placeholder="Descripción"
       type="textarea"
     ></app-form-field>
 
     <!-- Image -->
-    <app-form-field [control]="imageControl" label="Elige una imagen" type="img"></app-form-field>
+    <app-form-field [control]="heroForm.controls.image" label="Elige una imagen" type="img"></app-form-field>
   </div>
 
   <div class="c-hero-form__submit">

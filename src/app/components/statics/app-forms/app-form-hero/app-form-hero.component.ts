@@ -4,7 +4,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { Hero } from '@models/hero';
@@ -46,7 +46,6 @@ export class AppFormHeroComponent {
 
   protected submitButton = computed<Button>(() => ({
     content: this.dialogData ? 'Actualizar' : 'Crear',
-    icon: this.dialogData ? 'edit' : 'add',
     customClass: 'primary',
     disabled: this.formStatus() === 'INVALID',
   }));
@@ -69,30 +68,7 @@ export class AppFormHeroComponent {
     });
   }
 
-  // -------
-  // TODO: SE PUEDE QUITAR?
   protected closeModal(): void {
     this.dialogRef.close();
   }
-
-  get nameControl(): FormControl {
-    return this.heroForm.get('name') as FormControl;
-  }
-
-  get superpowerControl(): FormControl {
-    return this.heroForm.get('superpower') as FormControl;
-  }
-
-  get cityControl(): FormControl {
-    return this.heroForm.get('city') as FormControl;
-  }
-
-  get descriptionControl(): FormControl {
-    return this.heroForm.get('description') as FormControl;
-  }
-
-  get imageControl(): FormControl {
-    return this.heroForm.get('image') as FormControl;
-  }
-  // -------
 }
