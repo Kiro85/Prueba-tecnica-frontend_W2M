@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { FOOTER_DATA } from '../../constants/footer-data.constant';
+import { Footer } from '@interfaces/footer';
+
 @Component({
   selector: 'section-footer',
   imports: [],
@@ -7,7 +10,8 @@ import { Component } from '@angular/core';
   styleUrl: './section-footer.component.scss',
 })
 export class SectionFooterComponent {
-  protected currentYear: number = new Date().getFullYear();
-  protected companyName: string = 'SUPERHEROCRUD, Inc';
-  protected iconList: string[] = ['instagram', 'youtube', 'linkedin', 'facebook', 'x'];
+  protected footer: Footer = {
+    ...FOOTER_DATA,
+    currentYear: new Date().getFullYear(),
+  }
 }
