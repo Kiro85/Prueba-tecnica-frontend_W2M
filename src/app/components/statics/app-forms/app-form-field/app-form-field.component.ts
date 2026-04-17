@@ -4,6 +4,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 
+import { FormField } from '@interfaces/form-field';
+
 @Component({
   selector: 'app-form-field',
   imports: [MatFormFieldModule, MatInputModule, CommonModule, ReactiveFormsModule],
@@ -11,12 +13,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app-form-field.component.scss',
 })
 export class AppFormFieldComponent {
-  public control = input<FormControl>(new FormControl());
-  public type = input<'text' | 'textarea' | 'img'>();
-  public placeholder = input<string>('');
-  public label = input<string>('');
+  public field = input<FormField>();
 
-  protected getErrorMessage(control: FormControl | null): string {
+  protected getErrorMessage(control: FormControl): string {
     let message: string = '';
 
     if (control && control.touched && control.errors) {

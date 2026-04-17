@@ -1,17 +1,18 @@
 import { inject, Injectable } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, NonNullableFormBuilder } from '@angular/forms';
 
 import { Hero } from '@models/hero';
+import { FormHero } from '@interfaces/form-hero';
 import { HeroFormValidatorsService } from '@services/forms/hero-form-validators.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HeroFormBuilderService {
-  private fb = inject(FormBuilder);
+  private fb = inject(NonNullableFormBuilder);
   private heroFormValidators = inject(HeroFormValidatorsService);
 
-  public buildForm(hero?: Hero) {
+  public buildForm(hero?: Hero): FormGroup<FormHero> {
     return this.fb.group({
       id: [hero?.id || ''],
       name: [hero?.name.toUpperCase() || '', this.heroFormValidators.name()],

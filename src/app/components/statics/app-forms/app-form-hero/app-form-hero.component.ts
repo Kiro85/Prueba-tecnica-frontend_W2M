@@ -6,15 +6,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Hero } from '@models/hero';
 import { Button } from '@interfaces/button';
 import { HeroService } from '@services/hero.service';
 import { HeroFormMapperService } from '@services/forms/hero-form-mapper.service';
 import { HeroFormBuilderService } from '@services/forms/hero-form-builder.service';
+import { HeroFormFieldsBuilderService } from '@services/forms/hero-form-fields-builder.service';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 import { AppFormFieldComponent } from '@components/statics/app-forms/app-form-field/app-form-field.component';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-form-hero',
@@ -37,8 +38,10 @@ export class AppFormHeroComponent {
   private readonly heroService = inject(HeroService);
   private readonly heroFormBuilder = inject(HeroFormBuilderService);
   private readonly heroFormMapper = inject(HeroFormMapperService);
+  private readonly heroFormFieldsBuilder = inject(HeroFormFieldsBuilderService);
 
   protected heroForm = this.heroFormBuilder.buildForm(this.dialogData?.hero);
+  protected formFieldSections = this.heroFormFieldsBuilder.buildFields(this.heroForm);
 
   protected formStatus = toSignal(this.heroForm.statusChanges, {
     initialValue: this.heroForm.status,

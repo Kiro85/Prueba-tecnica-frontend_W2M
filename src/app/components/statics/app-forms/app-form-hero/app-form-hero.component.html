@@ -5,54 +5,29 @@
 
   <h1 class="c-hero-form__title">Crear nuevo héroe</h1>
 
-  <!-- Name -->
   <div class="c-hero-form__rows">
-    <div class="c-hero-form__row-2">
-      <app-form-field
-        class="c-hero-form__field"
-        [control]="heroForm.controls.name"
-        label="Nombre"
-        placeholder="Nombre"
-        type="text"
-      ></app-form-field>
+    @for (section of formFieldSections; track section) {
+      @if (section.layout === 'row-2') {
+        <div class="c-hero-form__row-2">
+          @for (field of section.fields; track field.label) {
+            <app-form-field [field]="field" />
+          }
+        </div>
+      }
 
-      <!-- Superpower -->
-      <app-form-field
-        class="c-hero-form__field"
-        [control]="heroForm.controls.superpower"
-        label="Superpoder"
-        placeholder="Superpoder"
-        type="text"
-      ></app-form-field>
-    </div>
-
-    <!-- City -->
-    <app-form-field
-      [control]="heroForm.controls.city"
-      label="Ciudad"
-      placeholder="Ciudad"
-      type="text"
-    ></app-form-field>
-
-    <!-- Description -->
-    <app-form-field
-      [control]="heroForm.controls.description"
-      label="Descripción"
-      placeholder="Descripción"
-      type="textarea"
-    ></app-form-field>
-
-    <!-- Image -->
-    <app-form-field [control]="heroForm.controls.image" label="Elige una imagen" type="img"></app-form-field>
+      @if (section.layout === 'row-1') {
+        @for (field of section.fields; track field.label) {
+          <app-form-field [field]="field" />
+        }
+      }
+    }
   </div>
 
   <div class="c-hero-form__submit">
-    <!-- Terms and conditions -->
     <mat-checkbox formControlName="termsAndConditions">
       Acepto los <u>Términos y condiciones</u>*
     </mat-checkbox>
 
-    <!-- Submit -->
-    <app-button [button]="submitButton()"></app-button>
+    <app-button [button]="submitButton()" />
   </div>
 </form>
