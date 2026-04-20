@@ -45,5 +45,9 @@
   &__buttons {
     gap: var.$gap-m;
     display: flex;
+
+    app-button {
+      flex: 1;
+    }
   }
 }

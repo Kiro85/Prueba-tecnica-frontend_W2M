@@ -1,11 +1,11 @@
-import { Component, DestroyRef, inject, OnInit, output } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { debounceTime, distinctUntilChanged, map } from 'rxjs';
 
 import { Button } from '@interfaces/button';
-import { HeroSearchService } from '@services/hero-search.service';
+import { HeroSearchService } from '@services/hero/hero-search.service';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 
 @Component({

@@ -8,6 +8,7 @@
       "@services/*": ["./src/app/services/*"],
       "@models/*": ["./src/app/models/*"],
       "@interfaces/*": ["./src/app/interfaces/*"],
+      "@constants/*": ["./src/app/constants/*"],
     }
   }
 }

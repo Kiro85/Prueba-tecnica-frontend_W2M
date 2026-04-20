@@ -10,7 +10,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 import { Hero } from '@models/hero';
 import { Button } from '@interfaces/button';
-import { HeroService } from '@services/hero.service';
+import { HeroService } from '@services/hero/hero.service';
 import { HeroFormMapperService } from '@services/forms/hero-form-mapper.service';
 import { HeroFormBuilderService } from '@services/forms/hero-form-builder.service';
 import { HeroFormFieldsBuilderService } from '@services/forms/hero-form-fields-builder.service';
@@ -36,12 +36,12 @@ export class AppFormHeroComponent {
   private readonly dialogRef = inject(MatDialogRef<AppFormHeroComponent>);
   protected readonly dialogData = inject(MAT_DIALOG_DATA);
   private readonly heroService = inject(HeroService);
-  private readonly heroFormBuilder = inject(HeroFormBuilderService);
-  private readonly heroFormMapper = inject(HeroFormMapperService);
-  private readonly heroFormFieldsBuilder = inject(HeroFormFieldsBuilderService);
+  private readonly heroFormBuilderService = inject(HeroFormBuilderService);
+  private readonly heroFormMapperService = inject(HeroFormMapperService);
+  private readonly heroFormFieldsBuilderService = inject(HeroFormFieldsBuilderService);
 
-  protected heroForm = this.heroFormBuilder.buildForm(this.dialogData?.hero);
-  protected formFieldSections = this.heroFormFieldsBuilder.buildFields(this.heroForm);
+  protected heroForm = this.heroFormBuilderService.buildForm(this.dialogData?.hero);
+  protected formFieldSections = this.heroFormFieldsBuilderService.buildFields(this.heroForm);
 
   protected formStatus = toSignal(this.heroForm.statusChanges, {
     initialValue: this.heroForm.status,
@@ -54,7 +54,7 @@ export class AppFormHeroComponent {
   }));
 
   protected onSubmit(): void {
-    this.heroFormMapper.mapToHero(this.heroForm.value).subscribe((hero: Hero) => {
+    this.heroFormMapperService.mapToHero(this.heroForm.value).subscribe((hero: Hero) => {
       hero.id ? this.updateHero(hero) : this.createHero(hero);
     });
   }

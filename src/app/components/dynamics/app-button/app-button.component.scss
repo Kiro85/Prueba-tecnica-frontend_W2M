@@ -2,6 +2,7 @@
 @use 'abstract/mixins' as mix;
 
 .c-button {
+  width: 100%;
   padding: var.$s-s var.$s-xxl;
   gap: var.$gap-s;
   display: flex;
@@ -27,9 +28,9 @@
 
   $decorators: primary, secondary, search;
 
-  @each $type in $decorators {
-    &--#{$type} {
-      @include mix.button($type);
+  @each $decorator in $decorators {
+    &--#{$decorator} {
+      @include mix.button($decorator);
     }
   }
 

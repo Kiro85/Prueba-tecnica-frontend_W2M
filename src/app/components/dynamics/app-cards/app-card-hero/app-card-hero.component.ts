@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 
 import { Hero } from '@models/hero';
 import { Button } from '@interfaces/button';
@@ -18,7 +18,6 @@ import { AppFormHeroComponent } from '@components/statics/app-forms/app-form-her
 export class AppCardHeroComponent {
   private readonly dialogService = inject(DialogService);
   public hero = input.required<Hero>();
-  public modified = output<void>();
 
   protected editButton: Button = {
     content: 'Editar',

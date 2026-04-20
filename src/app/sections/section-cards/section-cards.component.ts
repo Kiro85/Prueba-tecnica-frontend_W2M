@@ -7,13 +7,13 @@ import { catchError, finalize, tap, throwError } from 'rxjs';
 import { Hero } from '@models/hero';
 import { Page } from '@models/page';
 import { Button } from '@interfaces/button';
-import { HeroService } from '@services/hero.service';
-import { HeroSearchService } from '@services/hero-search.service';
+import { HeroService } from '@services/hero/hero.service';
+import { HeroSearchService } from '@services/hero/hero-search.service';
 import { AppSpinnerComponent } from '@components/statics/app-spinner/app-spinner.component';
 import { AppCardHeroComponent } from '@components/dynamics/app-cards/app-card-hero/app-card-hero.component';
 import { AppMessageComponent } from '@components/dynamics/app-messages/app-message/app-message.component';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
-import { HeroReloadService } from '@services/hero-reload.service';
+import { HeroReloadService } from '@services/hero/hero-reload.service';
 
 @Component({
   selector: 'section-cards',

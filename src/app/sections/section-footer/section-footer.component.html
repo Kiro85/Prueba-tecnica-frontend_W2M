@@ -1,8 +1,8 @@
 <footer class="s-footer">
-  <span class="s-footer__copyright">© {{footer.currentYear}} {{footer.companyName}}</span>
+  <span class="s-footer__copyright">© {{footerData.currentYear}} {{footerData.companyName}}</span>
 
   <ul class="s-footer__social-media">
-    @for (icon of footer.iconList; track icon) {
+    @for (icon of footerData.iconList; track icon) {
       <li class="s-footer__social-media-icon">
         <a href="#">
           <img

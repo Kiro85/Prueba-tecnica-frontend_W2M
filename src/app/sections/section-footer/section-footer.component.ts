@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
-import { FOOTER_DATA } from '../../constants/footer-data.constant';
-import { Footer } from '@interfaces/footer';
+import { FOOTER_DATA } from '@constants/footer-data.constant';
 
 @Component({
   selector: 'section-footer',
@@ -10,8 +9,5 @@ import { Footer } from '@interfaces/footer';
   styleUrl: './section-footer.component.scss',
 })
 export class SectionFooterComponent {
-  protected footer: Footer = {
-    ...FOOTER_DATA,
-    currentYear: new Date().getFullYear(),
-  }
+  protected footerData = FOOTER_DATA;
 }

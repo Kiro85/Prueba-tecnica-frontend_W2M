@@ -4,9 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Hero } from '@models/hero';
-import { HeroReloadService } from '@services/hero-reload.service';
+import { HeroReloadService } from '@services/hero/hero-reload.service';
 import { AppMessageSnackbarComponent } from '@components/dynamics/app-messages/app-message-snackbar/app-message-snackbar.component';
-
 
 @Injectable({
   providedIn: 'root',

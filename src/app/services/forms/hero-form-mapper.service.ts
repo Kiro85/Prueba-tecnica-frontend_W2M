@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
+import { map, Observable, of } from 'rxjs';
 
 import { Hero } from '@models/hero';
 import { ImageService } from '@services/image.service';
-import { map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

@@ -3,7 +3,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { Button } from '@interfaces/button';
-import { HeroService } from '@services/hero.service';
+import { HeroService } from '@services/hero/hero.service';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
 
 @Component({
@@ -30,8 +30,7 @@ export class AppModalDeleteComponent {
   };
 
   protected deleteHero(): void {
-    this.heroService.deleteHero(this.dialogData.hero.id)
-    .subscribe((success) => {
+    this.heroService.deleteHero(this.dialogData.hero.id).subscribe((success) => {
       this.dialogRef.close(success);
     });
   }

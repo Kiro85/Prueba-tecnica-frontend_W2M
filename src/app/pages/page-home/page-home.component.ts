@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 
-import { HOME_DATA } from '../../constants/home-data.constant';
+import { HOME_DATA } from '@constants/home-data.constant';
 import { Button } from '@interfaces/button';
 import { DialogService } from '@services/dialog.service';
 import { SectionCardsComponent } from '@sections/section-cards/section-cards.component';
