@@ -9,7 +9,7 @@
       @if (!!heroesFiltered().length) {
         @for (hero of heroesFiltered(); track hero.id) {
           <li>
-            <app-card-hero (modified)="refresh()" [hero]="hero"></app-card-hero>
+            <app-card-hero (modified)="refreshHeroes()" [hero]="hero"></app-card-hero>
           </li>
         }
 
@@ -17,11 +17,11 @@
       } @else if (!!heroes().length) {
         @for (hero of heroes(); track hero.id) {
           <li>
-            <app-card-hero (modified)="refresh()" [hero]="hero"></app-card-hero>
+            <app-card-hero (modified)="refreshHeroes()" [hero]="hero"></app-card-hero>
           </li>
         }
       }
     </ul>
-    <app-button (pressed)="getHeroesPaginated()" [button]="moreButton()"></app-button>
+    <app-button (pressed)="loadMoreHeroes()" [button]="moreButton()"></app-button>
   </section>
 }

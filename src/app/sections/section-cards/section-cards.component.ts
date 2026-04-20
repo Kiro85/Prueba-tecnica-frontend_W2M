@@ -1,19 +1,15 @@
-import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { catchError, finalize, tap, throwError } from 'rxjs';
-
-import { Hero } from '@models/hero';
-import { Page } from '@models/page';
 import { Button } from '@interfaces/button';
-import { HeroService } from '@services/hero/hero.service';
 import { HeroSearchService } from '@services/hero/hero-search.service';
-import { AppSpinnerComponent } from '@components/statics/app-spinner/app-spinner.component';
+import { HeroReloadService } from '@services/hero/hero-reload.service';
+import { HeroManagerService } from '@services/hero/hero-manager.service';
 import { AppCardHeroComponent } from '@components/dynamics/app-cards/app-card-hero/app-card-hero.component';
 import { AppMessageComponent } from '@components/dynamics/app-messages/app-message/app-message.component';
 import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
-import { HeroReloadService } from '@services/hero/hero-reload.service';
+import { AppSpinnerComponent } from '@components/statics/app-spinner/app-spinner.component';
 
 @Component({
   selector: 'section-cards',
@@ -28,95 +24,45 @@ import { HeroReloadService } from '@services/hero/hero-reload.service';
   styleUrl: './section-cards.component.scss',
 })
 export class SectionCardsComponent implements OnInit {
-  private readonly heroService = inject(HeroService);
   private readonly heroReloadService = inject(HeroReloadService);
   private readonly heroSearchService = inject(HeroSearchService);
+  private readonly heroManagerService = inject(HeroManagerService);
 
-  public heroesFiltered = signal<Hero[]>([]); // List of heroes filtered by name
-  public heroes = signal<Hero[]>([]); // List of heroes
-  public page = signal<number>(1);
-  public nextPage = signal<boolean>(true);
-  public readonly heroesPerPage: number = 8;
-
-  public loading = signal<boolean>(true);
-  public error = signal<string>('');
+  public heroes = this.heroManagerService.heroes;
+  public heroesFiltered = this.heroManagerService.heroesFiltered;
+  public loading = this.heroManagerService.loading;
+  public error = this.heroManagerService.error;
   private readonly destroyRef = inject(DestroyRef);
 
   protected moreButton = computed<Button>(() => ({
     content: 'Ver más',
     customClass: 'primary',
-    disabled: !this.nextPage(),
+    disabled: !this.heroManagerService.nextPage(),
   }));
 
   public ngOnInit(): void {
-    this.getHeroesPaginated();
+    this.loadMoreHeroes();
     this.reloadHeroes();
     this.searchHeroes();
   }
 
   private reloadHeroes(): void {
     this.heroReloadService.reload$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
-      this.refresh();
+      this.heroManagerService.refresh();
     });
   }
 
   private searchHeroes(): void {
     this.heroSearchService.search$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((query) => {
-      this.getHeroesByName(query);
+      this.heroManagerService.getHeroesByName(query);
     });
   }
 
-  public getHeroesPaginated(): void {
-    this.heroService
-      .getHeroesPaginated(this.page(), this.heroesPerPage)
-      .pipe(
-        tap((res: Page) => {
-          this.handleResponse(res);
-        }),
-        catchError((err: any) => {
-          this.error.set(err.message || '');
-          return throwError(() => err);
-        }),
-        finalize(() => {
-          this.loading.set(false);
-        }),
-      )
-      .subscribe();
+  protected loadMoreHeroes(): void {
+    this.heroManagerService.getHeroesPaginated();
   }
 
-  private handleResponse(res: Page): void {
-    this.heroes.update((current) => [...current, ...res.data]);
-    this.page.set(this.page() + 1);
-    this.nextPage.set(res.next !== null);
-  }
-
-  private getHeroesByName(name: string): void {
-    this.heroService
-      .getHeroesByName(name)
-      .pipe(
-        tap((res: Hero[]) => {
-          this.heroesFiltered.set(res);
-        }),
-        catchError((err: any) => {
-          this.error.set(err.message || '');
-          return throwError(() => err);
-        }),
-        finalize(() => {
-          this.loading.set(false);
-        }),
-      )
-      .subscribe();
-  }
-
-  public refresh(): void {
-    this.resetPagination();
-    this.getHeroesPaginated();
-  }
-
-  private resetPagination(): void {
-    this.heroes.set([]);
-    this.heroesFiltered.set([]);
-    this.page.set(1);
-    this.nextPage.set(true);
+  protected refreshHeroes(): void {
+    this.heroManagerService.refresh();
   }
 }
