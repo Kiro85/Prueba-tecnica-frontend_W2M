@@ -70,10 +70,10 @@ export class SectionCardsComponent implements OnInit {
     this.heroService
       .getHeroesPaginated(this.page(), this.heroesPerPage)
       .pipe(
-        tap((res) => {
+        tap((res: Page) => {
           this.handleResponse(res);
         }),
-        catchError((err) => {
+        catchError((err: any) => {
           this.error.set(err.message || '');
           return throwError(() => err);
         }),
@@ -94,10 +94,10 @@ export class SectionCardsComponent implements OnInit {
     this.heroService
       .getHeroesByName(name)
       .pipe(
-        tap((res) => {
+        tap((res: Hero[]) => {
           this.heroesFiltered.set(res);
         }),
-        catchError((err) => {
+        catchError((err: any) => {
           this.error.set(err.message || '');
           return throwError(() => err);
         }),
