@@ -32,21 +32,13 @@ ng serve
 Run json-server:
 
 ```bash
-json-server --watch mocks/heroes.json --port 3000
+npx json-server --watch mocks/heroes.json --port 3000
 ```
 
 > [!CAUTION]
 > If you're using Windows, this command may not be compatible with **CMD**. I recommend using a compatible terminal such as **GitBash**
 
 Open `http://localhost:4200/` in your browser.
-
-# 🧪 Set up for testing
-
-Run the following command:
-
-```bash
-ng test
-```
 
 # 📖 More documentation
 

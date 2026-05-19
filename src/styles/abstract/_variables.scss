@@ -1,0 +1,132 @@
+//------------
+// Base colors
+//------------
+
+$c-primary: #8A42FB;
+$c-secondary: #E7D8FE;
+
+$c-button: #F3F3F3;
+$c-button-file: #baabcf;
+
+$c-warning: #CC5F00;
+$c-success: #29F4B0;
+$c-error: #FB6A6A;
+
+$c-disabled: #cccccc;
+
+
+//------------
+// On background colors
+//------------
+
+$c-on-primary: #FFFFFF;
+$c-on-secondary: #343434;
+
+$c-on-button: #343434;
+
+$c-on-success: #000000;
+$c-on-error: #000000;
+
+
+//------------
+// Text colors
+//------------
+
+$c-text: #343434;
+$c-text-footer: #202223;
+
+$c-text-form: #231E20;
+$c-text-input: #254E7E17;
+
+$c-text-error: #fa3a3a;
+$c-text-warning: #CC5F00;
+
+
+//------------
+// Hover colors
+//------------
+
+$c-primary-hover: #772bf3;
+$c-secondary-hover: #dfcaff;
+$c-button-hover: #dfdddd;
+$c-button-file-hover: #a591c0;
+
+
+//------------
+// Break Points
+//------------
+
+$bp-tablet: 1124px;
+$bp-mobile: 430px;
+
+
+//------------
+// Font Sizes
+//------------
+
+$fs-xs: 0.75rem;
+$fs-s: 0.875rem;
+$fs-m: 1rem;
+$fs-l: 1.25rem;
+$fs-xl: 2rem;
+
+
+//------------
+// Font Weights
+//------------
+
+$fw-regular: 400;
+$fw-medium: 600;
+$fw-bold: 700;
+
+
+//------------
+// Line Heights
+//------------
+
+$lh-m: 120%;
+$lh-l: 140%;
+
+
+//------------
+// Gaps
+//------------
+
+$gap-xs: 0.25rem;
+$gap-s: 0.5rem;
+$gap-m: 1rem;
+$gap-l: 1.5rem;
+$gap-xl: 2rem;
+$gap-xxl: 16rem;
+
+
+//------------
+// Spacing
+//------------
+
+$s-0: 0;
+$s-xs: 0.625rem;
+$s-s: 0.75rem;
+$s-m: 1rem;
+$s-l: 1.25rem;
+$s-xl: 1.5rem;
+$s-xxl: 2rem;
+$s-xxxl: 3.125rem;
+
+
+//------------
+// Radius
+//------------
+
+$r-s: 0.5rem;
+$r-m: 1rem;
+$r-l: 2rem;
+$r-xl: 5rem;
+
+
+//------------
+// Shadows
+//------------
+
+$shadow-light: 0 0.0625rem 0.25rem 0 rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);

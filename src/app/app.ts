@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AppBannerComponent } from './components/statics/app-banner/app-banner.component';
+import { SectionFooterComponent } from './sections/section-footer/section-footer.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AppBannerComponent, SectionFooterComponent],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
 })
-export class App {
-  protected readonly title = signal('prueba-tecnica-frontend_w2m');
-}
+export class App {}

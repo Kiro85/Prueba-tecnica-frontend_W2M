@@ -1,0 +1,65 @@
+@use '@angular/material' as mat;
+@use 'abstract/variables' as var;
+
+.c-form-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    padding-bottom: var.$s-xs;
+    font-size: var.$fs-s;
+    line-height: var.$lh-m;
+    letter-spacing: 2%;
+  }
+
+  &__input {
+    width: 100%;
+
+    @include mat.form-field-overrides(
+      (
+        container-height: 3.5rem,
+        filled-container-color: var.$c-text-input,
+        outlined-outline-width: 0,
+      )
+    );
+
+    ::ng-deep .mdc-line-ripple {
+      display: none;
+      background-color: red;
+    }
+  }
+
+  mat-error {
+    font-size: var.$fs-s;
+    line-height: var.$lh-m;
+    letter-spacing: 0.0313rem;
+    margin-bottom: var.$s-m;
+    color: var.$c-text-error;
+  }
+
+  &__files {
+    width: 100%;
+    margin: var.$s-l var.$s-0;
+  }
+
+  &__files::file-selector-button {
+    height: 2.5rem;
+    border: none;
+    border-radius: var.$r-l;
+    padding: var.$s-0 var.$s-m;
+    margin-right: var.$s-m;
+    background-color: var.$c-secondary;
+    cursor: pointer;
+    transition: background-color ease-in-out 0.3s;
+
+    &:hover {
+      background-color: var.$c-secondary-hover;
+    }
+
+    @media (max-width: var.$bp-tablet) {
+      display: block;
+      margin-bottom: var.$s-m;
+    }
+  }
+}

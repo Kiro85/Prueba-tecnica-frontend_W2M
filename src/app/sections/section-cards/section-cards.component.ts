@@ -1,41 +1,68 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { AppCardHeroComponent } from '../../components/dynamics/app-cards/app-card-hero/app-card-hero.component';
-import { HeroStoreService } from '../../services/hero-store.service';
+import { Component, computed, DestroyRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppButtonPrimaryComponent } from '../../components/dynamics/app-buttons/app-button-primary/app-button-primary.component';
-import { AppSpinnerComponent } from '../../components/statics/app-spinner/app-spinner.component';
-import { AppErrorMessageComponent } from '../../components/dynamics/app-error-message/app-error-message.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+import { Button } from '@interfaces/button';
+import { HeroSearchService } from '@services/hero/hero-search.service';
+import { HeroReloadService } from '@services/hero/hero-reload.service';
+import { HeroManagerService } from '@services/hero/hero-manager.service';
+import { AppCardHeroComponent } from '@components/dynamics/app-cards/app-card-hero/app-card-hero.component';
+import { AppMessageComponent } from '@components/dynamics/app-messages/app-message/app-message.component';
+import { AppButtonComponent } from '@components/dynamics/app-button/app-button.component';
+import { AppSpinnerComponent } from '@components/statics/app-spinner/app-spinner.component';
 
 @Component({
   selector: 'section-cards',
   imports: [
     CommonModule,
     AppCardHeroComponent,
-    AppButtonPrimaryComponent,
+    AppButtonComponent,
     AppSpinnerComponent,
-    AppErrorMessageComponent,
+    AppMessageComponent,
   ],
   templateUrl: './section-cards.component.html',
   styleUrl: './section-cards.component.scss',
 })
 export class SectionCardsComponent implements OnInit {
-  private readonly heroStoreService = inject(HeroStoreService);
+  private readonly heroReloadService = inject(HeroReloadService);
+  private readonly heroSearchService = inject(HeroSearchService);
+  private readonly heroManagerService = inject(HeroManagerService);
 
-  protected heroesFiltered = this.heroStoreService.heroesFiltered;
-  protected heroes = this.heroStoreService.heroes;
-  private readonly heroesPerPage = this.heroStoreService.heroesPerPage;
-  protected morePages = this.heroStoreService.nextPage;
+  public heroes = this.heroManagerService.heroes;
+  public heroesFiltered = this.heroManagerService.heroesFiltered;
+  public loading = this.heroManagerService.loading;
+  public error = this.heroManagerService.error;
+  private readonly destroyRef = inject(DestroyRef);
 
-  protected loading = this.heroStoreService.loading;
-  protected error = this.heroStoreService.error;
+  protected moreButton = computed<Button>(() => ({
+    content: 'Ver más',
+    customClass: 'primary',
+    disabled: !this.heroManagerService.nextPage(),
+  }));
 
-  ngOnInit(): void {
-    this.nextPage();
+  public ngOnInit(): void {
+    this.loadMoreHeroes();
+    this.reloadHeroes();
+    this.searchHeroes();
   }
 
-  protected nextPage(): void {
-    if (this.morePages()) {
-      this.heroStoreService.getHeroesPaginated(this.heroStoreService.page() + 1, this.heroesPerPage);
-    }
+  private reloadHeroes(): void {
+    this.heroReloadService.reload$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
+      this.heroManagerService.refresh();
+    });
+  }
+
+  private searchHeroes(): void {
+    this.heroSearchService.search$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((query) => {
+      this.heroManagerService.getHeroesByName(query);
+    });
+  }
+
+  protected loadMoreHeroes(): void {
+    this.heroManagerService.getHeroesPaginated();
+  }
+
+  protected refreshHeroes(): void {
+    this.heroManagerService.refresh();
   }
 }

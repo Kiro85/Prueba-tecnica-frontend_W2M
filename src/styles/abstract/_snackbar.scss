@@ -1,0 +1,10 @@
+@use '@angular/material' as mat;
+
+:root {
+  @include mat.snack-bar-overrides((
+    container-color: transparent,
+  ));
+}
+.mat-mdc-snack-bar-container:not([mat-exit]) .mat-mdc-snackbar-surface {
+  box-shadow: none;
+}

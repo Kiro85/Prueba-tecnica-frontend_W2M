@@ -1,16 +1,20 @@
+@use 'abstract/variables' as var;
+
 .s-list-hero {
+  margin: var.$s-xs var.$s-0;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  gap: var.$gap-xxl;
+
   &__cards {
-    width: 100%;
-    gap: 24px;
+    gap: var.$gap-l;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(318px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(19.875rem, 1fr));
     justify-items: center;
   }
 
-  &__button {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 80px auto;
+  app-button {
+    margin: var.$s-0 auto;
   }
 }
